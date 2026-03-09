@@ -3,1026 +3,783 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>SNS副業収益ポテンシャル診断</title>
-<meta name="description" content="あなたはSNS副業でどこまで稼げる？29問に答えるだけで、向いている発信ジャンルと収益化ルートがわかります。">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<!-- GA/GTM: Replace G-XXXXXXXXXX with your ID -->
-<!--
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX');
-</script>
--->
+<title>SNSè³ç£ä¾¡å¤è¨ºæ­ | ããªãã®SNSã¢ã«ã¦ã³ããä»ãããã®ä¾¡å¤ãããï¼</title>
+<meta name="description" content="Xã»Instagramã»TikTokã»YouTube â ããªãã®SNSã¢ã«ã¦ã³ãã®è³ç£ä¾¡å¤ãç¡æè¨ºæ­ã60ç§ã§å¯è¦åã">
 <style>
-:root {
-  --lime: #C5FF00;
-  --lime-dark: #a8d900;
-  --black: #111111;
-  --dark: #222222;
-  --gray: #555555;
-  --gray-light: #888888;
-  --gray-border: #e0e0e0;
-  --bg: #ffffff;
-  --bg-section: #f5f5f5;
-  --bg-dark: #111111;
-  --text: #111111;
-  --text-sub: #555555;
-  --text-dim: #999999;
-  --text-white: #ffffff;
-  --accent-red: #e53e3e;
-  --accent-orange: #ed8936;
-  --accent-green: #38a169;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#000;--bg-primary:#000;--bg-secondary:#16181c;--bg-third:#1d1f23;
+  --border:#2f3336;--border-light:#38444d;
+  --text-primary:#e7e9ea;--text-secondary:#71767b;--text-third:#536471;
+  --blue:#1d9bf0;--blue-dark:#1a8cd8;--blue-light:rgba(29,155,240,.1);
+  --green:#00ba7c;--green-light:rgba(0,186,124,.1);
+  --amber:#f7931a;--amber-light:rgba(247,147,26,.1);
+  --line-green:#06C755;
 }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: 'Noto Sans JP', 'Hiragino Sans', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-  min-height: 100vh;
+html{-webkit-tap-highlight-color:transparent;scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Hiragino Sans",sans-serif;
+  background:var(--bg-primary);color:var(--text-primary);
+  min-height:100vh;min-height:100dvh;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
-button { font-family: inherit; cursor: pointer; }
-a { color: inherit; text-decoration: none; }
+a{color:var(--blue);text-decoration:none}
 
-/* Primary CTA Button - Lime green rounded */
-.btn-primary {
-  display: inline-flex; align-items: center; justify-content: center;
-  padding: 18px 48px; border-radius: 60px; border: none;
-  font-size: 17px; font-weight: 800; color: var(--black);
-  background: var(--lime);
-  transition: all 0.25s ease; position: relative;
-  box-shadow: 0 2px 12px rgba(197,255,0,0.3);
-}
-.btn-primary:hover { background: var(--lime-dark); transform: translateY(-1px); box-shadow: 0 4px 20px rgba(197,255,0,0.4); }
-.btn-primary:active { transform: scale(0.97); }
+/* Container - X mobile width */
+.container{max-width:600px;margin:0 auto}
 
-/* LINE CTA Button - Green */
-.btn-line {
-  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-  padding: 20px 48px; border-radius: 60px; border: none;
-  font-size: 18px; font-weight: 800; color: white;
-  background: #06C755;
-  transition: all 0.25s ease;
-  box-shadow: 0 4px 16px rgba(6,199,85,0.3);
-}
-.btn-line:hover { background: #05b34d; transform: translateY(-1px); }
+/* ===== Animations ===== */
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideInRight{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+@keyframes pulseGlow{0%,100%{box-shadow:0 0 16px rgba(6,199,85,.25)}50%{box-shadow:0 0 36px rgba(6,199,85,.5)}}
+@keyframes countPulse{0%{transform:scale(1)}50%{transform:scale(1.03)}100%{transform:scale(1)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.anim-fade{animation:fadeIn .5s ease-out both}
+.anim-slide-up{animation:slideUp .5s ease-out both}
+.anim-slide-right{animation:slideInRight .35s ease-out both}
 
-/* Black section */
-.section-dark {
-  background: var(--bg-dark);
-  color: var(--text-white);
-  padding: 48px 20px;
-}
+/* ===== Screens ===== */
+.screen{display:none;min-height:100vh;min-height:100dvh}
+.screen.active{display:flex;flex-direction:column}
 
-/* Card */
-.card {
-  background: var(--bg);
-  border-radius: 16px;
-  padding: 24px 20px;
-  margin-bottom: 16px;
-  border: 1px solid var(--gray-border);
+/* ===== X-style Header Bar ===== */
+.x-header{
+  position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;justify-content:center;
+  height:53px;padding:0 16px;
+  background:rgba(0,0,0,.75);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
 }
-.card-dark {
-  background: #1a1a1a;
-  border-radius: 16px;
-  padding: 24px 20px;
-  margin-bottom: 16px;
-  border: 1px solid #333;
-}
+.x-header .logo{display:flex;align-items:center;gap:6px}
+.x-header .logo svg{width:24px;height:24px;color:var(--text-primary)}
+.x-header .logo span{font-size:18px;font-weight:700;letter-spacing:-.02em}
 
-/* Lime accent card */
-.card-lime {
-  background: var(--lime);
-  border-radius: 16px;
-  padding: 24px 20px;
-  margin-bottom: 16px;
-  color: var(--black);
+/* ===== Top Page ===== */
+#top{padding:0}
+.hero{padding:40px 16px;text-align:center;border-bottom:1px solid var(--border)}
+.hero .badge{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12px;font-weight:500;color:var(--blue);
+  background:var(--blue-light);border:1px solid rgba(29,155,240,.2);
+  border-radius:999px;padding:6px 14px;margin-bottom:20px;
+}
+.hero h1{font-size:26px;font-weight:800;line-height:1.35;margin-bottom:14px;letter-spacing:-.02em}
+.hero .sub{font-size:14px;color:var(--text-secondary);line-height:1.7;margin-bottom:28px}
+.btn-blue{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--blue);color:#fff;font-size:16px;font-weight:700;
+  border:none;border-radius:999px;padding:14px 32px;cursor:pointer;transition:all .15s;
+}
+.btn-blue:hover{background:var(--blue-dark)}
+.btn-blue:active{transform:scale(.97)}
+.btn-blue svg{width:18px;height:18px}
+.hero .meta{font-size:12px;color:var(--text-third);margin-top:12px}
+
+/* SNS icons row */
+.sns-icons{display:flex;justify-content:center;gap:16px;margin-bottom:24px}
+.sns-icon{
+  width:44px;height:44px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--bg-secondary);border:1px solid var(--border);
+  font-size:20px;
 }
 
-/* Section title with lime accent line */
-.section-title {
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 3px;
-  color: var(--gray-light);
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+/* Benefits - tweet style cards */
+.benefits-section{border-bottom:1px solid var(--border)}
+.benefits-title{padding:12px 16px;font-size:18px;font-weight:800}
+.benefit-tweet{
+  display:flex;gap:12px;padding:12px 16px;
+  border-bottom:1px solid var(--border);transition:background .15s;
 }
-.section-title::before {
-  content: '';
-  display: inline-block;
-  width: 24px; height: 3px;
-  background: var(--lime);
-  border-radius: 2px;
+.benefit-tweet:hover{background:rgba(255,255,255,.03)}
+.benefit-avatar{
+  width:40px;height:40px;border-radius:50%;
+  background:var(--blue-light);display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
 }
-.section-title-dark {
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 3px;
-  color: #888;
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.benefit-body .bname{font-size:14px;font-weight:700;margin-bottom:2px}
+.benefit-body .bhandle{font-size:13px;color:var(--text-secondary)}
+.benefit-body .btext{font-size:14px;color:var(--text-primary);line-height:1.5;margin-top:6px}
+
+/* CTA bottom */
+.bottom-cta{padding:24px 16px;text-align:center;border-top:1px solid var(--border)}
+.trust-text{font-size:12px;color:var(--text-third);line-height:1.7;margin-top:16px}
+
+/* ===== Diagnosis ===== */
+#diagnosis{padding:0}
+.diag-bar{
+  position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;gap:16px;
+  height:53px;padding:0 16px;
+  background:rgba(0,0,0,.75);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
 }
-.section-title-dark::before {
-  content: '';
-  display: inline-block;
-  width: 24px; height: 3px;
-  background: var(--lime);
-  border-radius: 2px;
+.diag-back{
+  width:34px;height:34px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:transparent;border:none;cursor:pointer;
+  transition:background .15s;color:var(--text-primary);
+}
+.diag-back:hover{background:rgba(239,243,244,.1)}
+.diag-back:disabled{opacity:.3;pointer-events:none}
+.diag-back svg{width:20px;height:20px}
+.diag-info{flex:1}
+.diag-info .di-title{font-size:15px;font-weight:700}
+.diag-info .di-step{font-size:13px;color:var(--text-secondary)}
+
+.progress-track{height:4px;background:var(--bg-secondary)}
+.progress-fill{height:100%;background:var(--blue);transition:width .45s ease-out}
+
+.question-area{flex:1;padding:20px 16px 32px}
+.q-title{font-size:20px;font-weight:800;line-height:1.35;margin-bottom:6px}
+.q-desc{font-size:14px;color:var(--text-secondary);margin-bottom:20px;line-height:1.5}
+.q-helper{font-size:12px;color:var(--text-third);margin-top:10px}
+
+.text-input{
+  width:100%;background:var(--bg-primary);
+  border:1px solid var(--border);border-radius:4px;
+  padding:16px 12px;color:var(--text-primary);font-size:16px;
+  outline:none;transition:border-color .2s,box-shadow .2s;
+}
+.text-input::placeholder{color:var(--text-third)}
+.text-input:focus{border-color:var(--blue);box-shadow:0 0 0 1px var(--blue)}
+
+.options{display:flex;flex-direction:column;gap:0}
+.option-btn{
+  display:flex;align-items:center;gap:12px;width:100%;text-align:left;
+  background:transparent;border:none;border-bottom:1px solid var(--border);
+  padding:16px 4px;cursor:pointer;
+  font-size:15px;color:var(--text-primary);
+  transition:background .12s;
+}
+.option-btn:first-child{border-top:1px solid var(--border)}
+.option-btn:hover{background:rgba(255,255,255,.03)}
+.option-btn:active{background:rgba(29,155,240,.08)}
+.option-btn.selected{background:var(--blue-light);color:var(--blue)}
+.radio-circle{
+  width:20px;height:20px;border-radius:50%;
+  border:2px solid var(--border-light);
+  flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  transition:all .15s;
+}
+.option-btn.selected .radio-circle{border-color:var(--blue);background:var(--blue)}
+.radio-circle svg{width:12px;height:12px;color:#fff;display:none}
+.option-btn.selected .radio-circle svg{display:block}
+
+/* Platform icons in options */
+.opt-icon{font-size:18px;flex-shrink:0;width:28px;text-align:center}
+
+.next-wrap{padding:0 16px 24px}
+.next-btn{
+  width:100%;background:var(--blue);color:#fff;font-size:15px;font-weight:700;
+  border:none;border-radius:999px;padding:14px;cursor:pointer;transition:all .12s;
+}
+.next-btn:hover{background:var(--blue-dark)}
+.next-btn:active{transform:scale(.98)}
+.skip-note{font-size:12px;color:var(--text-third);margin-top:8px;text-align:center}
+
+/* ===== Result ===== */
+#result{padding:0}
+.result-bar{
+  position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;justify-content:center;
+  height:53px;padding:0 16px;
+  background:rgba(0,0,0,.75);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.result-bar span{font-size:17px;font-weight:800}
+
+.result-body{padding:0 16px 40px}
+.result-account{
+  text-align:center;padding:16px 0 8px;
+  font-size:14px;color:var(--text-secondary);
 }
 
-/* Progress bar */
-.progress-track {
-  height: 4px; background: #e5e5e5; border-radius: 4px; overflow: hidden;
+/* Main value card */
+.value-card{
+  text-align:center;padding:28px 16px;margin:8px 0 4px;
+  border:1px solid var(--border);border-radius:16px;
+  background:var(--bg-secondary);
 }
-.progress-fill {
-  height: 100%; background: var(--lime); border-radius: 4px;
-  transition: width 0.4s ease;
+.value-card .vc-label{font-size:13px;color:var(--text-secondary);font-weight:500;margin-bottom:8px}
+.value-card .vc-amount{font-size:42px;font-weight:900;letter-spacing:-.03em;color:var(--text-primary);margin-bottom:12px}
+.percentile-pill{
+  display:inline-flex;align-items:center;gap:4px;
+  background:var(--blue-light);border:1px solid rgba(29,155,240,.2);
+  border-radius:999px;padding:5px 14px;
+  font-size:13px;font-weight:700;color:var(--blue);
 }
+.vc-conf{font-size:11px;color:var(--text-third);margin-top:10px}
 
-/* Option button */
-.opt-btn {
-  display: flex; align-items: center; gap: 12px;
-  width: 100%; text-align: left; padding: 16px 20px;
-  background: var(--bg); border: 2px solid var(--gray-border);
-  border-radius: 14px; font-size: 15px; font-weight: 600;
-  color: var(--text); margin-bottom: 10px;
-  transition: all 0.2s ease;
+/* Platform label */
+.platform-label{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12px;color:var(--text-secondary);margin-bottom:12px;
 }
-.opt-btn:hover { border-color: var(--lime); background: #fafff0; }
-.opt-btn.selected {
-  border-color: var(--lime); background: #f4ffe0;
-  box-shadow: 0 0 0 1px var(--lime);
-}
-.opt-checkbox {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 22px; height: 22px; border-radius: 6px;
-  border: 2px solid var(--gray-border); font-size: 12px;
-  font-weight: 800; color: var(--black); flex-shrink: 0;
-  transition: all 0.2s;
-}
-.opt-btn.selected .opt-checkbox {
-  background: var(--lime); border-color: var(--lime);
-}
+.platform-label .pl-icon{font-size:16px}
 
-/* Axis bar */
-.axis-bar-track {
-  flex: 1; height: 8px; background: #e5e5e5; border-radius: 8px; overflow: hidden;
-}
-.axis-bar-fill {
-  height: 100%; border-radius: 8px;
-  transition: width 1s ease;
-}
+/* Stat cards */
+.stat-section{border:1px solid var(--border);border-radius:16px;background:var(--bg-secondary);margin-top:12px;overflow:hidden}
+.stat-section .sh{padding:14px 16px 0;font-size:15px;font-weight:800}
+.stat-row{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--border)}
+.stat-row:last-child{border-bottom:none}
+.stat-row .sr-label{font-size:14px;color:var(--text-secondary)}
+.stat-row .sr-value{font-size:15px;font-weight:700}
+.stat-note{padding:4px 16px 12px;text-align:right;font-size:11px;color:var(--text-third)}
 
-/* Rank badge */
-.rank-badge {
-  width: 32px; height: 32px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14px; font-weight: 800; flex-shrink: 0;
-  background: var(--bg-section); color: var(--text);
-  border: 2px solid var(--gray-border);
-}
-.rank-1 { background: var(--lime); border-color: var(--lime); color: var(--black); }
-.rank-2 { background: #222; border-color: #222; color: white; }
-.rank-3 { background: #e5e5e5; border-color: #e5e5e5; color: #555; }
+/* Insight cards */
+.insight-card{border:1px solid var(--border);border-radius:16px;background:var(--bg-secondary);margin-top:12px;padding:16px}
+.insight-card .ic-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.ic-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.ic-dot-blue{background:var(--blue)}
+.ic-dot-green{background:var(--green)}
+.ic-dot-amber{background:var(--amber)}
+.insight-card h3{font-size:15px;font-weight:700}
+.insight-card p{font-size:14px;color:var(--text-secondary);line-height:1.6;margin-bottom:4px}
+.comment-line{font-size:13px;color:var(--amber);margin-top:8px}
 
-/* Income row */
-.income-row {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 16px 0; border-bottom: 1px solid var(--gray-border);
+/* Locked */
+.locked-card{position:relative;overflow:hidden;border:1px solid var(--border);border-radius:16px;margin-top:12px}
+.locked-bg{padding:16px;filter:blur(5px);opacity:.5;pointer-events:none}
+.locked-item{background:var(--bg-third);border-radius:10px;padding:12px;margin-bottom:8px}
+.locked-item h4{font-size:13px;font-weight:700;color:var(--text-secondary);margin-bottom:2px}
+.locked-item p{font-size:11px;color:var(--text-third)}
+.locked-overlay{
+  position:absolute;inset:0;z-index:2;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  background:rgba(0,0,0,.5);backdrop-filter:blur(6px);padding:20px;text-align:center;
 }
-.income-row:last-child { border-bottom: none; }
+.lock-circle{
+  width:48px;height:48px;border-radius:50%;
+  background:var(--bg-third);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+}
+.lock-circle svg{width:22px;height:22px;color:var(--blue)}
+.locked-overlay .lo-t{font-size:14px;font-weight:700}
+.locked-overlay .lo-s{font-size:12px;color:var(--text-secondary)}
 
-/* Weakness item */
-.weakness-item {
-  padding: 16px 0; border-bottom: 1px solid var(--gray-border);
+/* LINE CTA */
+.line-card{
+  border-radius:16px;padding:24px 16px;text-align:center;margin-top:16px;
+  border:1px solid rgba(6,199,85,.25);
+  background:linear-gradient(180deg,rgba(6,199,85,.06),var(--bg-secondary));
 }
-.weakness-item:last-child { border-bottom: none; }
+.line-card .lc-intro{font-size:14px;color:var(--text-secondary);line-height:1.7;margin-bottom:20px}
+.line-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--line-green);color:#fff;font-size:16px;font-weight:700;
+  border:none;border-radius:999px;padding:14px 28px;cursor:pointer;
+  text-decoration:none;transition:all .15s;
+}
+.line-btn:active{transform:scale(.96)}
+.line-btn svg{width:22px;height:22px}
+.line-card .lc-sub{font-size:12px;color:var(--text-third);margin-top:10px}
+.line-card .lc-details{margin-top:12px}
+.line-card .lc-details p{font-size:11px;color:var(--text-third);margin-bottom:2px}
 
-/* Lock overlay */
-.lock-overlay {
-  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(255,255,255,0.92); border-radius: 16px;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center;
+.restart-btn{
+  display:block;width:100%;margin-top:24px;padding:14px;
+  background:transparent;border:1px solid var(--border);border-radius:999px;
+  font-size:14px;font-weight:700;color:var(--text-primary);cursor:pointer;
+  transition:background .12s;
 }
+.restart-btn:hover{background:rgba(239,243,244,.1)}
 
-/* Tags */
-.tag {
-  display: inline-block;
-  padding: 8px 14px;
-  background: white;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--text-sub);
-  border: 1px solid var(--gray-border);
-}
+/* Loading */
+.loading{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:80vh;gap:12px}
+.spinner{width:28px;height:28px;border:3px solid var(--blue);border-top-color:transparent;border-radius:50%;animation:spin .7s linear infinite}
+.loading p{font-size:14px;color:var(--text-secondary)}
 
-/* Stripe accent */
-.stripe-accent {
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 3px;
-  color: var(--gray-light);
-  display: inline-block;
-  padding: 4px 0;
-  margin-bottom: 8px;
-}
-
-/* Encouragement pill */
-.enc-pill {
-  display: inline-block;
-  padding: 8px 16px;
-  background: #fffce8;
-  border: 1px solid var(--lime);
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text);
-}
-
-/* Spinner */
-.spinner {
-  width: 40px;
-  height: 40px;
-  border: 4px solid rgba(197,255,0,0.3);
-  border-top-color: var(--lime);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-/* Fade animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.fade-in {
-  animation: fadeIn 0.6s ease-out;
-}
-.fade-d1 { animation: fadeIn 0.6s ease-out 0.1s both; }
-.fade-d2 { animation: fadeIn 0.6s ease-out 0.2s both; }
-.fade-d3 { animation: fadeIn 0.6s ease-out 0.3s both; }
-.fade-d4 { animation: fadeIn 0.6s ease-out 0.4s both; }
-
-/* Step card container */
-.step-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin-bottom: 24px;
-  padding: 0;
-}
-
-.step-card svg {
-  width: 100%;
-  max-width: 180px;
-  height: auto;
-  margin-bottom: 16px;
-}
-
-.step-number {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  background: var(--lime);
-  color: var(--black);
-  border-radius: 50%;
-  font-size: 24px;
-  font-weight: 900;
-  margin-bottom: 12px;
-}
-
-.step-title {
-  font-size: 18px;
-  font-weight: 800;
-  color: var(--text);
-  margin-bottom: 8px;
-}
-
-.step-desc {
-  font-size: 13px;
-  color: var(--text-dim);
-  line-height: 1.6;
-}
-
-/* Feature icon */
-.feature-icon {
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--lime);
-  border-radius: 12px;
-  font-size: 24px;
-  flex-shrink: 0;
-}
-
-/* Stats section */
-.stats-container {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  gap: 16px;
-  margin: 32px 0;
-}
-
-.stat-item {
-  text-align: center;
-  flex: 1;
-}
-
-.stat-number {
-  font-size: 28px;
-  font-weight: 900;
-  color: var(--lime);
-  line-height: 1;
-  margin-bottom: 4px;
-}
-
-.stat-label {
-  font-size: 12px;
-  color: var(--text-sub);
-  font-weight: 600;
-}
-
-/* Responsive */
-@media (max-width: 480px) {
-  .btn-primary { padding: 16px 40px; font-size: 16px; }
-  .btn-line { padding: 18px 40px; font-size: 16px; }
-}
+/* Reveal */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease-out,transform .55s ease-out}
+.reveal.visible{opacity:1;transform:translateY(0)}
 </style>
 </head>
 <body>
-<div id="app"></div>
+
+<!-- ============ TOP PAGE ============ -->
+<div id="top" class="screen active">
+  <!-- X-style header -->
+  <div class="x-header">
+    <div class="logo">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      <span>SNSè³ç£ä¾¡å¤è¨ºæ­</span>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Hero -->
+    <section class="hero anim-fade">
+      <div class="badge">ç¡æã»å¿åã³60ç§ã§å®äº</div>
+
+      <div class="sns-icons anim-slide-up" style="animation-delay:.1s">
+        <div class="sns-icon">ð</div>
+        <div class="sns-icon" style="background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);border:none;color:#fff;font-size:18px">ð·</div>
+        <div class="sns-icon" style="background:#010101;border-color:#333">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V9.42a8.16 8.16 0 004.76 1.52V7.5a4.85 4.85 0 01-1-.81z"/></svg>
+        </div>
+        <div class="sns-icon" style="background:#FF0000;border:none;color:#fff;font-size:14px;font-weight:700">â¶</div>
+      </div>
+
+      <h1>ããªãã®SNSã¢ã«ã¦ã³ãã<br>ä»ãããã®ä¾¡å¤ãããï¼</h1>
+      <p class="sub">Xã»Instagramã»TikTokã»YouTube â<br>ã¢ã«ã¦ã³ãã¨éç¨ç¶æ³ãã<br>SNSè³ç£ä¾¡å¤ãç¡æã§å¯è¦åãã¾ãã</p>
+
+      <button class="btn-blue" onclick="startDiagnosis()">
+        ç¡æã§è¨ºæ­ãã
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+      </button>
+      <p class="meta">æè¦æéï¼ç´60ç§ ï½ ç»é²ä¸è¦</p>
+    </section>
+
+    <!-- Benefits as tweet-like cards -->
+    <section class="benefits-section anim-slide-up" style="animation-delay:.15s">
+      <h2 class="benefits-title">ãã®è¨ºæ­ã§ããããã¨</h2>
+      <div class="benefit-tweet"><div class="benefit-avatar">ð°</div><div class="benefit-body"><div class="bname">è³ç£ä¾¡å¤ <span class="bhandle">@asset</span></div><div class="btext">ä»ã®SNSè³ç£ä¾¡å¤ãååä½ã§ããã</div></div></div>
+      <div class="benefit-tweet"><div class="benefit-avatar">ð</div><div class="benefit-body"><div class="bname">å°æ¥äºæ¸¬ <span class="bhandle">@future</span></div><div class="btext">3ã»6ã»12ã¶æå¾ã®å°æ¢ä¾¡å¤ãããã</div></div></div>
+      <div class="benefit-tweet"><div class="benefit-avatar">ð¡</div><div class="benefit-body"><div class="bname">åæ <span class="bhandle">@analysis</span></div><div class="btext">ããªãã®å¼·ã¿ / å¼±ã¿ãå·ä½çã«ããã</div></div></div>
+      <div class="benefit-tweet"><div class="benefit-avatar">ð¯</div><div class="benefit-body"><div class="bname">æ¦ç¥ <span class="bhandle">@strategy</span></div><div class="btext">ä¾¡å¤ãä¸ããããã®æ¹åæ§ãããã</div></div></div>
+      <div class="benefit-tweet"><div class="benefit-avatar">ð©</div><div class="benefit-body"><div class="bname">è©³ç´°çµæ <span class="bhandle">@detail</span></div><div class="btext">è©³ç´°æ¦ç¥ã¯LINEã§åãåãã</div></div></div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="bottom-cta anim-fade" style="animation-delay:.3s">
+      <button class="btn-blue" onclick="startDiagnosis()">ä»ããè¨ºæ­ãå§ãã</button>
+      <p class="trust-text">
+        ã¢ã«ã¦ã³ãæå ±ãå¥ããã¨ãããããªãåãã®çµæã«ãªãã¾ãã<br>
+        <span style="color:var(--text-third)">â» å¥åæå ±ã¯çµæè¡¨ç¤ºã¨åå¥åæã®åç§ã«ã®ã¿ä½¿ç¨ãã¾ã</span>
+      </p>
+    </section>
+  </div>
+</div>
+
+<!-- ============ DIAGNOSIS PAGE ============ -->
+<div id="diagnosis" class="screen">
+  <div class="diag-bar">
+    <button class="diag-back" id="backBtn" onclick="goBack()">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m7-7l-7 7 7 7"/></svg>
+    </button>
+    <div class="diag-info">
+      <div class="di-title">SNSè³ç£ä¾¡å¤è¨ºæ­</div>
+      <div class="di-step" id="stepLabel"></div>
+    </div>
+  </div>
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="container">
+    <div class="question-area" id="questionArea"></div>
+    <div id="nextWrap"></div>
+  </div>
+</div>
+
+<!-- ============ RESULT PAGE ============ -->
+<div id="result" class="screen">
+  <div class="result-bar"><span>è¨ºæ­çµæ</span></div>
+  <div class="container">
+    <div class="result-body" id="resultBody"></div>
+  </div>
+</div>
 
 <script>
 // ============================================================
-// LINE URL
+// CONFIG
 // ============================================================
-const LINE_URL = "https://lin.ee/0qgyt93";
+const LINE_URL = 'https://lin.ee/EFIZkVv';
+
+// Platform display map
+const PLATFORM_MAP = {
+  x: { name:'X (æ§Twitter)', icon:'ð', color:'#000' },
+  instagram: { name:'Instagram', icon:'ð·', color:'#E1306C' },
+  tiktok: { name:'TikTok', icon:'ðµ', color:'#010101' },
+  youtube: { name:'YouTube', icon:'â¶', color:'#FF0000' },
+  threads: { name:'Threads', icon:'ð', color:'#000' },
+  other: { name:'ãã®ä»', icon:'ð±', color:'#333' },
+};
 
 // ============================================================
-// QUESTIONS (ALL 29 QUESTIONS - EXACT COPY)
+// QUESTIONS (16å: åªä½è¿½å )
 // ============================================================
-const QUESTIONS=[
-{id:"Q1",question:"SNS発信の経験は？",description:"スタート地点を把握します",category:"BACKGROUND",allowMultiple:false,intentTag:"sns_experience",options:[
-{label:"発信経験があり、フォロワーも多い（1万人以上）",scoring:{expression:9,market:9,monetization:8,continuity:8}},
-{label:"発信経験あり、ある程度のフォロワーがいる（1k〜1万人）",scoring:{expression:8,market:8,monetization:7,continuity:7}},
-{label:"発信経験あり、だが伸び悩んでいる（〜1k人）",scoring:{expression:6,market:5,monetization:4,continuity:6}},
-{label:"個人利用だけで、発信経験は浅い",scoring:{expression:4,market:4,monetization:2,continuity:4}},
-{label:"SNSはほぼ未経験",scoring:{expression:2,market:2,monetization:1,continuity:3}}
-]},
-{id:"Q2",question:"年齢層と職業カテゴリは？",description:"ターゲット設定に使用",category:"BACKGROUND",allowMultiple:false,intentTag:"age_work",options:[
-{label:"20代、会社員 / 学生",scoring:{market:8,execution:8}},
-{label:"30代、会社員",scoring:{market:8,execution:7}},
-{label:"40代以上、会社員",scoring:{market:7,execution:6}},
-{label:"フリーランス / 個人事業",scoring:{market:8,execution:9}},
-{label:"主婦 / 育休中",scoring:{market:7,execution:7}},
-{label:"その他（ニート含む）",scoring:{market:5,execution:5}}
-]},
-{id:"Q3",question:"SNS発信に使える時間は？（1日）",description:"投下時間を把握",category:"RESOURCE",allowMultiple:false,intentTag:"daily_time",options:[
-{label:"30分未満",scoring:{continuity:3,execution:3}},
-{label:"30分〜1時間",scoring:{continuity:6,execution:6}},
-{label:"1〜2時間",scoring:{continuity:8,execution:8}},
-{label:"2時間以上",scoring:{continuity:9,execution:9}}
-]},
-{id:"Q4",question:"初期投資はできる？",description:"教材・ツール・広告費など",category:"RESOURCE",allowMultiple:false,intentTag:"investment_capacity",options:[
-{label:"月1万円以上できる",scoring:{monetization:8,execution:8}},
-{label:"月5,000円程度なら",scoring:{monetization:6,execution:6}},
-{label:"ほぼ無料でやりたい",scoring:{monetization:4,execution:5}},
-{label:"全くできない",scoring:{monetization:2,execution:2}}
-]},
-{id:"Q5",question:"現在のフォロワー数は？",description:"スケール段階を把握",category:"BACKGROUND",allowMultiple:false,intentTag:"followers",options:[
-{label:"1万人以上",scoring:{market:10,monetization:9}},
-{label:"1,000〜1万人",scoring:{market:8,monetization:7}},
-{label:"100〜1,000人",scoring:{market:6,monetization:5}},
-{label:"100人未満",scoring:{market:4,monetization:3}},
-{label:"ゼロ / アカウントなし",scoring:{market:2,monetization:1}}
-]},
-{id:"Q6",question:"顔出し発信できる？",description:"ブランド化戦略に影響",category:"APTITUDE",allowMultiple:false,intentTag:"face_reveal",options:[
-{label:"得意。むしろ顔出しで差別化したい",scoring:{expression:10,market:9,monetization:8}},
-{label:"できるが、できれば避けたい",scoring:{expression:7,market:7,monetization:6}},
-{label:"できればしたくない",scoring:{expression:5,market:5,monetization:4}},
-{label:"絶対にしたくない。匿名必須",scoring:{expression:3,market:6,monetization:3}}
-]},
-{id:"Q7",question:"何を発信すべきか決まっている？",description:"ジャンル選定度を判定",category:"CLARITY",allowMultiple:false,intentTag:"genre_clarity",options:[
-{label:"決まっている。軸が明確",scoring:{expression:8,market:8,execution:9}},
-{label:"だいたい決まっている",scoring:{expression:6,market:7,execution:7}},
-{label:"いくつか候補がある",scoring:{expression:5,market:5,execution:5}},
-{label:"全然決まっていない",scoring:{expression:2,market:2,execution:2}}
-]},
-{id:"Q8",question:"自分の強みや専門性は？",description:"発信軸を判定",category:"STRENGTH",allowMultiple:false,intentTag:"expertise",options:[
-{label:"複数ある。自信も高い",scoring:{expression:9,market:8,execution:8}},
-{label:"1〜2個ある",scoring:{expression:7,market:7,execution:7}},
-{label:"あると思うが、確信がない",scoring:{expression:5,market:5,execution:5}},
-{label:"ない。これから探す状態",scoring:{expression:2,market:2,execution:2}}
-]},
-{id:"Q9",question:"発信に対する心理的抵抗は？",description:"メンタル準備度を判定",category:"MINDSET",allowMultiple:false,intentTag:"publish_resistance",options:[
-{label:"ない。むしろ楽しみ",scoring:{expression:10,continuity:9,execution:9}},
-{label:"少しはあるが、やれる",scoring:{expression:7,continuity:7,execution:7}},
-{label:"結構ある。批判も心配",scoring:{expression:4,continuity:4,execution:4}},
-{label:"強い抵抗。発信が怖い",scoring:{expression:2,continuity:2,execution:2}}
-]},
-{id:"Q10",question:"批判や炎上への耐性は？",description:"メンタルレジリエンスを判定",category:"MINDSET",allowMultiple:false,intentTag:"criticism_resilience",options:[
-{label:"気にならない。むしろ話題として活用できる",scoring:{continuity:10,execution:9}},
-{label:"ある程度は気にするが、続けられる",scoring:{continuity:7,execution:7}},
-{label:"結構気になる。落ち込みやすい",scoring:{continuity:4,execution:4}},
-{label:"強く気になる。止めたくなる可能性",scoring:{continuity:2,execution:2}}
-]},
-{id:"Q11",question:"習慣形成のスキルは？",description:"日々の継続を判定",category:"CONTINUITY",allowMultiple:false,intentTag:"habit_forming",options:[
-{label:"ルーティンを作るのが得意",scoring:{continuity:10,execution:8}},
-{label:"意識すればできる",scoring:{continuity:7,execution:7}},
-{label:"三日坊主になりがち",scoring:{continuity:4,execution:4}},
-{label:"習慣化が苦手",scoring:{continuity:2,execution:3}}
-]},
-{id:"Q12",question:"過去に挫折した副業や発信経験は？",description:"再チャレンジ適性を判定",category:"CONTINUITY",allowMultiple:false,intentTag:"past_failure",options:[
-{label:"挫折経験なし",scoring:{continuity:8,execution:7}},
-{label:"1回ある",scoring:{continuity:7,execution:7}},
-{label:"2〜3回ある",scoring:{continuity:5,execution:5}},
-{label:"何度もある",scoring:{continuity:3,execution:3}}
-]},
-{id:"Q13",question:"希望する収益目標は？（月額）",description:"目標に応じた戦略を設計",category:"GOAL",allowMultiple:false,intentTag:"income_goal",options:[
-{label:"1〜3万円",scoring:{monetization:6,execution:6}},
-{label:"3〜10万円",scoring:{monetization:7,execution:7}},
-{label:"10〜30万円",scoring:{monetization:8,execution:8}},
-{label:"30万円以上",scoring:{monetization:9,execution:9}}
-]},
-{id:"Q14",question:"いつまでに最初の収益を得たい？",description:"タイムラインを設計",category:"GOAL",allowMultiple:false,intentTag:"timeline",options:[
-{label:"1ヶ月以内",scoring:{execution:9,monetization:7}},
-{label:"3ヶ月以内",scoring:{execution:8,monetization:8}},
-{label:"6ヶ月以内",scoring:{execution:6,monetization:7}},
-{label:"1年以内",scoring:{execution:5,monetization:6}}
-]},
-{id:"Q15",question:"興味のある発信ジャンルは？",description:"複数選択OK",category:"GENRE",allowMultiple:true,intentTag:"genre_interest",options:[
-{label:"副業",scoring:{market:8}},{label:"転職 / キャリア",scoring:{market:8}},{label:"起業 / ビジネス",scoring:{market:8}},{label:"SNS運用 / マーケ",scoring:{market:8}},{label:"AI活用",scoring:{market:8}},{label:"営業",scoring:{market:8}},{label:"ライフスタイル",scoring:{market:7}},{label:"子育て / 家族",scoring:{market:7}},{label:"恋愛 / 人間関係",scoring:{market:7}},{label:"健康 / ダイエット",scoring:{market:7}},{label:"美容",scoring:{market:7}},{label:"ファッション",scoring:{market:7}},{label:"ガジェット",scoring:{market:7}},{label:"お金 / 節約 / 投資",scoring:{market:8}},{label:"勉強 / 読書 / 学習法",scoring:{market:7}},{label:"地方移住 / 働き方",scoring:{market:7}},{label:"筋トレ / スポーツ",scoring:{market:7}},{label:"旅行",scoring:{market:7}},{label:"グルメ",scoring:{market:7}},{label:"その他",scoring:{market:6}}
-]},
-{id:"Q16",question:"実際に発信できそうなものは？",description:"複数選択OK",category:"APTITUDE",allowMultiple:true,intentTag:"content_type",options:[
-{label:"自分の実体験",scoring:{expression:9,market:8,monetization:8}},{label:"学んだことの要約",scoring:{expression:7,market:7,monetization:6}},{label:"ノウハウ解説",scoring:{expression:8,market:8,monetization:8}},{label:"比較レビュー",scoring:{expression:7,market:8,monetization:7}},{label:"日常発信",scoring:{expression:6,market:6,monetization:5}},{label:"意見発信",scoring:{expression:8,market:7,monetization:7}},{label:"図解",scoring:{expression:8,market:8,monetization:7}},{label:"ストーリー投稿",scoring:{expression:9,market:8,monetization:8}},{label:"まだわからない",scoring:{expression:3,market:3,monetization:2}}
-]},
-{id:"Q17",question:"興味のある収益化手段は？",description:"複数選択OK",category:"MONETIZE",allowMultiple:true,intentTag:"monetization_interest",options:[
-{label:"アフィリエイト",scoring:{monetization:8}},{label:"自分の商品販売",scoring:{monetization:9}},{label:"コンサル / 相談",scoring:{monetization:8}},{label:"SNS運用代行",scoring:{monetization:8}},{label:"PR案件",scoring:{monetization:7}},{label:"コミュニティ運営",scoring:{monetization:7}},{label:"コンテンツ販売",scoring:{monetization:9}},{label:"まだ決まっていない",scoring:{monetization:3}}
-]},
-{id:"Q18",question:"今の自分に一番近い悩みは？",description:"課題の可視化に使用",category:"ISSUE",allowMultiple:false,intentTag:"pain_point",options:[
-{label:"何を発信すればいいかわからない",scoring:{expression:3,market:3,execution:4}},{label:"フォロワーが増えない",scoring:{expression:5,market:5,execution:5}},{label:"続かない",scoring:{continuity:2,execution:2}},{label:"稼ぎ方がわからない",scoring:{monetization:3,execution:4}},{label:"自信がない",scoring:{expression:3,execution:3}},{label:"時間がない",scoring:{continuity:3,execution:3}},{label:"方向性が定まらない",scoring:{market:3,execution:4}}
-]},
-{id:"Q19",question:"SNSを見る時間は？（1日）",description:"情報収集と行動のバランスを判定",category:"ACTION",allowMultiple:false,intentTag:"browse_time",options:[
-{label:"30分未満",scoring:{continuity:4,expression:4,market:4,execution:4}},{label:"30分〜1時間",scoring:{continuity:6,expression:6,market:6,execution:6}},{label:"1〜2時間",scoring:{continuity:8,expression:8,market:8,execution:8}},{label:"2〜4時間",scoring:{continuity:8,expression:8,market:9,execution:7}},{label:"4時間以上",scoring:{continuity:6,expression:7,market:8,execution:5}}
-]},
-{id:"Q20",question:"理想に近い発信スタイルは？",description:"あなたに合う型を判定",category:"STYLE",allowMultiple:false,intentTag:"style",options:[
-{label:"専門家として教える",scoring:{expression:8,market:8,monetization:9}},{label:"自分の成長過程を見せる",scoring:{expression:8,market:8,monetization:7}},{label:"体験を共有して共感を取る",scoring:{expression:9,market:8,monetization:7}},{label:"実績で引っ張る",scoring:{expression:7,market:7,monetization:8}},{label:"世界観でファンを作る",scoring:{expression:8,market:7,monetization:7}},{label:"まだ決めていない",scoring:{expression:3,market:3,monetization:3}}
-]},
-{id:"Q21",question:"新しいことを始める時の傾向は？",description:"行動スタイルを判定",category:"ACTION",allowMultiple:false,intentTag:"action_style",options:[
-{label:"まず動きながら覚える",scoring:{continuity:8,execution:10,monetization:8}},{label:"軽く調べてから始める",scoring:{continuity:8,execution:8,monetization:7}},{label:"かなり調べてから始める",scoring:{continuity:6,execution:5,monetization:5}},{label:"調べて満足して動けないことが多い",scoring:{continuity:3,execution:2,monetization:2}}
-]},
-{id:"Q22",question:"最も続いた取り組みの期間は？",description:"継続力の実績を判定",category:"CONTINUITY",allowMultiple:false,intentTag:"longest_streak",options:[
-{label:"1ヶ月未満",scoring:{continuity:2,execution:2}},{label:"1〜3ヶ月",scoring:{continuity:4,execution:4}},{label:"3〜6ヶ月",scoring:{continuity:6,execution:6}},{label:"6ヶ月〜1年",scoring:{continuity:8,execution:8}},{label:"1年以上",scoring:{continuity:10,execution:9}}
-]},
-{id:"Q23",question:"周囲からよく言われることは？",description:"他者視点の強みを判定",category:"STRENGTH",allowMultiple:false,intentTag:"peer_feedback",options:[
-{label:"説明が上手い",scoring:{expression:9,monetization:8}},{label:"行動力がある",scoring:{execution:9,continuity:7}},{label:"コツコツ型",scoring:{continuity:9,execution:7}},{label:"センスがある",scoring:{expression:7,market:7}},{label:"親しみやすい",scoring:{expression:8,monetization:7}},{label:"特にない / わからない",scoring:{continuity:3,expression:3,market:3,monetization:3,execution:3}}
-]},
-{id:"Q24",question:"お金なしでも発信したいテーマは？",description:"発信持続力を判定",category:"CONTINUITY",allowMultiple:false,intentTag:"intrinsic_motivation",options:[
-{label:"ある",scoring:{continuity:10,expression:8,market:7}},{label:"なんとなくある",scoring:{continuity:7,expression:6,market:6}},{label:"稼げるならやる",scoring:{continuity:4,monetization:6,execution:5}},{label:"ない",scoring:{continuity:2,expression:3,market:3}}
-]},
-{id:"Q25",question:"反応が少なくても投稿を続けられる？",description:"初期フェーズの耐性を判定",category:"CONTINUITY",allowMultiple:false,intentTag:"resilience",options:[
-{label:"続けられる",scoring:{continuity:10,execution:9,expression:7}},{label:"工夫しながらなら",scoring:{continuity:8,execution:8,expression:7}},{label:"1〜2週間無反応はきつい",scoring:{continuity:5,execution:5,expression:5}},{label:"反応ないとやめたくなる",scoring:{continuity:2,execution:2,expression:3}}
-]},
-{id:"Q26",question:"商品紹介への心理的抵抗は？",description:"収益化適性を判定",category:"MONETIZE",allowMultiple:false,intentTag:"selling_resistance",options:[
-{label:"価値があれば普通に勧められる",scoring:{monetization:10,execution:8}},{label:"少し抵抗はあるが必要だと思う",scoring:{monetization:7,execution:6}},{label:"売り込みっぽくて苦手",scoring:{monetization:4,execution:4}},{label:"強い抵抗がある",scoring:{monetization:1,execution:2}}
-]},
-{id:"Q27",question:"実績が弱くても発信できる？",description:"発信開始ハードルを判定",category:"APTITUDE",allowMultiple:false,intentTag:"low_authority_publish",options:[
-{label:"できる。過程も価値だと思う",scoring:{expression:9,execution:8,market:8}},{label:"少し不安だができる",scoring:{expression:7,execution:6,market:7}},{label:"実績出るまで発信しにくい",scoring:{expression:4,execution:4,market:4}},{label:"実績がないと無理",scoring:{expression:2,execution:2,market:3}}
-]},
-{id:"Q28",question:"目標のためにやれることは？",description:"複数選択OK",category:"ACTION",allowMultiple:true,intentTag:"executable_tasks",options:[
-{label:"毎日投稿",scoring:{continuity:8,execution:8}},{label:"リサーチ",scoring:{market:8,execution:6}},{label:"リプや交流",scoring:{expression:7,monetization:7}},{label:"商品導線づくり",scoring:{monetization:9,execution:7}},{label:"学習",scoring:{continuity:7,execution:6}},{label:"正直どれも自信がない",scoring:{continuity:2,expression:2,market:2,monetization:2,execution:2}}
-]},
-{id:"Q29",question:"今回この診断を受けた理由は？",description:"最適な結果を出すために",category:"INTENT",allowMultiple:false,intentTag:"reason",options:[
-{label:"自分に向いているか知りたい",scoring:{}},{label:"何を発信すべきか知りたい",scoring:{}},{label:"収益化の方法を知りたい",scoring:{}},{label:"今のやり方が合っているか確認したい",scoring:{}},{label:"個別に相談したい",scoring:{}}
-]}
+const questions = [
+  {id:'q0_platform',num:1,title:'ã¡ã¤ã³ã§éç¨ãã¦ããSNSã¯ï¼',desc:'ä¸çªåãå¥ãã¦ããåªä½ãé¸ãã§ãã ãã',type:'select',optionStyle:'icon',options:[
+    {l:'X (æ§Twitter)',v:'x',icon:'ð'},
+    {l:'Instagram',v:'instagram',icon:'ð·'},
+    {l:'TikTok',v:'tiktok',icon:'ðµ'},
+    {l:'YouTube',v:'youtube',icon:'â¶'},
+    {l:'Threads',v:'threads',icon:'ð'},
+    {l:'ãã®ä»',v:'other',icon:'ð±'},
+  ]},
+  {id:'q1_account',num:2,title:'ã¢ã«ã¦ã³ãIDãæãã¦ãã ãã',desc:'å¥åããã¨ããããªãåãã®çµæã«ãªãã¾ã',type:'text',placeholder:'@username ã¾ãã¯ ãã­ãã£ã¼ã«URL',helper:'å¥ååå®¹ã¯çµæè¡¨ç¤ºã»åå¥åæã®åç§ã«å©ç¨ãã¾ã',required:false},
+  {id:'q2_followers',num:3,title:'ç¾å¨ã®ãã©ã­ã¯ã¼æ°ã¯ï¼',type:'select',options:[
+    {l:'0ã100',v:'0-100'},{l:'101ã500',v:'101-500'},{l:'501ã1,000',v:'501-1000'},
+    {l:'1,001ã3,000',v:'1001-3000'},{l:'3,001ã10,000',v:'3001-10000'},{l:'10,001ä»¥ä¸',v:'10001+'}
+  ]},
+  {id:'q3_likes',num:4,title:'æç¨¿ã®å¹³åããã­æ°ã¯ï¼',type:'select',options:[
+    {l:'10æªæº',v:'under10'},{l:'10ã30',v:'10-30'},{l:'31ã100',v:'31-100'},
+    {l:'101ã300',v:'101-300'},{l:'301ä»¥ä¸',v:'301+'}
+  ]},
+  {id:'q4_posts_per_week',num:5,title:'é±ã«ä½æ¬ãããæç¨¿ãã¦ãï¼',type:'select',options:[
+    {l:'0æ¬',v:'0'},{l:'1ã2æ¬',v:'1-2'},{l:'3ã4æ¬',v:'3-4'},{l:'5ã6æ¬',v:'5-6'},{l:'æ¯æ¥',v:'daily'}
+  ]},
+  {id:'q5_duration',num:6,title:'SNSã®éç¨æ­´ã¯ï¼',type:'select',options:[
+    {l:'1ã¶ææªæº',v:'under1m'},{l:'1ã3ã¶æ',v:'1-3m'},{l:'3ã6ã¶æ',v:'3-6m'},
+    {l:'6ã¶æã1å¹´',v:'6m-1y'},{l:'1å¹´ä»¥ä¸',v:'1y+'}
+  ]},
+  {id:'q6_genre',num:7,title:'ä¸»ãªçºä¿¡ã¸ã£ã³ã«ã¯ï¼',type:'select',options:[
+    {l:'å¯æ¥­',v:'side-business'},{l:'ãã¸ãã¹',v:'business'},{l:'SNSéç¨ / ãã¼ã±ãã£ã³ã°',v:'sns-marketing'},
+    {l:'AIæ´»ç¨',v:'ai'},{l:'ã­ã£ãªã¢ / è»¢è·',v:'career'},{l:'ãé / æè³ / ç¯ç´',v:'money'},
+    {l:'ç¾å®¹',v:'beauty'},{l:'å¥åº· / ãã¤ã¨ãã',v:'health'},{l:'ã©ã¤ãã¹ã¿ã¤ã«',v:'lifestyle'},
+    {l:'å­è²ã¦ / å®¶æ',v:'parenting'},{l:'å°æ¹ç§»ä½ / åãæ¹',v:'workstyle'},{l:'ãã®ä»',v:'other'}
+  ]},
+  {id:'q7_style',num:8,title:'ä¸»ãªçºä¿¡ã¹ã¿ã¤ã«ã¯ï¼',type:'select',options:[
+    {l:'å®ä½é¨å±æ',v:'experience'},{l:'ãã¦ãã¦è§£èª¬',v:'knowhow'},{l:'æ¯è¼ / ã¬ãã¥ã¼',v:'review'},
+    {l:'æ¥å¸¸çºä¿¡',v:'daily'},{l:'ã¹ãã¼ãªã¼å',v:'story'},{l:'æè¦çºä¿¡',v:'opinion'},{l:'ã¾ã å®ã¾ã£ã¦ããªã',v:'undecided'}
+  ]},
+  {id:'q8_face',num:9,title:'é¡åºãç¶æ³ã¯ï¼',type:'select',options:[
+    {l:'é¡åºããã',v:'face'},{l:'å¿å',v:'anonymous'},{l:'é³å£°ã®ã¿ / ä¸é¨ã®ã¿',v:'partial'},{l:'ã¾ã æ±ºãã¦ããªã',v:'undecided'}
+  ]},
+  {id:'q9_revenue',num:10,title:'ç¾å¨ã®åçåçµé¨ã¯ï¼',type:'select',options:[
+    {l:'ãªã',v:'none'},{l:'å°ããã',v:'little'},{l:'æ1ä¸åæªæº',v:'under10k'},
+    {l:'æ1ã10ä¸å',v:'10k-100k'},{l:'æ10ä¸åä»¥ä¸',v:'100k+'}
+  ]},
+  {id:'q10_growth',num:11,title:'ãã©ã­ã¯ã¼ã®å¢å ç¶æ³ã¯ï¼',type:'select',options:[
+    {l:'å¢ãã¦ããªã',v:'none'},{l:'å°ãå¢ãã¦ãã',v:'slow'},{l:'å®å®ãã¦å¢ãã¦ãã',v:'steady'},{l:'æ¥å¢ãã¦ãã',v:'rapid'}
+  ]},
+  {id:'q11_time',num:12,title:'SNSã«ä½¿ããæéã¯1æ¥ã©ã®ãããï¼',type:'select',options:[
+    {l:'30åæªæº',v:'under30m'},{l:'30åã1æé',v:'30m-1h'},{l:'1ã2æé',v:'1-2h'},
+    {l:'2ã3æé',v:'2-3h'},{l:'3æéä»¥ä¸',v:'3h+'}
+  ]},
+  {id:'q12_concern',num:13,title:'ä»ã®ä¸çªã®æ©ã¿ã¯ï¼',type:'select',options:[
+    {l:'ãã©ã­ã¯ã¼ãå¢ããªã',v:'followers'},{l:'æç¨¿ãã¿ãç¶ããªã',v:'content'},
+    {l:'åçåã§ããªã',v:'monetization'},{l:'æ¹åæ§ãå®ã¾ããªã',v:'direction'},
+    {l:'ãã­ãã£ã¼ã«ãå¼±ã',v:'profile'},{l:'å°ç·ããªã',v:'funnel'}
+  ]},
+  {id:'q13_model',num:14,title:'å°æ¥ããããåçåã¢ãã«ã¯ï¼',type:'select',options:[
+    {l:'ã¢ãã£ãªã¨ã¤ã',v:'affiliate'},{l:'ã³ã³ãã³ãè²©å£²',v:'content-sales'},{l:'PRæ¡ä»¶',v:'pr'},
+    {l:'ã³ã³ãµã« / ç´è«',v:'consulting'},{l:'SNSéç¨ä»£è¡',v:'agency'},
+    {l:'ã³ãã¥ããã£éå¶',v:'community'},{l:'ã¾ã æ±ºã¾ã£ã¦ããªã',v:'undecided'}
+  ]},
+  {id:'q14_seriousness',num:15,title:'ä»å¾ã©ããããæ¬æ°ã§ä¼¸ã°ãããï¼',type:'select',options:[
+    {l:'èå³ãããç¨åº¦',v:'curious'},{l:'æ1ä¸åãçããã',v:'10k'},
+    {l:'æ5ã10ä¸åãçããã',v:'50k-100k'},{l:'æ¬æ°ã§äºæ¥­åããã',v:'serious'}
+  ]},
+  {id:'q15_reason',num:16,title:'ãã®è¨ºæ­ãåããçç±ã¯ï¼',type:'select',options:[
+    {l:'èªåã®ä¾¡å¤ãç¥ããã',v:'value'},{l:'ã¢ã«ã¦ã³ãã®å¯è½æ§ãç¥ããã',v:'potential'},
+    {l:'åçåã§ãããç¥ããã',v:'monetize'},{l:'æ¹åãã¤ã³ããç¥ããã',v:'improve'},
+    {l:'åå¥ã«ç¸è«ããã',v:'consult'}
+  ]},
+];
+
+// ============================================================
+// VALUATION LOGIC
+// ============================================================
+// Platform multiplier
+function platformMult(p){return{x:1.0,instagram:1.1,tiktok:1.15,youtube:1.3,threads:0.8,other:0.7}[p]||1.0}
+
+function calcFollower(v){return{'0-100':1000,'101-500':5000,'501-1000':20000,'1001-3000':80000,'3001-10000':300000,'10001+':1000000}[v]||1000}
+function calcEngagement(v){return{under10:1000,'10-30':5000,'31-100':20000,'101-300':80000,'301+':200000}[v]||1000}
+function calcGenre(v){return{'sns-marketing':200000,'side-business':150000,ai:150000,business:120000,career:100000,money:100000,beauty:80000,health:80000,lifestyle:60000,parenting:60000,workstyle:60000,other:50000}[v]||50000}
+function calcContinuity(post,dur,time){
+  const p={'0':0,'1-2':5000,'3-4':20000,'5-6':50000,daily:100000}[post]||0;
+  const d={under1m:0,'1-3m':10000,'3-6m':30000,'6m-1y':60000,'1y+':100000}[dur]||0;
+  const t={under30m:0,'30m-1h':10000,'1-2h':30000,'2-3h':50000,'3h+':80000}[time]||0;
+  return Math.min(p+d+t,180000);
+}
+function calcGrowth(v){return{none:0,slow:20000,steady:80000,rapid:200000}[v]||0}
+function calcMonetization(rev,model,ser){
+  const r={none:0,little:20000,under10k:50000,'10k-100k':150000,'100k+':300000}[rev]||0;
+  const m={affiliate:40000,'content-sales':70000,pr:30000,consulting:60000,agency:60000,community:50000,undecided:10000}[model]||0;
+  const s={curious:0,'10k':20000,'50k-100k':50000,serious:100000}[ser]||0;
+  return r+m+s;
+}
+
+function calcConfidence(a){
+  let s=80;
+  const fLvl=['0-100','101-500','501-1000','1001-3000','3001-10000','10001+'].indexOf(a.q2_followers);
+  const lLvl=['under10','10-30','31-100','101-300','301+'].indexOf(a.q3_likes);
+  if(Math.abs(fLvl-lLvl)<=1)s+=5;
+  const pLvl=['0','1-2','3-4','5-6','daily'].indexOf(a.q4_posts_per_week);
+  const gLvl=['none','slow','steady','rapid'].indexOf(a.q10_growth);
+  if(pLvl>=gLvl)s+=5;
+  const dLvl=['under1m','1-3m','3-6m','6m-1y','1y+'].indexOf(a.q5_duration);
+  const rLvl=['none','little','under10k','10k-100k','100k+'].indexOf(a.q9_revenue);
+  if(dLvl>=rLvl)s+=5;
+  return s;
+}
+
+function applyAdjustments(a,bd){
+  const adj={...bd};let cAdj=0;const comments=[];
+  if(a.q2_followers==='0-100'&&a.q3_likes==='301+'){cAdj-=10;comments.push('ä¸é¨åç­ã«ãºã¬ãããå¯è½æ§ãããã¾ã');}
+  if(a.q4_posts_per_week==='0'&&a.q10_growth==='rapid'){cAdj-=15;adj.growthValue=Math.max(adj.growthValue-50000,0);comments.push('æé·ç¶æ³ã®èªè­ã¨éç¨éã«ãºã¬ãããå¯è½æ§ãããã¾ã');}
+  if(a.q9_revenue==='none'&&a.q14_seriousness==='serious')comments.push('åçåææ¬²ã¯é«ããã®ã®ãã¾ãã¯å°ããªææã¥ãããåªåã§ã');
+  if(a.q7_style==='undecided'&&a.q12_concern==='direction')comments.push('çºä¿¡ã¹ã¿ã¤ã«ã®æç¢ºåãæåªåèª²é¡ã§ã');
+  if(a.q11_time==='under30m'&&(a.q14_seriousness==='50k-100k'||a.q14_seriousness==='serious')){cAdj-=8;comments.push('ç®æ¨ã«å¯¾ãã¦æä¸æéãä¸è¶³ãã¦ããå¯è½æ§ãããã¾ã');}
+  if((a.q13_model==='consulting'||a.q13_model==='content-sales')&&a.q9_revenue==='none'&&a.q2_followers==='0-100'){adj.monetizationPotentialValue=Math.max(adj.monetizationPotentialValue-30000,0);comments.push('ç¾æ®µéã§ã¯ãã¾ãä¿¡é ¼æ§ç¯ã¨åæå®ç¸ã¥ãããéè¦ã§ã');}
+  return{adj,cAdj,comments};
+}
+
+function calcPercentile(total){
+  if(total>=700001)return Math.floor(Math.random()*14)+1;
+  if(total>=300001)return Math.floor(Math.random()*20)+15;
+  if(total>=100001)return Math.floor(Math.random()*25)+35;
+  if(total>=30001)return Math.floor(Math.random()*20)+60;
+  return Math.floor(Math.random()*16)+80;
+}
+
+function predictFuture(cur,a,conf){
+  const gL=['none','slow','steady','rapid'].indexOf(a.q10_growth);
+  const pL=['0','1-2','3-4','5-6','daily'].indexOf(a.q4_posts_per_week);
+  const sL=['curious','10k','50k-100k','serious'].indexOf(a.q14_seriousness);
+  const dL=['under1m','1-3m','3-6m','6m-1y','1y+'].indexOf(a.q5_duration);
+  const gs=gL+pL+sL+dL;
+  let m3,m6,m12;
+  if(gs>=12){m3=1.5+Math.random()*.7;m6=2+Math.random()*1.5;m12=3+Math.random()*3;}
+  else if(gs>=7){m3=1.3+Math.random()*.5;m6=1.6+Math.random()*.9;m12=2.2+Math.random()*1.8;}
+  else{m3=1.1+Math.random()*.3;m6=1.2+Math.random()*.5;m12=1.4+Math.random()*.8;}
+  if(conf<60){m3*=.85;m6*=.8;m12*=.75;}
+  const r=v=>Math.round(v/10000)*10000;
+  return{three:r(cur*m3),six:r(cur*m6),twelve:r(cur*m12)};
+}
+
+function genStrengths(a,bd){
+  const s=[];
+  if(bd.genreValue>=120000)s.push('ã¸ã£ã³ã«èªä½ã¯æ¯è¼çåçåã«åãã¦ãã¾ã');
+  if(bd.continuityValue>=80000)s.push('ç¶ç¶æ§ã«ä¸å®ã®å¼·ã¿ãããã¾ã');
+  if(bd.engagementValue>=20000)s.push('ãã©ã­ã¯ã¼è¦æ¨¡ä»¥ä¸ã«ãã¨ã³ã²ã¼ã¸ã¡ã³ãã«å¼·ã¿ãããã¾ã');
+  if(bd.growthValue>=80000)s.push('ç¾å¨ã®ãã©ã­ã¯ã¼å¢å ãã¼ã¹ã¯è¯å¥½ã§ã');
+  if(a.q5_duration==='6m-1y'||a.q5_duration==='1y+')s.push('éç¨æ­´ã«å¯¾ãã¦ãä¾¡å¤ã®ä¼¸ã³æ¹ã¯æªãããã¾ãã');
+  if(a.q9_revenue!=='none')s.push('ãã§ã«åçåã®çµé¨ããããæ¬¡ã®ã¹ãããã«é²ã¿ãããç¶æã§ã');
+  if(!s.length)s.push('ã¾ã ä¼¸ã³ãããå¤ããæ¹åã«ãã£ã¦å¤§ãã«ä¾¡å¤ãå¤ããæ®µéã§ã');
+  return s.slice(0,2);
+}
+function genWeaknesses(a,bd){
+  const w=[];
+  if(a.q4_posts_per_week==='0'||a.q4_posts_per_week==='1-2')w.push('æç¨é »åº¦ãä½ããä¾¡å¤ã®èç©ã¹ãã¼ããéãå¯è½æ§ãããã¾ã');
+  if(a.q9_revenue==='none'&&a.q13_model==='undecided')w.push('åçå°ç·ãå¼±ããä¾¡å¤ãåãåãã¦ãã¾ãã');
+  if(a.q7_style==='undecided')w.push('çºä¿¡ã¹ã¿ã¤ã«ãæªç¢ºå®ã§ããã©ã³ããç©ã¿ä¸ããã«ããç¶æã§ã');
+  if(bd.engagementValue<=5000)w.push('ããã­æ°ãå°ãªããã³ã³ãã³ãã®è¨´æ±åã«æ¹åä½å°ãããã¾ã');
+  if(a.q10_growth==='none')w.push('ç¾å¨ãã©ã­ã¯ã¼ãå¢ãã¦ããããæé·ãåæ»ãã¦ãã¾ã');
+  if(a.q11_time==='under30m')w.push('æä¸æéãå°ãªããææãåºã«ããç¶æã§ã');
+  if(!w.length)w.push('ä»ã®ã¾ã¾ã ã¨ãä¾¡å¤ã®ä¼¸ã³ãéåããããã§ã');
+  return w.slice(0,2);
+}
+function genSummary(total){
+  if(total>=500000)return'ä»ã®ã¢ã«ã¦ã³ãã¯ããã§ã«ä¼¸ã°ãåå°ãããã¾ããæ¦ãæ¹ãééããªããã°ãè³ç£ä¾¡å¤ãããã«é«ããããç¶æã§ãã';
+  if(total>=150000)return'ä»ã®ã¢ã«ã¦ã³ãã¯ãä¼¸ã³ããã¯ååããã¾ãããã ããããã¤ãã®æ¹åç¹ãæ¾ç½®ããã¨ä¾¡å¤ãé ­æã¡ã«ãªããããã§ãã';
+  return'ä»ã®ä¾¡å¤ã¯ã¾ã å°ããã§ãããä¼¸ã³ããããªãããã§ã¯ããã¾ãããã¾ãã¯åå°è¨­è¨ãæ´ãããã¨ã§ãã¢ã«ã¦ã³ãä¾¡å¤ã¯ååå¤ãããã¾ãã';
+}
+function genLineCTA(total){
+  if(total>=500000)return'ä»ã®ããªãã¯ãæ¹åæ¬¡ç¬¬ã§ã¢ã«ã¦ã³ãä¾¡å¤ãããã«ä¼¸ã°ããç¶æã§ããããããåã¯ãããªãå°ç¨ã®è³ç£ä¾¡å¤ã¢ããæ¦ç¥ãç¢ºèªãã¦ãã ããã';
+  if(total>=150000)return'ä¼¸ã³ããã¯ååããã¾ãããèªå·±æµã®ã¾ã¾ã ã¨é åãããããç¶æã§ããããããåã¯ãä¾¡å¤ãä¸ããããã®å·ä½æ¦ç¥ã§ãã';
+  return'ä»ã®ã¾ã¾éé²ã«ç¶ããã¨ãåªåã®å²ã«ä¾¡å¤ãç©ã¿ä¸ããã«ããå¯è½æ§ãããã¾ããããããåã¯ãä¾¡å¤ãä½ãããã®åå°è¨­è¨ã§ãã';
+}
+function confLabel(s){
+  if(s>=85)return'æ¯è¼çç²¾åº¦ã®é«ãçµæã§ã';
+  if(s>=70)return'åèå¤ã¨ãã¦ååæ´»ç¨ã§ãã¾ã';
+  if(s>=55)return'ä¸é¨åç­ã«æºããããã¾ã';
+  return'ç¾ç¶èªè­ã¨çæ³ã«ã®ã£ãããããå¯è½æ§ãããã¾ã';
+}
+
+const lockedItems=[
+  {t:'ããªãã®ã¢ã«ã¦ã³ãä¾¡å¤ãä¸ãã3ã¤ã®æ¹åãã¤ã³ã',d:'ä»ã®è³ç£ä¾¡å¤ãå¹ççã«å¼ãä¸ããããã®å·ä½çãªæ¹åæ½ç­'},
+  {t:'ããªãåãã®åçåã«ã¼ã',d:'åç­åå®¹ããç®åºãããç¸æ§ã®è¯ãåçåã¢ãã«ã¨çç±'},
+  {t:'3ã¶æã®æ¹åã­ã¼ãããã',d:'æãã¨ã«ããã¹ããã¨ãæ´çããå·ä½çãªã¢ã¯ã·ã§ã³ãã©ã³'},
+  {t:'ãã­ãã£ã¼ã«æ¹åã®æ¹åæ§',d:'ãã©ã­ã¼ããããããã­ãã£ã¼ã«ã«ããããã®æ¹åæ¡'},
+  {t:'æåã«ä¼¸ã°ãã¹ãæç¨¿ãã¼ã',d:'ããªãã®ã¸ã£ã³ã«ã§åå¿ãåããããæç¨¿ãã¼ãã®ææ¡'},
+  {t:'åå¥ç¸è«ã§æ·±æããã¹ããã¤ã³ã',d:'ããªãã®ç¶æ³ã§æãå¹æçãªç¸è«ãã¼ã'},
 ];
 
 // ============================================================
 // STATE
 // ============================================================
-let state = { screen:"top", currentQ:0, answers:{}, multiSelect:[], result:null };
+let currentQ = 0;
+const answers = {};
 
 // ============================================================
-// DIAGNOSIS LOGIC
+// NAVIGATION
 // ============================================================
-function calculateAxisScores(ans){const axes={continuity:0,expression:0,market:0,monetization:0,execution:0};const ak=Object.keys(axes);QUESTIONS.forEach(q=>{const sel=ans[q.id];if(sel===undefined||sel===null)return;if(q.allowMultiple){const idx=Array.isArray(sel)?sel:[sel];if(!idx.length)return;const sets=idx.map(i=>q.options[i]?.scoring||{});const merged={};ak.forEach(k=>{const vals=sets.map(s=>s[k]||0).filter(v=>v>0);if(!vals.length)return;vals.sort((a,b)=>b-a);merged[k]=vals.slice(0,3).reduce((s,v)=>s+v,0)/Math.min(vals.length,3)});let decay=1;if(q.id==="Q15"){if(idx.length<=1)decay=1;else if(idx.length===2)decay=0.95;else if(idx.length===3)decay=0.9;else decay=0.8;if(idx.length===1)merged.market=Math.max(merged.market||0,8);else if(idx.length===2)merged.market=Math.max(merged.market||0,7);else if(idx.length===3)merged.market=Math.max(merged.market||0,6);else merged.market=Math.min(merged.market||0,4)}ak.forEach(k=>{if(merged[k])axes[k]+=merged[k]*decay})}else{const i=typeof sel==="number"?sel:0;const sc=q.options[i]?.scoring||{};Object.entries(sc).forEach(([k,v])=>{axes[k]+=v})}});return axes}
-
-function normalizeAxisScores(raw){const ak=["continuity","expression","market","monetization","execution"];const mm={};ak.forEach(k=>{let mn=0,mx=0;QUESTIONS.forEach(q=>{const v=q.options.map(o=>o.scoring[k]||0);if(!v.length)return;mn+=Math.min(...v);mx+=Math.max(...v)});mm[k]={min:mn,max:mx}});const n={};ak.forEach(k=>{const{min,max}=mm[k];const r=max-min||1;n[k]=Math.round(Math.max(0,Math.min(100,((raw[k]-min)/r)*100)))});return n}
-
-function applyConsistencyAdjustments(axes,ans){const adj={...axes};const msgs=[];let tAdj=0,cAdj=0;const g=id=>{const a=ans[id];if(a===undefined||a===null)return-1;return Array.isArray(a)?a[0]??-1:a};const gi=id=>{const a=ans[id];if(!a&&a!==0)return[];return Array.isArray(a)?a:[a]};const q3=g("Q3"),q4=g("Q4"),q5=g("Q5"),q7=g("Q7"),q9=g("Q9"),q10=g("Q10"),q11=g("Q11"),q12=g("Q12"),q13=g("Q13"),q19=g("Q19"),q20=g("Q20"),q21=g("Q21"),q24=g("Q24"),q25=g("Q25"),q26=g("Q26"),q27=g("Q27");const q16i=gi("Q16"),q17i=gi("Q17"),q28i=gi("Q28");
-if(q3===0&&q13===3){tAdj-=8;adj.execution=Math.max(0,adj.execution-10);msgs.push("目標に対して投下時間が不足しています")}
-if(q11===0&&q12===3){cAdj-=20;adj.continuity=Math.max(0,adj.continuity-12);msgs.push("継続意識は高い一方で、実績とのズレがあります")}
-if((q9>=2||q10>=2)&&(q17i.includes(1)||q17i.includes(2))){adj.monetization=Math.max(0,adj.monetization-8);msgs.push("発信抵抗と希望する収益モデルにズレがあります")}
-if(q7===3&&q16i.includes(8)&&q20===5){adj.market=Math.max(0,adj.market-15);adj.expression=Math.max(0,adj.expression-10);msgs.push("まずはジャンルと発信軸の明確化が必要です")}
-if(q4===0&&q5===0&&q13>=2){adj.monetization=Math.max(0,adj.monetization-10);adj.execution=Math.max(0,adj.execution-6);msgs.push("初期段階では、まず土台作りが優先です")}
-if(q19===4&&q3===0){adj.execution=Math.max(0,adj.execution-6);msgs.push("情報収集が行動量を上回っている可能性があります")}
-if(q21===3&&!q28i.includes(0)&&!q28i.includes(3)){adj.execution=Math.max(0,adj.execution-8);msgs.push("情報収集に偏り、実行への変換が弱い可能性があります")}
-if(q25===3&&q24===3){adj.continuity=Math.max(0,adj.continuity-10);msgs.push("外部反応依存が強く、初期フェーズで離脱しやすい傾向があります")}
-if(q26===3&&(q17i.includes(1)||q17i.includes(2))){adj.monetization=Math.max(0,adj.monetization-10);msgs.push("販売行為への抵抗が、希望モデルの障壁になっています")}
-if(q27===3&&q4===0){adj.expression=Math.max(0,adj.expression-8);adj.execution=Math.max(0,adj.execution-6);msgs.push("実績待ちの状態だと、スタートが遅れやすくなります")}
-return{adjustedAxes:adj,contradictionMessages:msgs,totalScoreAdj:tAdj,confidenceAdj:cAdj}}
-
-function calculateConfidenceScore(ans){let s=85;const g=id=>{const a=ans[id];if(a===undefined||a===null)return-1;return Array.isArray(a)?a[0]??-1:a};const gi=id=>{const a=ans[id];if(!a&&a!==0)return[];return Array.isArray(a)?a:[a]};const q8=g("Q8"),q9=g("Q9"),q10=g("Q10"),q11=g("Q11"),q12=g("Q12"),q7=g("Q7"),q20=g("Q20"),q21=g("Q21"),q22=g("Q22"),q25=g("Q25"),q3=g("Q3"),q13=g("Q13"),q19=g("Q19");const q15i=gi("Q15"),q16i=gi("Q16");
-if(q11<=1&&q12<=1)s+=5;else if(q11===0&&q12>=2)s-=15;
-const er=[q8,q9,q10].filter(v=>v>=0);if(er.length===3){const sp=Math.max(...er)-Math.min(...er);if(sp<=1)s+=5;else if(sp>=3)s-=10}
-if(q7<=1&&!q16i.includes(8)&&q16i.length>0&&q20<5)s+=5;else if(q7>1&&(q16i.includes(8)||!q16i.length)&&q20===5)s-=8;
-if(q21<=1&&q22>=3&&q25<=1)s+=5;
-if(q3===0&&q13===3)s-=15;if(q15i.length>=5)s-=8;if(q19>=3&&q3<=1)s-=10;
-return Math.max(40,Math.min(95,s))}
-
-function calculateTotalScore(ax){return Math.round(ax.continuity*0.25+ax.expression*0.20+ax.market*0.20+ax.monetization*0.20+ax.execution*0.15)}
-
-function detectInfluencerType(ans){const g=id=>{const a=ans[id];if(a===undefined||a===null)return-1;return Array.isArray(a)?a[0]??-1:a};const gi=id=>{const a=ans[id];if(!a&&a!==0)return[];return Array.isArray(a)?a:[a]};const q6=g("Q6"),q8=g("Q8"),q9=g("Q9"),q10=g("Q10"),q20=g("Q20"),q23=g("Q23"),q27=g("Q27");const q16i=gi("Q16");const sc={story:0,expert:0,empathy:0,practice:0,worldview:0,anonymous:0,grinder:0};
-if(q6>=2)sc.anonymous+=3;if(q6<=1){sc.story+=2;sc.expert+=1}
-if(q8<=1){sc.story+=3;sc.empathy+=2;sc.expert+=2}if(q8>=3){sc.anonymous+=2;sc.grinder+=1}
-if(q9<=1&&q10<=1){sc.story+=1;sc.expert+=2;sc.empathy+=1}if(q9>=2||q10>=2){sc.anonymous+=2;sc.grinder+=2}
-if(q16i.includes(0))sc.story+=2;if(q16i.includes(2))sc.expert+=3;if(q16i.includes(7))sc.story+=2;if(q16i.includes(6))sc.expert+=2;if(q16i.includes(5))sc.empathy+=2;if(q16i.includes(4))sc.worldview+=2;if(q16i.includes(3))sc.practice+=2;
-if(q20===0)sc.expert+=4;if(q20===1){sc.practice+=3;sc.story+=2}if(q20===2)sc.empathy+=4;if(q20===3)sc.expert+=2;if(q20===4)sc.worldview+=4;
-if(q23===0)sc.expert+=3;if(q23===1){sc.practice+=2;sc.grinder+=2}if(q23===2)sc.grinder+=3;if(q23===3)sc.worldview+=2;if(q23===4)sc.empathy+=3;
-if(q27<=1){sc.story+=2;sc.practice+=2}if(q27>=2)sc.grinder+=1;
-const types=[{key:"story",name:"ストーリー型インフルエンサー",emoji:"📖",desc:"「過程」と「変化」を見せることで人を惹きつけるタイプ。リアルな試行錯誤の共有が武器になります。"},{key:"expert",name:"専門家型インフルエンサー",emoji:"🎓",desc:"「わかりやすく整理して伝える」ことで価値を出しやすいタイプ。ノウハウ・解説コンテンツと相性◎"},{key:"empathy",name:"共感型発信者",emoji:"💬",desc:"「わかる」「自分もそう」と思わせる発信で支持を集めやすいタイプ。体験共有が強みに。"},{key:"practice",name:"実践共有型クリエイター",emoji:"🔬",desc:"学んだことを試し、過程を見せることで信頼を作りやすいタイプ。実践ログが向いています。"},{key:"worldview",name:"世界観型クリエイター",emoji:"🎨",desc:"「この人の空気感が好き」で選ばれやすいタイプ。価値観・ライフスタイルの見せ方が重要。"},{key:"anonymous",name:"匿名発信特化型",emoji:"🦊",desc:"切り口・言語化・企画力で勝負しやすいタイプ。匿名でも十分に伸ばせる設計が可能です。"},{key:"grinder",name:"積み上げ型副業プレイヤー",emoji:"⚡",desc:"継続と改善でじわじわ伸ばす戦い方に向いています。再現性重視の設計が結果に直結。"}];
-types.sort((a,b)=>(sc[b.key]||0)-(sc[a.key]||0));return types[0]}
-
-function detectBestGenres(ans){const gi=id=>{const a=ans[id];if(!a&&a!==0)return[];return Array.isArray(a)?a:[a]};const g=id=>{const a=ans[id];if(a===undefined||a===null)return-1;return Array.isArray(a)?a[0]??-1:a};const q15i=gi("Q15"),q16i=gi("Q16"),q20=g("Q20"),q7=g("Q7"),q24=g("Q24"),q2=g("Q2");const labels=QUESTIONS.find(q=>q.id==="Q15").options.map(o=>o.label);const reasons={"副業":"実体験と成長過程の発信と相性◎","転職 / キャリア":"会社員経験の言語化が強みに","起業 / ビジネス":"実践知と行動力をコンテンツ化","SNS運用 / マーケ":"改善プロセスの共有と相性◎","AI活用":"実践→要約発信がしやすい","営業":"対人スキルの言語化で差別化","ライフスタイル":"世界観構築がそのまま発信に","子育て / 家族":"日常リアルと共感性を活用","恋愛 / 人間関係":"悩みの言語化で共感を獲得","健康 / ダイエット":"変化の過程がコンテンツ化しやすい","美容":"レビュー・ビフォーアフターと相性◎","ファッション":"世界観とスタイルを発信に変換","ガジェット":"レビュー・比較で差別化","お金 / 節約 / 投資":"情報整理型と相性◎","勉強 / 読書 / 学習法":"学びの過程を発信に変換","地方移住 / 働き方":"ライフスタイルの違いがコンテンツに","筋トレ / スポーツ":"変化とデータが発信に直結","旅行":"体験コンテンツの素材が豊富","グルメ":"レビュー・発見の共有でエンゲージメント◎","その他":"ニッチな切り口で差別化"};
-const sc={};labels.forEach(g=>sc[g]=0);q15i.forEach(i=>{const l=labels[i];if(l)sc[l]+=10});
-if(q20===0)["SNS運用 / マーケ","AI活用","お金 / 節約 / 投資","副業"].forEach(g=>sc[g]=(sc[g]||0)+3);
-if(q20===1||q20===2)["副業","健康 / ダイエット","子育て / 家族","転職 / キャリア"].forEach(g=>sc[g]=(sc[g]||0)+3);
-if(q20===4)["ライフスタイル","ファッション","旅行"].forEach(g=>sc[g]=(sc[g]||0)+3);
-if(q7<=1)q15i.forEach(i=>{const l=labels[i];if(l)sc[l]+=4});
-if(q16i.includes(0))["副業","転職 / キャリア","健康 / ダイエット"].forEach(g=>sc[g]=(sc[g]||0)+2);
-if(q16i.includes(2))["SNS運用 / マーケ","AI活用","お金 / 節約 / 投資"].forEach(g=>sc[g]=(sc[g]||0)+2);
-if(q2===0||q2===1)["副業","転職 / キャリア"].forEach(g=>sc[g]=(sc[g]||0)+2);
-if(q2===5)["子育て / 家族","ライフスタイル"].forEach(g=>sc[g]=(sc[g]||0)+2);
-if(q24<=1)q15i.forEach(i=>{const l=labels[i];if(l)sc[l]+=2});
-return Object.entries(sc).filter(([,v])=>v>0).sort((a,b)=>b[1]-a[1]).slice(0,3).map(([name])=>({name,reason:reasons[name]||"あなたの回答傾向と相性◎"}))}
-
-function detectMonetizationModels(ans){const g=id=>{const a=ans[id];if(a===undefined||a===null)return-1;return Array.isArray(a)?a[0]??-1:a};const gi=id=>{const a=ans[id];if(!a&&a!==0)return[];return Array.isArray(a)?a:[a]};const q6=g("Q6"),q7=g("Q7"),q4=g("Q4"),q5=g("Q5"),q9=g("Q9"),q10=g("Q10"),q14=g("Q14"),q26=g("Q26");const q17i=gi("Q17"),q28i=gi("Q28");
-const models=[{name:"アフィリエイト",score:3,reason:"実績が少なくても収益化しやすいモデル"},{name:"コンテンツ販売",score:0,reason:"知識を整理して価値に変えやすい"},{name:"コンサル / 相談",score:0,reason:"言語化力が収益に直結"},{name:"SNS運用代行",score:0,reason:"改善視点と実務力で差別化"},{name:"PR案件",score:0,reason:"影響力が整うと伸びやすい"},{name:"コミュニティ運営",score:0,reason:"人を巻き込む力と相性◎"},{name:"自社商品販売",score:0,reason:"導線設計まで強いと利益率◎"},{name:"スポット営業獲得",score:0,reason:"最短で売上を作りやすい"}];
-const f=n=>models.find(m=>m.name===n);const q17l=["アフィリエイト","自社商品販売","コンサル / 相談","SNS運用代行","PR案件","コミュニティ運営","コンテンツ販売"];
-q17i.forEach(i=>{const l=q17l[i];const m=f(l);if(m)m.score+=8});
-if(q26<=1){f("コンサル / 相談").score+=5;f("自社商品販売").score+=5;f("スポット営業獲得").score+=4}
-if(q14<=1){f("スポット営業獲得").score+=5;f("コンサル / 相談").score+=3}
-if(q7<=1){f("コンテンツ販売").score+=5;f("コンサル / 相談").score+=4;f("自社商品販売").score+=4}
-if(q4<=1||q5<=1){f("アフィリエイト").score+=5;f("SNS運用代行").score+=3}
-if(q5>=3)f("PR案件").score+=5;if(q6<=1){f("PR案件").score+=3;f("コンサル / 相談").score+=2}
-if(q9<=1&&q10<=1)f("コンテンツ販売").score+=3;if(q26>=2){f("コンサル / 相談").score-=3;f("自社商品販売").score-=3}
-if(q28i.includes(3)){f("コンテンツ販売").score+=3;f("自社商品販売").score+=3}if(q28i.includes(2))f("コミュニティ運営").score+=3;
-models.sort((a,b)=>b.score-a.score);return models.slice(0,3)}
-
-function estimateIncomeRange(total,hasStrong){let t=total>=70?"high":total>=50?"mid":"low";if(hasStrong&&t==="high")t="mid";if(hasStrong&&t==="mid")t="low";return{high:{m3:"3〜5万円",m6:"5〜15万円",m12:"15〜30万円"},mid:{m3:"1〜3万円",m6:"3〜10万円",m12:"10〜20万円"},low:{m3:"0〜1万円",m6:"1〜3万円",m12:"3〜10万円"}}[t]}
-
-function generateWeaknesses(axes,msgs){const w=[];const info={continuity:{name:"継続力",msg:"能力より継続設計がボトルネック。続けられる仕組みを先に作る必要があります。"},expression:{name:"発信適性",msg:"「何をどう見せるか」の整理が不足。伝える型を持つと一気にラクになります。"},market:{name:"市場適合性",msg:"誰に向けた発信かがぼやけています。勝てる土俵を絞ることが重要。"},monetization:{name:"収益化適性",msg:"お金に変える導線設計が弱い状態。どう自然に提案するかを整える必要あり。"},execution:{name:"実行力",msg:"実行量に変換しきれていない可能性。小さく打って修正する方が伸びやすいです。"}};
-Object.entries(axes).sort((a,b)=>a[1]-b[1]).forEach(([k,v])=>{if(v<55&&w.length<2)w.push({axis:info[k].name,message:info[k].msg,score:v})});
-msgs.forEach(m=>{if(w.length<4)w.push({axis:"矛盾検出",message:m})});return w}
-
-function generateResultCopy(total,conf,msgs,q29){let tone="balanced";if(total>=75&&conf>=70&&msgs.length<=1)tone="strong_push";if(total<55||conf<55||msgs.length>=3)tone="reality_check";let sh,cm,li,cb;
-if(total>=75)sh="あなたのSNS副業ポテンシャルは<strong>かなり高め</strong>です。戦い方を間違えなければ十分に伸ばせる可能性があります。";else if(total>=55)sh="あなたのSNS副業ポテンシャルは<strong>平均以上</strong>。方向性を絞れれば、十分に収益化が狙えるタイプです。";else sh="今のままだと少し遠回りしやすい状態ですが、<strong>戦い方が未整理</strong>なだけ。土台を整えれば伸びる余地は十分あります。";
-if(conf>=80)cm="診断結果の信頼度が高い。この方向で進めて大丈夫。";else if(conf>=60)cm="だいたいの方向性は間違っていません。ただし詳細は個別相談で詰めるといいでしょう。";else cm="いくつか矛盾が検出されているので、詳細は個別相談で整理することをお勧めします。";
-if(tone==="strong_push")li="今すぐ動き始めることが何より重要です。設計よりもまず行動。失敗から学ぶスタイルで進めましょう。";else if(tone==="reality_check")li="今の延長だと難しい可能性が高いです。戦い方を大きく変える必要があります。LINEで詳しく相談しましょう。";else li="現在のあなたは過度な調整より、方向性を定めて進み始めることが大事です。";
-cb="LINEでは、あなたの診断結果を詳しく解説した上で、オーダーメイドの発信戦略をお届けします。個別相談の申し込みもここからできます。";
-return{scoreHeadline:sh,confidenceMessage:cm,lineIntroduction:li,lineCtaIntro:cb,ctaButtonText:"LINE公式で詳細を受け取る"}}
-
-function computeResult(ans){const raw=calculateAxisScores(ans);const adj_result=applyConsistencyAdjustments(raw,ans);const adj=adj_result.adjustedAxes;const axes=normalizeAxisScores(adj);const tscore=calculateTotalScore(axes);const conf=calculateConfidenceScore(ans);const type=detectInfluencerType(ans);const genres=detectBestGenres(ans);const models=detectMonetizationModels(ans);const hasStrong=Object.values(axes).filter(v=>v>=75).length>0;const income=estimateIncomeRange(tscore,hasStrong);const weak=generateWeaknesses(axes,adj_result.contradictionMessages);const copy=generateResultCopy(tscore,conf,adj_result.contradictionMessages,ans.Q29);const locked=["あなたの成長曲線と最適なマイルストーン","最初の3ヶ月の具体的なアクションプラン","コンテンツカレンダーの設計方法","あなたが避けるべき3つの罠と対策","月利100万達成までのロードマップ"];return{axes,totalScore:tscore,confidence:conf,influencerType:type,genres,monetizationModels:models,incomeRange:income,weaknesses:weak,locked,copy}}
-
-// ============================================================
-// RENDER FUNCTIONS
-// ============================================================
-function renderTop(el){
-  el.innerHTML=`
-  <div style="min-height:100vh">
-    <!-- Hero: Dark with SVG -->
-    <div style="background:#111;color:white;padding:48px 20px 64px;text-align:center;position:relative;overflow:hidden">
-      <div style="max-width:480px;margin:0 auto">
-        <div class="fade-in">
-          <div style="display:inline-block;background:var(--lime);color:#111;padding:4px 16px;border-radius:4px;font-size:11px;font-weight:800;letter-spacing:2px;margin-bottom:28px">POTENTIAL DIAGNOSIS</div>
-          <h1 style="font-size:32px;font-weight:900;line-height:1.5;margin-bottom:20px;letter-spacing:-0.5px">
-            あなたはSNS副業で<br>
-            <span style="color:var(--lime)">どこまで稼げる？</span>
-          </h1>
-
-          <!-- Hero SVG: Phone with charts -->
-          <svg viewBox="0 0 240 280" style="width:100%;max-width:200px;height:auto;margin:24px auto;display:block">
-            <!-- Phone body -->
-            <rect x="30" y="20" width="180" height="240" rx="20" fill="none" stroke="var(--lime)" stroke-width="3"/>
-            <!-- Phone notch -->
-            <rect x="90" y="20" width="60" height="18" rx="6" fill="#222"/>
-            <!-- Screen -->
-            <rect x="36" y="45" width="168" height="200" rx="12" fill="#1a1a1a"/>
-
-            <!-- Chart bars on screen -->
-            <g transform="translate(50, 140)">
-              <rect x="0" y="40" width="18" height="40" fill="var(--lime)" opacity="0.8"/>
-              <rect x="26" y="20" width="18" height="60" fill="var(--lime)" opacity="0.9"/>
-              <rect x="52" y="30" width="18" height="50" fill="var(--lime)" opacity="0.85"/>
-              <rect x="78" y="10" width="18" height="70" fill="var(--lime)"/>
-            </g>
-
-            <!-- Sparkle effects -->
-            <circle cx="220" cy="60" r="4" fill="var(--lime)" opacity="0.8"/>
-            <circle cx="210" cy="100" r="3" fill="var(--lime)" opacity="0.6"/>
-          </svg>
-
-          <p style="font-size:15px;line-height:1.9;color:#aaa;margin-bottom:36px">
-            29問に答えるだけで<br>向いている発信ジャンルと<br>収益化ルートがわかる
-          </p>
-          <button class="btn-primary" onclick="startDiagnosis()" style="font-size:18px;padding:20px 56px">無料で診断する</button>
-          <p style="font-size:12px;margin-top:16px;color:#666">無料・匿名・約90秒で完了</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- 3 Steps Section -->
-    <div style="background:white;padding:56px 20px;max-width:480px;margin:0 auto">
-      <div style="text-align:center;margin-bottom:48px">
-        <span class="stripe-accent">HOW IT WORKS</span>
-        <h2 style="font-size:24px;font-weight:900;margin-top:16px;line-height:1.5">3ステップで診断完了</h2>
-      </div>
-
-      <!-- Step 1 -->
-      <div class="step-card fade-in">
-        <svg viewBox="0 0 160 160" style="width:100%;max-width:160px;height:auto;margin-bottom:16px">
-          <!-- Clipboard -->
-          <rect x="30" y="30" width="100" height="100" rx="8" fill="none" stroke="var(--lime)" stroke-width="2.5"/>
-          <!-- Clip -->
-          <rect x="45" y="15" width="30" height="20" rx="4" fill="var(--lime)"/>
-          <!-- Checkboxes -->
-          <rect x="45" y="50" width="16" height="16" rx="2" fill="none" stroke="var(--lime)" stroke-width="2"/>
-          <line x1="48" y1="58" x2="54" y2="64" stroke="var(--lime)" stroke-width="2.5"/>
-          <line x1="54" y1="58" x2="60" y2="64" stroke="var(--lime)" stroke-width="2.5"/>
-
-          <rect x="45" y="75" width="16" height="16" rx="2" fill="none" stroke="var(--lime)" stroke-width="2"/>
-          <line x1="48" y1="83" x2="54" y2="89" stroke="var(--lime)" stroke-width="2.5"/>
-          <line x1="54" y1="83" x2="60" y2="89" stroke="var(--lime)" stroke-width="2.5"/>
-
-          <rect x="45" y="100" width="16" height="16" rx="2" fill="none" stroke="var(--lime)" stroke-width="2"/>
-          <line x1="48" y1="108" x2="54" y2="114" stroke="var(--lime)" stroke-width="2.5"/>
-          <line x1="54" y1="108" x2="60" y2="114" stroke="var(--lime)" stroke-width="2.5"/>
-
-          <!-- Text lines -->
-          <line x1="70" y1="58" x2="110" y2="58" stroke="#ccc" stroke-width="1.5"/>
-          <line x1="70" y1="83" x2="110" y2="83" stroke="#ccc" stroke-width="1.5"/>
-          <line x1="70" y1="108" x2="110" y2="108" stroke="#ccc" stroke-width="1.5"/>
-        </svg>
-        <div class="step-number">1</div>
-        <div class="step-title">29問に回答</div>
-        <div class="step-desc">あなたのSNS発信適性について、29個の質問に答えます。約90秒で完了。</div>
-      </div>
-
-      <!-- Step 2 -->
-      <div class="step-card fade-in" style="animation-delay:0.1s">
-        <svg viewBox="0 0 160 160" style="width:100%;max-width:160px;height:auto;margin-bottom:16px">
-          <!-- CPU/Processor -->
-          <rect x="40" y="40" width="80" height="80" rx="4" fill="none" stroke="var(--lime)" stroke-width="2.5"/>
-          <!-- Grid inside -->
-          <line x1="60" y1="40" x2="60" y2="120" stroke="var(--lime)" stroke-width="1.5" opacity="0.5"/>
-          <line x1="80" y1="40" x2="80" y2="120" stroke="var(--lime)" stroke-width="1.5" opacity="0.5"/>
-          <line x1="100" y1="40" x2="100" y2="120" stroke="var(--lime)" stroke-width="1.5" opacity="0.5"/>
-          <line x1="40" y1="60" x2="120" y2="60" stroke="var(--lime)" stroke-width="1.5" opacity="0.5"/>
-          <line x1="40" y1="80" x2="120" y2="80" stroke="var(--lime)" stroke-width="1.5" opacity="0.5"/>
-          <line x1="40" y1="100" x2="120" y2="100" stroke="var(--lime)" stroke-width="1.5" opacity="0.5"/>
-          <!-- Center glow -->
-          <circle cx="80" cy="80" r="12" fill="var(--lime)" opacity="0.6"/>
-          <circle cx="80" cy="80" r="8" fill="var(--lime)"/>
-        </svg>
-        <div class="step-number">2</div>
-        <div class="step-title">AIが即座に分析</div>
-        <div class="step-desc">あなたの回答をAIが分析し、専門家レベルの診断を実施。一貫性もチェック。</div>
-      </div>
-
-      <!-- Step 3 -->
-      <div class="step-card fade-in" style="animation-delay:0.2s">
-        <svg viewBox="0 0 160 160" style="width:100%;max-width:160px;height:auto;margin-bottom:16px">
-          <!-- Report/Document -->
-          <rect x="35" y="35" width="90" height="90" rx="6" fill="none" stroke="var(--lime)" stroke-width="2.5"/>
-          <!-- Title line -->
-          <line x1="45" y1="50" x2="115" y2="50" stroke="var(--lime)" stroke-width="2"/>
-          <!-- Content lines -->
-          <line x1="45" y1="65" x2="105" y2="65" stroke="var(--lime)" stroke-width="1.5" opacity="0.7"/>
-          <line x1="45" y1="75" x2="105" y2="75" stroke="var(--lime)" stroke-width="1.5" opacity="0.7"/>
-          <line x1="45" y1="85" x2="115" y2="85" stroke="var(--lime)" stroke-width="1.5" opacity="0.7"/>
-          <line x1="45" y1="95" x2="95" y2="95" stroke="var(--lime)" stroke-width="1.5" opacity="0.7"/>
-          <!-- Star badge -->
-          <circle cx="110" cy="100" r="14" fill="var(--lime)"/>
-          <text x="110" y="106" text-anchor="middle" style="font-size:20px">★</text>
-        </svg>
-        <div class="step-number">3</div>
-        <div class="step-title">あなた専用の戦略</div>
-        <div class="step-desc">発信ジャンル、収益モデル、5つの軸スコア、詳細戦略をすべて表示。</div>
-      </div>
-    </div>
-
-    <!-- Stats Section -->
-    <div style="background:var(--bg-section);padding:48px 20px;text-align:center">
-      <h3 style="font-size:18px;font-weight:900;margin-bottom:32px;color:var(--text)">累計10,000人以上が診断</h3>
-
-      <div class="stats-container">
-        <div class="stat-item fade-in">
-          <div class="stat-number">10K+</div>
-          <div class="stat-label">診断者</div>
-        </div>
-        <div class="stat-item fade-in" style="animation-delay:0.1s">
-          <div class="stat-number">92%</div>
-          <div class="stat-label">満足度</div>
-        </div>
-        <div class="stat-item fade-in" style="animation-delay:0.2s">
-          <div class="stat-number">100%</div>
-          <div class="stat-label">無料</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- FEATURES: White section -->
-    <div style="padding:56px 20px;max-width:480px;margin:0 auto">
-      <div style="text-align:center;margin-bottom:36px">
-        <span class="stripe-accent">WHAT YOU'LL DISCOVER</span>
-        <h2 style="font-size:24px;font-weight:900;margin-top:16px;line-height:1.5">診断でわかること</h2>
-      </div>
-      ${[
-        {icon:"📊",text:"向いている発信ジャンル TOP3",sub:"回答傾向から最適なジャンルを自動判定"},
-        {icon:"💰",text:"稼ぎやすい収益化ルート",sub:"あなたに合ったマネタイズ方法を提案"},
-        {icon:"📈",text:"5つの軸で見るポテンシャル",sub:"継続力・発信適性・市場適合性・収益化・実行力"},
-        {icon:"⚠️",text:"今のあなたの弱点と優先課題",sub:"矛盾検出で自覚しにくい課題も可視化"},
-        {icon:"🎯",text:"あなた専用の詳細戦略",sub:"LINEで具体的な発信設計を無料でお届け"},
-      ].map((b,i)=>`
-        <div class="card fade-in fade-d${Math.min(i+1,4)}" style="display:flex;align-items:flex-start;gap:16px;padding:20px">
-          <div class="feature-icon">${b.icon}</div>
-          <div style="flex:1">
-            <p style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px">${b.text}</p>
-            <p style="font-size:12px;color:var(--text-dim);margin:0;line-height:1.6">${b.sub}</p>
-          </div>
-        </div>
-      `).join("")}
-    </div>
-
-    <!-- TAGS & BOTTOM CTA: Light gray section -->
-    <div style="background:var(--bg-section);padding:40px 20px 56px;text-align:center">
-      <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:32px">
-        ${["登録不要","完全無料","約90秒","匿名OK"].map(t=>`<span class="tag">${t}</span>`).join("")}
-      </div>
-      <button class="btn-primary" onclick="startDiagnosis()" style="font-size:18px;padding:20px 56px">今すぐ診断する →</button>
-    </div>
-  </div>`}
-
-function renderDiagnosis(el){
-  const q=QUESTIONS[state.currentQ];const progress=(state.currentQ/QUESTIONS.length)*100;
-  const encs={5:"この診断ではあなたに合う戦略がわかります",15:"折り返し地点。一貫性も加味して精度UP中...",23:"あと少しで結果が出ます"};
-  const enc=encs[state.currentQ]||"";
-  el.innerHTML=`
-  <div style="min-height:100vh;background:#fff">
-    <div style="position:sticky;top:0;z-index:10;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:14px 20px 14px;border-bottom:1px solid #eee">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;max-width:480px;margin-left:auto;margin-right:auto">
-        <button onclick="goBack()" style="background:none;border:none;font-size:14px;color:${state.currentQ>0?"var(--text)":"#ccc"};cursor:${state.currentQ>0?"pointer":"default"};font-weight:700;padding:4px 0">← 戻る</button>
-        <span style="font-size:12px;color:var(--text-dim);font-weight:800;letter-spacing:1px">${state.currentQ+1} / ${QUESTIONS.length}</span>
-      </div>
-      <div class="progress-track" style="max-width:480px;margin:0 auto"><div class="progress-fill" style="width:${progress}%"></div></div>
-    </div>
-    ${enc?`<div style="text-align:center;padding:16px 20px 0"><span class="enc-pill">${enc}</span></div>`:""}
-    <div style="padding:36px 20px 120px;max-width:480px;margin:0 auto" class="fade-in">
-      <span style="font-size:11px;color:var(--lime-dark);font-weight:800;letter-spacing:2px;display:block;margin-bottom:10px;background:var(--lime);display:inline-block;padding:2px 10px;border-radius:3px">${q.category}</span>
-      <h2 style="font-size:22px;font-weight:900;color:var(--text);margin-bottom:8px;line-height:1.5;margin-top:12px">${q.question}</h2>
-      ${q.description?`<p style="font-size:13px;color:var(--text-dim);margin-bottom:28px">${q.description}</p>`:""}
-      ${q.allowMultiple?`<p style="font-size:12px;color:var(--accent-green);margin-bottom:18px;font-weight:700;background:#f0fff4;display:inline-block;padding:4px 12px;border-radius:4px">複数選択OK</p>`:""}
-      <div>
-        ${q.options.map((o,i)=>{
-          const isSel=q.allowMultiple?state.multiSelect.includes(i):state.answers[q.id]===i;
-          return`<button class="opt-btn${isSel?" selected":""}" onclick="${q.allowMultiple?`toggleMulti(${i})`:`selectSingle(${i})`}">
-            ${q.allowMultiple?`<span class="opt-checkbox">${isSel?"✓":""}</span>`:""}${o.label}
-          </button>`}).join("")}
-      </div>
-      ${q.allowMultiple?`<button onclick="confirmMulti()" style="margin-top:16px;width:100%;padding:16px;font-size:16px;font-weight:800;border-radius:60px;border:none;cursor:${state.multiSelect.length?"pointer":"default"};background:${state.multiSelect.length?"var(--lime)":"#e5e5e5"};color:${state.multiSelect.length?"var(--black)":"#aaa"};transition:all 0.3s">次へ進む →</button>`:""}
-    </div>
-  </div>`}
-
-function renderLoading(el){
-  el.innerHTML=`
-  <div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#111;color:white">
-    <!-- Loading SVG Animation -->
-    <svg viewBox="0 0 120 120" style="width:100px;height:100px;margin-bottom:24px">
-      <!-- Outer ring animation -->
-      <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(197,255,0,0.2)" stroke-width="4"/>
-      <circle cx="60" cy="60" r="50" fill="none" stroke="var(--lime)" stroke-width="4" stroke-dasharray="157" stroke-dashoffset="0" style="animation:spin 2s linear infinite"/>
-
-      <!-- Inner elements -->
-      <circle cx="60" cy="60" r="30" fill="none" stroke="rgba(197,255,0,0.3)" stroke-width="2"/>
-      <circle cx="60" cy="20" r="6" fill="var(--lime)">
-        <animateTransform attributeName="transform" type="rotate" from="0 60 60" to="360 60 60" dur="2s" repeatCount="indefinite"/>
-      </circle>
-    </svg>
-
-    <p style="margin-top:28px;font-size:18px;font-weight:800;color:var(--lime)">診断結果を分析中...</p>
-    <p style="font-size:13px;color:#666;margin-top:10px">回答の一貫性もチェックしています</p>
-    <div style="margin-top:32px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
-      ${["継続力","発信適性","市場適合性","収益化","実行力"].map((t,i)=>`<span style="font-size:11px;color:#888;padding:4px 12px;border-radius:4px;background:#222;animation:fadeIn 0.5s ease ${i*0.15}s both;font-weight:600">${t}</span>`).join("")}
-    </div>
-  </div>`}
-
-function renderResult(el){
-  const r=state.result;if(!r)return;
-  const{axes,totalScore,confidence,influencerType,genres,monetizationModels,incomeRange,weaknesses,locked,copy}=r;
-
-  // Radar SVG
-  const lbs=[{key:"continuity",label:"継続力"},{key:"expression",label:"発信適性"},{key:"market",label:"市場適合性"},{key:"monetization",label:"収益化"},{key:"execution",label:"実行力"}];
-  const n=5,cx=150,cy=150,rad=105,ao=-Math.PI/2;
-  const gp=(i,v)=>{const a=(2*Math.PI*i)/n+ao;const d=(v/100)*rad;return{x:cx+d*Math.cos(a),y:cy+d*Math.sin(a)}};
-  const gridSvg=[20,40,60,80,100].map(lv=>`<polygon points="${lbs.map((_,i)=>{const p=gp(i,lv);return p.x+","+p.y}).join(" ")}" fill="none" stroke="#e5e5e5" stroke-width="1"/>`).join("");
-  const linesSvg=lbs.map((_,i)=>{const p=gp(i,100);return`<line x1="${cx}" y1="${cy}" x2="${p.x}" y2="${p.y}" stroke="#e5e5e5" stroke-width="1"/>`}).join("");
-  const dataSvg=`<polygon points="${lbs.map((l,i)=>{const p=gp(i,axes[l.key]);return p.x+","+p.y}).join(" ")}" fill="rgba(197,255,0,0.15)" stroke="var(--lime)" stroke-width="2.5"/>`;
-  const dotsSvg=lbs.map((l,i)=>{const p=gp(i,axes[l.key]);return`<circle cx="${p.x}" cy="${p.y}" r="4.5" fill="var(--lime)" stroke="#111" stroke-width="1.5"/>`}).join("");
-  const lblSvg=lbs.map((l,i)=>{const p=gp(i,120);return`<text x="${p.x}" y="${p.y}" text-anchor="middle" dominant-baseline="middle" style="font-size:11px;fill:#555;font-weight:700">${l.label}</text>`}).join("");
-
-  // Score circle
-  const sr=72;const circ=2*Math.PI*sr;const off=circ-(totalScore/100)*circ;
-  const scoreColor=totalScore>=75?"var(--lime)":totalScore>=55?"var(--accent-orange)":"var(--accent-red)";
-
-  el.innerHTML=`
-  <div style="min-height:100vh">
-    <!-- Score Hero: Black -->
-    <div style="background:#111;color:white;padding:48px 24px 48px;text-align:center;position:relative;overflow:hidden">
-      <span style="font-size:11px;font-weight:800;letter-spacing:3px;color:#666;display:block;margin-bottom:24px">YOUR DIAGNOSIS RESULT</span>
-      <div class="fade-in" style="display:inline-block;position:relative">
-        <svg width="180" height="180" style="display:block;margin:0 auto">
-          <!-- Decorative rings -->
-          <circle cx="90" cy="90" r="85" fill="none" stroke="rgba(197,255,0,0.1)" stroke-width="1"/>
-          <circle cx="90" cy="90" r="70" fill="none" stroke="rgba(197,255,0,0.05)" stroke-width="1"/>
-
-          <!-- Score circle -->
-          <circle cx="90" cy="90" r="${sr}" fill="none" stroke="#333" stroke-width="8"/>
-          <circle cx="90" cy="90" r="${sr}" fill="none" stroke="${scoreColor}" stroke-width="8" stroke-dasharray="${circ}" stroke-dashoffset="${off}" stroke-linecap="round" transform="rotate(-90 90 90)" style="transition:stroke-dashoffset 1.5s cubic-bezier(0.4,0,0.2,1)"/>
-
-          <!-- Score text -->
-          <text x="90" y="80" text-anchor="middle" style="font-size:52px;font-weight:900;fill:white">${totalScore}</text>
-          <text x="90" y="108" text-anchor="middle" style="font-size:13px;fill:#666;font-weight:700">/ 100</text>
-        </svg>
-      </div>
-      <p style="font-size:15px;margin-top:20px;color:#aaa;font-weight:700">SNS副業収益ポテンシャル</p>
-    </div>
-
-    <!-- Results: White -->
-    <div style="padding:32px 16px 80px;max-width:480px;margin:0 auto">
-
-      <!-- Score headline -->
-      <div class="card fade-in fade-d1" style="border-left:4px solid var(--lime)">
-        <p style="font-size:15px;line-height:1.85;color:var(--text)">${copy.scoreHeadline}</p>
-      </div>
-
-      <!-- Confidence -->
-      <div class="card fade-in fade-d2">
-        <div class="section-title">CONFIDENCE</div>
-        <div style="display:flex;align-items:center;gap:14px;margin-bottom:10px">
-          <span style="font-size:28px;font-weight:900;color:var(--text)">${confidence}<span style="font-size:13px;font-weight:600;color:var(--text-dim)">%</span></span>
-          <div class="axis-bar-track" style="height:6px"><div class="axis-bar-fill" style="background:${confidence>=70?"var(--accent-green)":"var(--accent-orange)"};width:${confidence}%"></div></div>
-        </div>
-        <p style="font-size:12px;color:var(--text-dim);line-height:1.6">${copy.confidenceMessage}</p>
-      </div>
-
-      <!-- Type -->
-      <div class="card fade-in fade-d3">
-        <div class="section-title">YOUR TYPE</div>
-        <div style="background:#111;border-radius:12px;padding:20px;color:white">
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-            <span style="font-size:32px">${influencerType.emoji}</span>
-            <span style="font-size:18px;font-weight:900;color:var(--lime)">${influencerType.name}</span>
-          </div>
-          <p style="font-size:13px;color:#aaa;line-height:1.8;margin:0">${influencerType.desc}</p>
-        </div>
-      </div>
-
-      <!-- Genres -->
-      <div class="card fade-in fade-d4">
-        <div class="section-title">BEST GENRES</div>
-        ${genres.map((g,i)=>`
-          <div style="display:flex;gap:14px;align-items:flex-start;margin-bottom:16px">
-            <div class="rank-badge rank-${i+1}">${i+1}</div>
-            <div style="flex:1">
-              <p style="font-size:15px;font-weight:800;color:var(--text);margin-bottom:3px">${g.name}</p>
-              <p style="font-size:12px;color:var(--text-dim);line-height:1.6;margin:0">${g.reason}</p>
-            </div>
-          </div>`).join("")}
-      </div>
-
-      <!-- Monetization -->
-      <div class="card">
-        <div class="section-title">MONETIZATION</div>
-        ${monetizationModels.map((m,i)=>`
-          <div style="display:flex;gap:14px;align-items:flex-start;margin-bottom:16px">
-            <div class="rank-badge rank-${i+1}">${i+1}</div>
-            <div style="flex:1">
-              <p style="font-size:15px;font-weight:800;color:var(--text);margin-bottom:3px">${m.name}</p>
-              <p style="font-size:12px;color:var(--text-dim);line-height:1.6;margin:0">${m.reason}</p>
-            </div>
-          </div>`).join("")}
-      </div>
-
-      <!-- Radar -->
-      <div class="card">
-        <div class="section-title">5-AXIS SCORE</div>
-        <svg viewBox="0 0 300 300" style="width:100%;max-width:280px;margin:0 auto;display:block">
-          ${gridSvg}${linesSvg}${dataSvg}${dotsSvg}${lblSvg}
-        </svg>
-        <div style="margin-top:20px">
-          ${lbs.map(a=>{const v=axes[a.key];const c=v>=70?"var(--lime-dark)":v>=50?"var(--accent-orange)":"var(--accent-red)";return`
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-              <span style="font-size:12px;font-weight:700;color:var(--text-sub);min-width:72px">${a.label}</span>
-              <div class="axis-bar-track"><div class="axis-bar-fill" style="background:${c};width:${v}%"></div></div>
-              <span style="font-size:14px;font-weight:900;color:var(--text);min-width:32px;text-align:right">${v}</span>
-            </div>`}).join("")}
-        </div>
-      </div>
-
-      <!-- Income -->
-      <div class="card">
-        <div class="section-title">INCOME ESTIMATE</div>
-        <p style="font-size:11px;color:var(--text-dim);margin-bottom:16px;line-height:1.6">正しい設計で継続した場合の想定レンジです。成果を保証するものではありません。</p>
-        ${[{p:"3ヶ月後",v:incomeRange.m3,icon:"🌱"},{p:"6ヶ月後",v:incomeRange.m6,icon:"🌿"},{p:"12ヶ月後",v:incomeRange.m12,icon:"🌳"}].map(r=>`
-          <div class="income-row">
-            <span style="font-size:14px;color:var(--text-sub);display:flex;align-items:center;gap:8px"><span>${r.icon}</span>${r.p}</span>
-            <span style="font-size:20px;font-weight:900;color:var(--text)">${r.v}</span>
-          </div>`).join("")}
-      </div>
-
-      <!-- Weaknesses -->
-      ${weaknesses.length?`<div class="card">
-        <div class="section-title">ISSUES</div>
-        ${weaknesses.map(w=>`
-          <div class="weakness-item">
-            ${w.axis!=="矛盾検出"?`<p style="font-size:11px;color:var(--accent-red);font-weight:800;margin-bottom:4px;letter-spacing:0.5px">${w.axis}${w.score!==undefined?" : "+w.score+"pt":""}</p>`:""}
-            <p style="font-size:13px;color:var(--text-sub);line-height:1.8;margin:0">${w.message}</p>
-          </div>`).join("")}
-      </div>`:""}
-
-      <!-- Locked -->
-      <div class="card" style="position:relative;overflow:hidden;min-height:280px">
-        <div class="section-title">DETAILED STRATEGY</div>
-        <div style="filter:blur(5px);user-select:none;pointer-events:none;opacity:0.5">
-          ${locked.map((item,i)=>`
-            <div style="padding:14px 0;${i<locked.length-1?"border-bottom:1px solid var(--gray-border)":""};display:flex;gap:10px;align-items:center">
-              <span style="color:var(--lime-dark);font-weight:900;font-size:16px">◆</span>
-              <span style="font-size:14px;color:var(--text);font-weight:600">${item}</span>
-            </div>`).join("")}
-        </div>
-        <div class="lock-overlay">
-          <div style="font-size:48px;margin-bottom:12px">🔒</div>
-          <p style="font-size:18px;font-weight:900;margin-bottom:6px;color:var(--text)">この続きはLINEで公開</p>
-          <p style="font-size:13px;color:var(--text-dim)">登録後すぐに確認できます</p>
-        </div>
-      </div>
-
-      <!-- LINE CTA -->
-      <div style="background:#111;border-radius:20px;text-align:center;padding:40px 24px;color:white;margin-bottom:16px">
-        <p style="font-size:15px;line-height:1.9;color:#ccc;margin-bottom:28px">${copy.lineCtaIntro}</p>
-        <a href="${LINE_URL}" target="_blank" rel="noopener noreferrer" class="btn-line" style="width:100%">${copy.ctaButtonText}</a>
-        <p style="font-size:12px;margin-top:16px;color:#666">登録後すぐに詳細結果を確認できます</p>
-        <p style="font-size:11px;margin-top:6px;color:#555">個別相談はLINEからご案内します</p>
-      </div>
-
-      <div style="text-align:center;padding:24px 0">
-        <button onclick="startDiagnosis()" style="background:none;border:none;color:var(--text-dim);font-size:13px;cursor:pointer;text-decoration:underline">もう一度診断する</button>
-      </div>
-    </div>
-  </div>`}
-
-// ============================================================
-// ACTIONS
-// ============================================================
-function startDiagnosis(){state={screen:"diagnosis",currentQ:0,answers:{},multiSelect:[],result:null};render();window.scrollTo(0,0)}
-function selectSingle(i){const q=QUESTIONS[state.currentQ];state.answers[q.id]=i;if(state.currentQ<QUESTIONS.length-1){setTimeout(()=>{state.currentQ++;state.multiSelect=[];render();window.scrollTo(0,0)},180)}else finishDiagnosis()}
-function toggleMulti(i){if(state.multiSelect.includes(i))state.multiSelect=state.multiSelect.filter(x=>x!==i);else state.multiSelect.push(i);render()}
-function confirmMulti(){if(!state.multiSelect.length)return;const q=QUESTIONS[state.currentQ];state.answers[q.id]=[...state.multiSelect];if(state.currentQ<QUESTIONS.length-1){state.currentQ++;state.multiSelect=[];render();window.scrollTo(0,0)}else finishDiagnosis()}
-function goBack(){if(state.currentQ>0){state.currentQ--;const pq=QUESTIONS[state.currentQ];const prev=state.answers[pq.id];state.multiSelect=pq.allowMultiple&&Array.isArray(prev)?[...prev]:[];render();window.scrollTo(0,0)}}
-function finishDiagnosis(){state.screen="loading";render();window.scrollTo(0,0);setTimeout(()=>{state.result=computeResult(state.answers);state.screen="result";render();window.scrollTo(0,0)},2800)}
-
-// ============================================================
-// RENDER MAIN
-// ============================================================
-function render(){
-  const app=document.getElementById("app");
-  if(state.screen==="top")renderTop(app);
-  else if(state.screen==="diagnosis")renderDiagnosis(app);
-  else if(state.screen==="loading")renderLoading(app);
-  else if(state.screen==="result")renderResult(app);
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+function startDiagnosis(){
+  currentQ=0;Object.keys(answers).forEach(k=>delete answers[k]);
+  showScreen('diagnosis');renderQuestion();
+}
+function goBack(){if(currentQ>0){currentQ--;renderQuestion();}}
+function goNext(){
+  if(currentQ<questions.length-1){currentQ++;renderQuestion();}
+  else showResult();
+}
+function selectOption(val){
+  answers[questions[currentQ].id]=val;
+  setTimeout(()=>{
+    if(currentQ<questions.length-1){currentQ++;renderQuestion();}
+    else showResult();
+  },200);
 }
 
-render();
+// ============================================================
+// RENDER QUESTION
+// ============================================================
+function renderQuestion(){
+  const q=questions[currentQ];const total=questions.length;
+  document.getElementById('stepLabel').textContent=`ã¹ããã ${currentQ+1} / ${total}`;
+  document.getElementById('progressFill').style.width=`${((currentQ+1)/total)*100}%`;
+  document.getElementById('backBtn').disabled=currentQ===0;
+
+  const area=document.getElementById('questionArea');
+  const nw=document.getElementById('nextWrap');
+  nw.innerHTML='';
+
+  let html=`<div class="anim-slide-right"><h2 class="q-title">${q.title}</h2>`;
+  if(q.desc)html+=`<p class="q-desc">${q.desc}</p>`;
+
+  if(q.type==='text'){
+    const val=answers[q.id]||'';
+    html+=`<input class="text-input" type="text" placeholder="${q.placeholder||''}" value="${escapeHtml(val)}" oninput="answers['${q.id}']=this.value" id="textInput">`;
+    if(q.helper)html+=`<p class="q-helper">${q.helper}</p>`;
+    html+=`</div>`;
+    area.innerHTML=html;
+    nw.innerHTML=`<div class="next-wrap"><button class="next-btn" onclick="goNext()">${val?'æ¬¡ã¸é²ã':'ã¹ã­ãããã¦æ¬¡ã¸'}</button><p class="skip-note">${val?'':'å¥åããªãã¦ãè¨ºæ­ã§ãã¾ã'}</p></div>`;
+    document.getElementById('textInput')?.focus();
+  } else {
+    html+=`<div class="options">`;
+    q.options.forEach((o,i)=>{
+      const sel=answers[q.id]===o.v?'selected':'';
+      const iconHtml=o.icon?`<span class="opt-icon">${o.icon}</span>`:'';
+      html+=`<button class="option-btn ${sel}" onclick="selectOption('${o.v}')">
+        <span class="radio-circle"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></span>
+        ${iconHtml}${o.l}
+      </button>`;
+    });
+    html+=`</div></div>`;
+    area.innerHTML=html;
+  }
+}
+function escapeHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+// ============================================================
+// SHOW RESULT
+// ============================================================
+function showResult(){
+  showScreen('result');
+  const el=document.getElementById('resultBody');
+  el.innerHTML=`<div class="loading"><div class="spinner"></div><p>è¨ºæ­çµæãç®åºä¸­...</p></div>`;
+
+  setTimeout(()=>{
+    const a=answers;
+    const pf=a.q0_platform||'x';
+    const pm=platformMult(pf);
+    const pfInfo=PLATFORM_MAP[pf]||PLATFORM_MAP.other;
+
+    const bd={
+      followerValue:Math.round(calcFollower(a.q2_followers)*pm),
+      engagementValue:Math.round(calcEngagement(a.q3_likes)*pm),
+      genreValue:calcGenre(a.q6_genre),
+      continuityValue:calcContinuity(a.q4_posts_per_week,a.q5_duration,a.q11_time),
+      growthValue:calcGrowth(a.q10_growth),
+      monetizationPotentialValue:calcMonetization(a.q9_revenue,a.q13_model,a.q14_seriousness)
+    };
+    const rawConf=calcConfidence(a);
+    const{adj,cAdj,comments}=applyAdjustments(a,bd);
+    const conf=Math.max(40,Math.min(95,rawConf+cAdj));
+    const total=adj.followerValue+adj.engagementValue+adj.genreValue+adj.continuityValue+adj.growthValue+adj.monetizationPotentialValue;
+    const pct=calcPercentile(total);
+    const fv=predictFuture(total,a,conf);
+    const strengths=genStrengths(a,adj);
+    const weaknesses=genWeaknesses(a,adj);
+    const summary=genSummary(total);
+    const lineIntro=genLineCTA(total);
+    const cLabel=confLabel(conf);
+
+    const acct=a.q1_account||'';
+    const acctDisplay=acct?(acct.startsWith('@')?acct:'@'+acct):'';
+
+    let html=`
+    ${acctDisplay?`<div class="result-account reveal">${pfInfo.icon} ${acctDisplay}</div>`:''}
+
+    <div class="value-card reveal" style="transition-delay:.1s">
+      <div class="platform-label"><span class="pl-icon">${pfInfo.icon}</span>${pfInfo.name}</div>
+      <div class="vc-label">ããªãã®SNSè³ç£ä¾¡å¤</div>
+      <div class="vc-amount" id="assetValue">Â¥0</div>
+      <div class="percentile-pill">ä¸ä½ ${pct}%</div>
+      <div class="vc-conf">è¨ºæ­ä¿¡é ¼åº¦: ${conf}% â ${cLabel}</div>
+    </div>
+
+    <div class="stat-section reveal" style="transition-delay:.25s">
+      <div class="sh">å°æ¥ä¾¡å¤ã®ç®å®</div>
+      <div class="stat-row"><span class="sr-label">3ã¶æå¾</span><span class="sr-value">Â¥${fv.three.toLocaleString()}</span></div>
+      <div class="stat-row"><span class="sr-label">6ã¶æå¾</span><span class="sr-value">Â¥${fv.six.toLocaleString()}</span></div>
+      <div class="stat-row"><span class="sr-label">12ã¶æå¾</span><span class="sr-value">Â¥${fv.twelve.toLocaleString()}</span></div>
+      <div class="stat-note">â» åèç®å®</div>
+    </div>
+
+    <div class="insight-card reveal" style="transition-delay:.4s">
+      <div class="ic-head"><div class="ic-dot ic-dot-blue"></div><h3>ç·è©</h3></div>
+      <p>${summary}</p>
+      ${comments.map(c=>`<p class="comment-line">â» ${c}</p>`).join('')}
+    </div>
+
+    <div class="insight-card reveal" style="transition-delay:.55s">
+      <div class="ic-head"><div class="ic-dot ic-dot-green"></div><h3>å¼·ã¿</h3></div>
+      ${strengths.map(s=>`<p>${s}</p>`).join('')}
+    </div>
+
+    <div class="insight-card reveal" style="transition-delay:.7s">
+      <div class="ic-head"><div class="ic-dot ic-dot-amber"></div><h3>æ¹åä½å°</h3></div>
+      ${weaknesses.map(w=>`<p>${w}</p>`).join('')}
+    </div>
+
+    <div class="locked-card reveal" style="transition-delay:.85s">
+      <div class="locked-overlay">
+        <div class="lock-circle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></div>
+        <p class="lo-t">ããããåã¯ãããªãå°ç¨ã®è©³ç´°åæã§ã</p>
+        <p class="lo-s">è©³ç´°çµæã¯LINEã§ç¡æéå¸ãã¦ãã¾ã</p>
+      </div>
+      <div class="locked-bg">
+        ${lockedItems.map(it=>`<div class="locked-item"><h4>${it.t}</h4><p>${it.d}</p></div>`).join('')}
+      </div>
+    </div>
+
+    <div class="line-card reveal" style="transition-delay:1s">
+      <p class="lc-intro">${lineIntro}</p>
+      <a href="${LINE_URL}" target="_blank" rel="noopener noreferrer" class="line-btn" style="animation:pulseGlow 2s ease-in-out infinite">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+        LINEã§è©³ç´°åæãåãåã
+      </a>
+      <p class="lc-sub">ç»é²å¾ããã«è©³ç´°çµæãç¢ºèªã§ãã¾ã</p>
+      <div class="lc-details">
+        <p>è¨ºæ­ã§å¥åããã¢ã«ã¦ã³ãæå ±ããã¨ã«ãç¶ããLINEã§ç¢ºèªã§ãã¾ã</p>
+        <p>åå¥ç¸è«ã«é²ã¿ããæ¹ã¯LINEãããæ¡åãã¾ã</p>
+      </div>
+    </div>
+
+    <button class="restart-btn" onclick="startDiagnosis()">ããä¸åº¦è¨ºæ­ãã</button>
+    `;
+    el.innerHTML=html;
+    animateCountUp(document.getElementById('assetValue'),total,2500);
+    setTimeout(()=>{
+      const revs=el.querySelectorAll('.reveal');
+      const obs=new IntersectionObserver(entries=>{
+        entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+      },{threshold:.12});
+      revs.forEach(r=>obs.observe(r));
+      revs.forEach((r,i)=>{if(i<2)setTimeout(()=>r.classList.add('visible'),80+i*120);});
+    },50);
+  },1500);
+}
+
+function animateCountUp(el,target,duration){
+  let start=null;
+  function step(ts){
+    if(!start)start=ts;
+    const progress=Math.min((ts-start)/duration,1);
+    const eased=progress===1?1:1-Math.pow(2,-10*progress);
+    el.textContent='Â¥'+Math.floor(eased*target).toLocaleString();
+    if(progress<1)requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
 </script>
 </body>
 </html>
