@@ -3,582 +3,783 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>SNSå¯æ¥­ã¿ã¤ãè¨ºæ­ | ããªãã®åã¡ç­ãè¦ã¤ããã</title>
-<meta name="description" content="60ç§ã§ããããããªãã®SNSå¯æ¥­ã¿ã¤ããåãã¦ããçºä¿¡ã¹ã¿ã¤ã«ã¨åçåã«ã¼ããç¡æè¨ºæ­ã">
-<meta property="og:title" content="SNSå¯æ¥­ã¿ã¤ãè¨ºæ­">
-<meta property="og:description" content="ããªãã¯SNSå¯æ¥­ã§ã©ã®ã¿ã¤ãï¼åãã¦ããçºä¿¡ã¹ã¿ã¤ã«ã¨åçåã«ã¼ãã60ç§ã§ç¡æè¨ºæ­ã">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
+<title>SNS資産価値診断 | あなたのSNSアカウント、今いくらの価値がある？</title>
+<meta name="description" content="X・Instagram・TikTok・YouTube — あなたのSNSアカウントの資産価値を無料診断。60秒で可視化。">
 <style>
-:root {
-  --bg: #ffffff;
-  --bg-sub: #f8fafc;
-  --text: #0f172a;
-  --text-sub: #64748b;
-  --text-muted: #94a3b8;
-  --border: #e2e8f0;
-  --border-light: #f1f5f9;
-  --primary: #4f46e5;
-  --primary-light: #eef2ff;
-  --primary-dark: #4338ca;
-  --line-green: #06C755;
-  --line-green-dark: #05a849;
-  --shadow-sm: 0 1px 2px rgba(0,0,0,.04);
-  --shadow-md: 0 4px 12px rgba(0,0,0,.06);
-  --shadow-lg: 0 8px 24px rgba(0,0,0,.08);
-  --shadow-primary: 0 4px 14px rgba(79,70,229,.25);
-  --shadow-line: 0 4px 14px rgba(6,199,85,.25);
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 20px;
-  --radius-full: 9999px;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#000;--bg-primary:#000;--bg-secondary:#16181c;--bg-third:#1d1f23;
+  --border:#2f3336;--border-light:#38444d;
+  --text-primary:#e7e9ea;--text-secondary:#71767b;--text-third:#536471;
+  --blue:#1d9bf0;--blue-dark:#1a8cd8;--blue-light:rgba(29,155,240,.1);
+  --green:#00ba7c;--green-light:rgba(0,186,124,.1);
+  --amber:#f7931a;--amber-light:rgba(247,147,26,.1);
+  --line-green:#06C755;
 }
-* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
-html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
-body {
-  font-family:'Noto Sans JP',-apple-system,BlinkMacSystemFont,'Hiragino Sans',sans-serif;
-  color:var(--text); background:var(--bg);
-  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-  line-height:1.6; overflow-x:hidden;
+html{-webkit-tap-highlight-color:transparent;scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Hiragino Sans",sans-serif;
+  background:var(--bg-primary);color:var(--text-primary);
+  min-height:100vh;min-height:100dvh;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
-button { font-family:inherit; cursor:pointer; }
-a { text-decoration:none; color:inherit; }
+a{color:var(--blue);text-decoration:none}
 
-/* Animations */
-@keyframes fadeInUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
-@keyframes fadeIn { from{opacity:0} to{opacity:1} }
-@keyframes scaleIn { from{opacity:0;transform:scale(.96)} to{opacity:1;transform:scale(1)} }
-@keyframes spin { to{transform:rotate(360deg)} }
-@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.7} }
-@keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
-@keyframes slideInRight { from{opacity:0;transform:translateX(20px)} to{opacity:1;transform:translateX(0)} }
-@keyframes bounceIn { 0%{opacity:0;transform:scale(.3)} 50%{transform:scale(1.05)} 70%{transform:scale(.9)} 100%{opacity:1;transform:scale(1)} }
-@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+/* Container - X mobile width */
+.container{max-width:600px;margin:0 auto}
 
-.animate-fade-up { animation:fadeInUp .5s ease-out both; }
-.animate-fade-in { animation:fadeIn .4s ease-out both; }
-.animate-scale-in { animation:scaleIn .3s ease-out both; }
-.animate-slide-right { animation:slideInRight .4s ease-out both; }
-.animate-bounce-in { animation:bounceIn .6s ease-out both; }
-.spinner { width:40px;height:40px;border:3px solid var(--primary-light);border-top-color:var(--primary);border-radius:50%;animation:spin .7s linear infinite; }
+/* ===== Animations ===== */
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideInRight{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+@keyframes pulseGlow{0%,100%{box-shadow:0 0 16px rgba(6,199,85,.25)}50%{box-shadow:0 0 36px rgba(6,199,85,.5)}}
+@keyframes countPulse{0%{transform:scale(1)}50%{transform:scale(1.03)}100%{transform:scale(1)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.anim-fade{animation:fadeIn .5s ease-out both}
+.anim-slide-up{animation:slideUp .5s ease-out both}
+.anim-slide-right{animation:slideInRight .35s ease-out both}
 
-/* Shared Styles */
-.container { max-width:480px; margin:0 auto; }
-.section-pad { padding:40px 20px; }
-.section-pad-sm { padding:24px 20px; }
+/* ===== Screens ===== */
+.screen{display:none;min-height:100vh;min-height:100dvh}
+.screen.active{display:flex;flex-direction:column}
 
-.btn-primary {
-  display:inline-flex; align-items:center; justify-content:center;
-  padding:16px 32px; background:var(--primary); color:#fff;
-  font-weight:700; font-size:15px; border:none; border-radius:var(--radius-md);
-  box-shadow:var(--shadow-primary); transition:all .2s;
-  width:100%; max-width:320px;
+/* ===== X-style Header Bar ===== */
+.x-header{
+  position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;justify-content:center;
+  height:53px;padding:0 16px;
+  background:rgba(0,0,0,.75);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
 }
-.btn-primary:hover { background:var(--primary-dark); box-shadow:0 6px 20px rgba(79,70,229,.3); }
-.btn-primary:active { transform:scale(.98); }
+.x-header .logo{display:flex;align-items:center;gap:6px}
+.x-header .logo svg{width:24px;height:24px;color:var(--text-primary)}
+.x-header .logo span{font-size:18px;font-weight:700;letter-spacing:-.02em}
 
-.btn-line {
-  display:inline-flex; align-items:center; justify-content:center; gap:8px;
-  padding:16px 32px; background:var(--line-green); color:#fff;
-  font-weight:700; font-size:15px; border:none; border-radius:var(--radius-md);
-  box-shadow:var(--shadow-line); transition:all .2s;
-  width:100%; max-width:340px;
+/* ===== Top Page ===== */
+#top{padding:0}
+.hero{padding:40px 16px;text-align:center;border-bottom:1px solid var(--border)}
+.hero .badge{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12px;font-weight:500;color:var(--blue);
+  background:var(--blue-light);border:1px solid rgba(29,155,240,.2);
+  border-radius:999px;padding:6px 14px;margin-bottom:20px;
 }
-.btn-line:hover { background:var(--line-green-dark); }
-.btn-line:active { transform:scale(.98); }
+.hero h1{font-size:26px;font-weight:800;line-height:1.35;margin-bottom:14px;letter-spacing:-.02em}
+.hero .sub{font-size:14px;color:var(--text-secondary);line-height:1.7;margin-bottom:28px}
+.btn-blue{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--blue);color:#fff;font-size:16px;font-weight:700;
+  border:none;border-radius:999px;padding:14px 32px;cursor:pointer;transition:all .15s;
+}
+.btn-blue:hover{background:var(--blue-dark)}
+.btn-blue:active{transform:scale(.97)}
+.btn-blue svg{width:18px;height:18px}
+.hero .meta{font-size:12px;color:var(--text-third);margin-top:12px}
 
-.badge {
-  display:inline-flex; align-items:center; gap:6px;
-  padding:6px 14px; background:var(--primary-light); color:var(--primary);
-  font-size:12px; font-weight:600; border-radius:var(--radius-full);
+/* SNS icons row */
+.sns-icons{display:flex;justify-content:center;gap:16px;margin-bottom:24px}
+.sns-icon{
+  width:44px;height:44px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--bg-secondary);border:1px solid var(--border);
+  font-size:20px;
 }
 
-.card {
-  background:#fff; border-radius:var(--radius-lg); border:1px solid var(--border-light);
-  padding:20px; box-shadow:var(--shadow-sm); margin-bottom:12px;
+/* Benefits - tweet style cards */
+.benefits-section{border-bottom:1px solid var(--border)}
+.benefits-title{padding:12px 16px;font-size:18px;font-weight:800}
+.benefit-tweet{
+  display:flex;gap:12px;padding:12px 16px;
+  border-bottom:1px solid var(--border);transition:background .15s;
 }
-.card-title {
-  font-size:14px; font-weight:700; color:var(--text); margin-bottom:12px;
-  display:flex; align-items:center; gap:8px;
+.benefit-tweet:hover{background:rgba(255,255,255,.03)}
+.benefit-avatar{
+  width:40px;height:40px;border-radius:50%;
+  background:var(--blue-light);display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
 }
-.card-title-bar { width:4px; height:18px; border-radius:2px; flex-shrink:0; }
+.benefit-body .bname{font-size:14px;font-weight:700;margin-bottom:2px}
+.benefit-body .bhandle{font-size:13px;color:var(--text-secondary)}
+.benefit-body .btext{font-size:14px;color:var(--text-primary);line-height:1.5;margin-top:6px}
 
-.tag {
-  display:inline-block; padding:5px 12px; font-size:12px; font-weight:600;
-  border-radius:var(--radius-full);
+/* CTA bottom */
+.bottom-cta{padding:24px 16px;text-align:center;border-top:1px solid var(--border)}
+.trust-text{font-size:12px;color:var(--text-third);line-height:1.7;margin-top:16px}
+
+/* ===== Diagnosis ===== */
+#diagnosis{padding:0}
+.diag-bar{
+  position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;gap:16px;
+  height:53px;padding:0 16px;
+  background:rgba(0,0,0,.75);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.diag-back{
+  width:34px;height:34px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:transparent;border:none;cursor:pointer;
+  transition:background .15s;color:var(--text-primary);
+}
+.diag-back:hover{background:rgba(239,243,244,.1)}
+.diag-back:disabled{opacity:.3;pointer-events:none}
+.diag-back svg{width:20px;height:20px}
+.diag-info{flex:1}
+.diag-info .di-title{font-size:15px;font-weight:700}
+.diag-info .di-step{font-size:13px;color:var(--text-secondary)}
+
+.progress-track{height:4px;background:var(--bg-secondary)}
+.progress-fill{height:100%;background:var(--blue);transition:width .45s ease-out}
+
+.question-area{flex:1;padding:20px 16px 32px}
+.q-title{font-size:20px;font-weight:800;line-height:1.35;margin-bottom:6px}
+.q-desc{font-size:14px;color:var(--text-secondary);margin-bottom:20px;line-height:1.5}
+.q-helper{font-size:12px;color:var(--text-third);margin-top:10px}
+
+.text-input{
+  width:100%;background:var(--bg-primary);
+  border:1px solid var(--border);border-radius:4px;
+  padding:16px 12px;color:var(--text-primary);font-size:16px;
+  outline:none;transition:border-color .2s,box-shadow .2s;
+}
+.text-input::placeholder{color:var(--text-third)}
+.text-input:focus{border-color:var(--blue);box-shadow:0 0 0 1px var(--blue)}
+
+.options{display:flex;flex-direction:column;gap:0}
+.option-btn{
+  display:flex;align-items:center;gap:12px;width:100%;text-align:left;
+  background:transparent;border:none;border-bottom:1px solid var(--border);
+  padding:16px 4px;cursor:pointer;
+  font-size:15px;color:var(--text-primary);
+  transition:background .12s;
+}
+.option-btn:first-child{border-top:1px solid var(--border)}
+.option-btn:hover{background:rgba(255,255,255,.03)}
+.option-btn:active{background:rgba(29,155,240,.08)}
+.option-btn.selected{background:var(--blue-light);color:var(--blue)}
+.radio-circle{
+  width:20px;height:20px;border-radius:50%;
+  border:2px solid var(--border-light);
+  flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  transition:all .15s;
+}
+.option-btn.selected .radio-circle{border-color:var(--blue);background:var(--blue)}
+.radio-circle svg{width:12px;height:12px;color:#fff;display:none}
+.option-btn.selected .radio-circle svg{display:block}
+
+/* Platform icons in options */
+.opt-icon{font-size:18px;flex-shrink:0;width:28px;text-align:center}
+
+.next-wrap{padding:0 16px 24px}
+.next-btn{
+  width:100%;background:var(--blue);color:#fff;font-size:15px;font-weight:700;
+  border:none;border-radius:999px;padding:14px;cursor:pointer;transition:all .12s;
+}
+.next-btn:hover{background:var(--blue-dark)}
+.next-btn:active{transform:scale(.98)}
+.skip-note{font-size:12px;color:var(--text-third);margin-top:8px;text-align:center}
+
+/* ===== Result ===== */
+#result{padding:0}
+.result-bar{
+  position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;justify-content:center;
+  height:53px;padding:0 16px;
+  background:rgba(0,0,0,.75);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.result-bar span{font-size:17px;font-weight:800}
+
+.result-body{padding:0 16px 40px}
+.result-account{
+  text-align:center;padding:16px 0 8px;
+  font-size:14px;color:var(--text-secondary);
 }
 
-/* Analyzing overlay */
-.analyzing-overlay {
-  position:fixed; inset:0; background:rgba(255,255,255,.95); z-index:100;
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
+/* Main value card */
+.value-card{
+  text-align:center;padding:28px 16px;margin:8px 0 4px;
+  border:1px solid var(--border);border-radius:16px;
+  background:var(--bg-secondary);
 }
-.analyzing-text { font-size:14px; color:var(--text-sub); margin-top:16px; font-weight:500; }
-.analyzing-sub { font-size:12px; color:var(--text-muted); margin-top:8px; }
+.value-card .vc-label{font-size:13px;color:var(--text-secondary);font-weight:500;margin-bottom:8px}
+.value-card .vc-amount{font-size:42px;font-weight:900;letter-spacing:-.03em;color:var(--text-primary);margin-bottom:12px}
+.percentile-pill{
+  display:inline-flex;align-items:center;gap:4px;
+  background:var(--blue-light);border:1px solid rgba(29,155,240,.2);
+  border-radius:999px;padding:5px 14px;
+  font-size:13px;font-weight:700;color:var(--blue);
+}
+.vc-conf{font-size:11px;color:var(--text-third);margin-top:10px}
 
-/* Progress dots for analyzing */
-.dot-pulse { display:flex; gap:6px; margin-top:20px; }
-.dot-pulse span {
-  width:8px; height:8px; border-radius:50%; background:var(--primary);
-  animation:pulse 1.2s ease-in-out infinite;
+/* Platform label */
+.platform-label{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12px;color:var(--text-secondary);margin-bottom:12px;
 }
-.dot-pulse span:nth-child(2) { animation-delay:.2s; }
-.dot-pulse span:nth-child(3) { animation-delay:.4s; }
+.platform-label .pl-icon{font-size:16px}
+
+/* Stat cards */
+.stat-section{border:1px solid var(--border);border-radius:16px;background:var(--bg-secondary);margin-top:12px;overflow:hidden}
+.stat-section .sh{padding:14px 16px 0;font-size:15px;font-weight:800}
+.stat-row{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--border)}
+.stat-row:last-child{border-bottom:none}
+.stat-row .sr-label{font-size:14px;color:var(--text-secondary)}
+.stat-row .sr-value{font-size:15px;font-weight:700}
+.stat-note{padding:4px 16px 12px;text-align:right;font-size:11px;color:var(--text-third)}
+
+/* Insight cards */
+.insight-card{border:1px solid var(--border);border-radius:16px;background:var(--bg-secondary);margin-top:12px;padding:16px}
+.insight-card .ic-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.ic-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.ic-dot-blue{background:var(--blue)}
+.ic-dot-green{background:var(--green)}
+.ic-dot-amber{background:var(--amber)}
+.insight-card h3{font-size:15px;font-weight:700}
+.insight-card p{font-size:14px;color:var(--text-secondary);line-height:1.6;margin-bottom:4px}
+.comment-line{font-size:13px;color:var(--amber);margin-top:8px}
+
+/* Locked */
+.locked-card{position:relative;overflow:hidden;border:1px solid var(--border);border-radius:16px;margin-top:12px}
+.locked-bg{padding:16px;filter:blur(5px);opacity:.5;pointer-events:none}
+.locked-item{background:var(--bg-third);border-radius:10px;padding:12px;margin-bottom:8px}
+.locked-item h4{font-size:13px;font-weight:700;color:var(--text-secondary);margin-bottom:2px}
+.locked-item p{font-size:11px;color:var(--text-third)}
+.locked-overlay{
+  position:absolute;inset:0;z-index:2;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  background:rgba(0,0,0,.5);backdrop-filter:blur(6px);padding:20px;text-align:center;
+}
+.lock-circle{
+  width:48px;height:48px;border-radius:50%;
+  background:var(--bg-third);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+}
+.lock-circle svg{width:22px;height:22px;color:var(--blue)}
+.locked-overlay .lo-t{font-size:14px;font-weight:700}
+.locked-overlay .lo-s{font-size:12px;color:var(--text-secondary)}
+
+/* LINE CTA */
+.line-card{
+  border-radius:16px;padding:24px 16px;text-align:center;margin-top:16px;
+  border:1px solid rgba(6,199,85,.25);
+  background:linear-gradient(180deg,rgba(6,199,85,.06),var(--bg-secondary));
+}
+.line-card .lc-intro{font-size:14px;color:var(--text-secondary);line-height:1.7;margin-bottom:20px}
+.line-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--line-green);color:#fff;font-size:16px;font-weight:700;
+  border:none;border-radius:999px;padding:14px 28px;cursor:pointer;
+  text-decoration:none;transition:all .15s;
+}
+.line-btn:active{transform:scale(.96)}
+.line-btn svg{width:22px;height:22px}
+.line-card .lc-sub{font-size:12px;color:var(--text-third);margin-top:10px}
+.line-card .lc-details{margin-top:12px}
+.line-card .lc-details p{font-size:11px;color:var(--text-third);margin-bottom:2px}
+
+.restart-btn{
+  display:block;width:100%;margin-top:24px;padding:14px;
+  background:transparent;border:1px solid var(--border);border-radius:999px;
+  font-size:14px;font-weight:700;color:var(--text-primary);cursor:pointer;
+  transition:background .12s;
+}
+.restart-btn:hover{background:rgba(239,243,244,.1)}
+
+/* Loading */
+.loading{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:80vh;gap:12px}
+.spinner{width:28px;height:28px;border:3px solid var(--blue);border-top-color:transparent;border-radius:50%;animation:spin .7s linear infinite}
+.loading p{font-size:14px;color:var(--text-secondary)}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease-out,transform .55s ease-out}
+.reveal.visible{opacity:1;transform:translateY(0)}
 </style>
 </head>
 <body>
-<div id="root"></div>
 
-<script type="text/babel">
-const { useState, useCallback, useEffect, useRef } = React;
+<!-- ============ TOP PAGE ============ -->
+<div id="top" class="screen active">
+  <!-- X-style header -->
+  <div class="x-header">
+    <div class="logo">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      <span>SNS資産価値診断</span>
+    </div>
+  </div>
 
-/* ============================================================
-   CONFIG
-   ============================================================ */
-const LINE_URL = "https://line.me/R/ti/p/@047mbefg";
+  <div class="container">
+    <!-- Hero -->
+    <section class="hero anim-fade">
+      <div class="badge">無料・匿名ン60秒で完了</div>
 
-/* TYPE DEFINITIONS */
-const TYPES = {
-  stacker:{id:"stacker",name:"ç©ã¿ä¸ãåå¯æ¥­ãã¬ã¤ã¤ã¼",short:"ã³ãã³ãç©ã¿ä¸ãã¦åã¤å å®æ´¾",desc:"ä¸æããºãããç¶ç¶ã¨æ¹åã§ä¿¡é ¼ãç©ã¿ä¸ããæ¦ãæ¹ã«åãã¦ãã¾ããå°å³ã§ãç©ã¿ä¸ããè¨­è¨ã®æ¹ãå¼·ãã§ãã",color:"#10b981",colorLight:"#ecfdf5",colorMid:"#d1fae5",styles:["å®ä½é¨å±æ","æé·éç¨ã®çºä¿¡","å°ããªå­¦ã³ã®ç©ã¿ä¸ã","ãã¼ãç¹ååã®å®ææç¨¿"],monetization:["ã¢ãã£ãªã¨ã¤ã","ã³ã³ãã³ãè²©å£²"],strategies:["é±3ã5æç¨¿ã§ç©ã¿ä¸ãã","ããºãçããããããã¼ããçµã£ã¦ä¿¡é ¼ãä½ã","å°ããªæåä½é¨ãã³ã³ãã³ãåãã"],warning:"ä¸æçãã«å¯ããããã¨è»¸ããã¬ãããã§ããçºä¿¡ãã¼ããåºããããã¨ç©ã¿ä¸ããã¾ããã",icon:"ð",gradient:"linear-gradient(135deg,#10b981,#059669)"},
-  viral:{id:"viral",name:"ããºçãæ¡æ£å",short:"æ¡æ£åã§èªç¥ãåãã«ããè©±é¡åã¿ã¤ã",desc:"è©±é¡åãåãå£è¨­è¨ã«ãã£ã¦èªç¥ãåºããããã¿ã¤ãã§ããããã¯ãè«ç¹è¨­å®ãæ­¦å¨ã«ãªãã¾ãã",color:"#f97316",colorLight:"#fff7ed",colorMid:"#ffedd5",styles:["ããã¯å¼·ãã®æç¨¿","è«ç¹è¨­å®åã®çºä¿¡","åãå£ã§å·®å¥åããã¬ãã¥ã¼","æäºãã¿ã¸ã®é­ãã³ã¡ã³ã"],monetization:["PRæ¡ä»¶","ã¢ãã£ãªã¨ã¤ã"],strategies:["æ¡æ£ãèµ·ç¹ã«èªç¥ãåºãã","ããã¯è¨­è¨ãç£¨ãã¦ãªã¼ããæå¤§åãã","èªç¥âå°ç·âåçåã®è¨­è¨ãå¥ãã"],warning:"ããºã ãçãã¨ç©ã¿ä¸ããã¾ãããèªç¥å¾ã®å°ç·è¨­è¨ãéè¦ã§ãã",icon:"ð¥",gradient:"linear-gradient(135deg,#f97316,#ea580c)"},
-  empathy:{id:"empathy",name:"å±æã¹ãã¼ãªã¼å",short:"éç¨ã¨æ¬é³ã§äººãæ¹ãã¤ããå±ææ´¾",desc:"å®ç§ãªå®ç¸²ãããéç¨ãèè¤ãè¦ãããã¨ã§æ¯æãéããããã¿ã¤ãã§ãããªã¢ã«ãªå±æãå¼·ã¿ã«ãªãã¾ãã",color:"#f43f5e",colorLight:"#fff1f2",colorMid:"#ffe4e6",styles:["ä½é¨è«ã®å±æ","æé·éç¨ã®ãªã¢ã«çºä¿¡","å¤±æè«ããã®å­¦ã³","æ¬é³ãã¼ã¹ã®æç¨¿"],monetization:["ã³ãã¥ããã£éå¶","ã³ã³ãã³ãè²©å£²"],strategies:["éç¨ããªã¼ãã³ã«å±æãã","å®ç§ãããæ¬é³ãè¦ãã","åãæ©ã¿ãæã¤å±¤ã«åãã¦çºä¿¡ãã"],warning:"å¼·ã¿ãçãããæ¬é³ãåºããæ¹ãåºããã¾ããææçºä¿¡ã ãã«åãã¨æ¶èããããã§ãã",icon:"ð",gradient:"linear-gradient(135deg,#f43f5e,#e11d48)"},
-  expert:{id:"expert",name:"å°éå®¶æè²å",short:"ç¥è­ãä¾¡å¤ã«å¤ããæããã¿ã¤ã",desc:"ããããããæ´çãã¦ä¼ãããã¨ã§ä¾¡å¤ãåºããããã¿ã¤ãã§ããæè²ã³ã³ãã³ããè§£èª¬ç³»ã¨ç¸æ§ãè¯ãã§ãã",color:"#6366f1",colorLight:"#eef2ff",colorMid:"#e0e7ff",styles:["ãã¦ãã¦è§£èª¬","æ¯è¼ã¬ãã¥ã¼","åºè§£ã»ã¾ã¨ã","ã¹ããããã¤ã¹ãããç³»"],monetization:["ã³ã³ãã³ãè²©å£²","ã³ã³ãµã« / ç¸è«"],strategies:["å°éæ§ãè»¸ã«ä¿¡é ¼ãæ§ç¯ãã","æè²âç¸è«âåçåã®å°ç·ãä½ã","ä½ç³»åããã³ã³ãã³ããè³ç£ã«ãã"],warning:"æãããã¨ã«éä¸­ããããã¨åçåãéãã¾ããå°ç·è¨­è¨ãæè­ãã¦ãã ããã",icon:"ð",gradient:"linear-gradient(135deg,#6366f1,#4f46e5)"},
-  practice:{id:"practice",name:"å®è·µå±æåã¯ãªã¨ã¤ã¿ã¼",short:"è©¯ãã¦å­¦ãã§ä¼¸ã³ããªã¢ã«å®è·µæ´¾",desc:"å­¦ãã ãã¨ãèªåã§è©§ãããã®éç¨ãè¦ãããã¨ã§ä¿¡é ¼ãä½ãã¿ã¤ãã§ããå®è·µã­ã°åã®çºä¿¡ã¨ç¸æ§ãããã¾ãã",color:"#14b8a6",colorLight:"#f0fdfa",colorMid:"#ccfbf1",styles:["å®è·µã­ã°","æ¤è¨¼çµæã®å±æ","AIæ´»ç¨ã¬ãã¼ã","ãã©ã¤&ã¨ã©ã¼ç³»"],monetization:["ã¢ãã£ãªã¨ã¤ã","ã³ã³ãã³ãè²©å£²"],strategies:["å­¦ãã ãã¨ãå³å®è·µãã¦å±æãã","æ¤è¨¼çµæãã¾ã¨ãã¦ã³ã³ãã³ãåãã","å®è·µâçºè¦âå±æã®ãµã¤ã¯ã«ãåã"],warning:"ç¥è­ã ãæºããã¨ä¾¡å¤ãåºã«ããã§ããå®è·µã­ã°åãéè¦ã§ãã",icon:"ð§ª",gradient:"linear-gradient(135deg,#14b8a6,#0d9488)"},
-  worldview:{id:"worldview",name:"ä¸çè¦³ãã¡ã³åå",short:"é°å²æ°ã¨ä¾¡å¤è¦³ã§ãã¡ã³ãä½ãé­äºå",desc:"æå ±ãã®ãã®ã ãã§ãªããç©ºæ°æãä¾¡å¤è¦³ã§é¸ã°ããããã¿ã¤ãã§ããé°å²æ°ãè¦ãæ¹ãéè¦ã«ãªãã¾ãã",color:"#a855f7",colorLight:"#faf5ff",colorMid:"#f3e8ff",styles:["ã©ã¤ãã¹ã¿ã¤ã«çºä¿¡","ä¾¡å¤è¦³ãã¼ã¹ã®æç¨¿","ãã¸ã¥ã¢ã«éè¦ã®ã³ã³ãã³ã","ç©ºæ°æã®ããã¹ãã¼ãªã¼"],monetization:["ååè²©å£²","ã³ãã¥ããã£éå¶"],strategies:["ä¸çè¦³ãä¸è²«ããã¦ãã¡ã³ãä½ã","ç©ºæ°æÃå°ç·ã§åçåãã","ãã©ã³ãã¨ãã¦ã®ãã¸ã·ã§ã³ãç¢ºç«ãã"],warning:"é°å²æ°ã ãã§çµãããå°ç·ãæã¤ã¨ä¸æ°ã«å¼·ããªãã¾ããä¸çè¦³ã®ä¸è²«æ§ãéè¦ã§ãã",icon:"â¨",gradient:"linear-gradient(135deg,#a855f7,#9333ea)"},
-  anonymous:{id:"anonymous",name:"å¿åæ»ç¥å",short:"é¡åºããªãã§ä¼¸ã°ãã­ã¸ãã¯æ´¾",desc:"é¡åºããªãã§ãåãå£ãè¨èªåã§ä¼¸ã°ããã¿ã¤ãã§ããä¼ç»åã»æ¯è¼ã»ã¾ã¨ãã»æ»ç¥ç³»ã¨ç¸æ§ãããã¾ãã",color:"#475569",colorLight:"#f8fafc",colorMid:"#e2e8f0",styles:["æ¯è¼ã»ã¾ã¨ã","æ»ç¥ç³»ã³ã³ãã³ã","å¿åã¬ãã¥ã¼","ãã¼ã¿åæç³»"],monetization:["ã¢ãã£ãªã¨ã¤ã","ã³ã³ãã³ãè²©å£²"],strategies:["åãå£ã¨ä¼ç»åã§å·®å¥åãã","å¿åã§ãæ¦ããè¨­è¨ãçµã","ãã¼ã¿ãã­ã¸ãã¯ã§ä¿¡é ¼ãæ§ç¯ãã"],warning:"ã­ã£ã©ããè¨­è¨ã¨ä¼ç»ãæ­¦å¨ã«ãªãã¾ããå±äººæ§ã«é ¼ããªãåãä»çµã¿ãéè¦ã§ãã",icon:"ð­",gradient:"linear-gradient(135deg,#475569,#334155)"},
-  sales:{id:"sales",name:"ã»ã¼ã«ã¹åçåå",short:"çºä¿¡ãå£²ä¸ã«å¤ããåçåç¹åå",desc:"çºä¿¡ãå£²ä¸ã«å¤ããå°ç·è¨­è¨ã«å¼·ã¿ãåºãããã¿ã¤ãã§ããç¸è«å°ç·ãææ¡è¨­è¨ã¨ç¸æ§ãããã¾ãã",color:"#f59e0b",colorLight:"#fffbeb",colorMid:"#fef3c7",styles:["ææ¡åã®æç¨¿","ä¾¡å¤è¨´æ±åã®ã³ã³ãã³ã","ç¸è«å°ç·ä»ãã®çºä¿¡","ãªãã¡ã¼è¨­è¨å"],monetization:["ã³ã³ãµã« / ç¸è«","SNSéç¨ä»£è¡"],strategies:["çºä¿¡âä¿¡é ¼âææ¡ã®å°ç·ãè¨­è¨ãã","å£²ãè¾¼ã¿ã§ã¯ãªãä¾¡å¤æä¾ããå¥ã","ç¸è«å°ç·ãèªç¶ã«çµã¿è¾¼ã"],warning:"çºä¿¡ã ãã§æºè¶³ãããææ¡åç·ã¾ã§ä½ãã¨ããªãå¼·ãã§ããå£²ãè¾¼ã¿æã«æ³¨æã",icon:"ð°",gradient:"linear-gradient(135deg,#f59e0b,#d97706)"}
+      <div class="sns-icons anim-slide-up" style="animation-delay:.1s">
+        <div class="sns-icon">𝕏</div>
+        <div class="sns-icon" style="background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);border:none;color:#fff;font-size:18px">📷</div>
+        <div class="sns-icon" style="background:#010101;border-color:#333">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V9.42a8.16 8.16 0 004.76 1.52V7.5a4.85 4.85 0 01-1-.81z"/></svg>
+        </div>
+        <div class="sns-icon" style="background:#FF0000;border:none;color:#fff;font-size:14px;font-weight:700">▶</div>
+      </div>
+
+      <h1>あなたのSNSアカウント、<br>今いくらの価値がある？</h1>
+      <p class="sub">X・Instagram・TikTok・YouTube —<br>アカウントと運用状況から<br>SNS資産価値を無料で可視化します。</p>
+
+      <button class="btn-blue" onclick="startDiagnosis()">
+        無料で診断する
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+      </button>
+      <p class="meta">所要時間：約60秒 ｜ 登録不要</p>
+    </section>
+
+    <!-- Benefits as tweet-like cards -->
+    <section class="benefits-section anim-slide-up" style="animation-delay:.15s">
+      <h2 class="benefits-title">この診断でわかること</h2>
+      <div class="benefit-tweet"><div class="benefit-avatar">💰</div><div class="benefit-body"><div class="bname">資産価値 <span class="bhandle">@asset</span></div><div class="btext">今のSNS資産価値が円単位でわかる</div></div></div>
+      <div class="benefit-tweet"><div class="benefit-avatar">📈</div><div class="benefit-body"><div class="bname">将来予測 <span class="bhandle">@future</span></div><div class="btext">3・6・12ヶ月後の将杢価値がわかる</div></div></div>
+      <div class="benefit-tweet"><div class="benefit-avatar">💡</div><div class="benefit-body"><div class="bname">分析 <span class="bhandle">@analysis</span></div><div class="btext">あなたの強み / 弱みが具体的にわかる</div></div></div>
+      <div class="benefit-tweet"><div class="benefit-avatar">🎯</div><div class="benefit-body"><div class="bname">戦略 <span class="bhandle">@strategy</span></div><div class="btext">価値を上げるための方向性がわかる</div></div></div>
+      <div class="benefit-tweet"><div class="benefit-avatar">📩</div><div class="benefit-body"><div class="bname">詳細結果 <span class="bhandle">@detail</span></div><div class="btext">詳細戦略はLINEで受け取れる</div></div></div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="bottom-cta anim-fade" style="animation-delay:.3s">
+      <button class="btn-blue" onclick="startDiagnosis()">今すぐ診断を始める</button>
+      <p class="trust-text">
+        アカウント情報を入れると、よりあなた向けの結果になります。<br>
+        <span style="color:var(--text-third)">※ 入力情報は結果表示と個別分析の参照にのみ使用します</span>
+      </p>
+    </section>
+  </div>
+</div>
+
+<!-- ============ DIAGNOSIS PAGE ============ -->
+<div id="diagnosis" class="screen">
+  <div class="diag-bar">
+    <button class="diag-back" id="backBtn" onclick="goBack()">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m7-7l-7 7 7 7"/></svg>
+    </button>
+    <div class="diag-info">
+      <div class="di-title">SNS資産価値診断</div>
+      <div class="di-step" id="stepLabel"></div>
+    </div>
+  </div>
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="container">
+    <div class="question-area" id="questionArea"></div>
+    <div id="nextWrap"></div>
+  </div>
+</div>
+
+<!-- ============ RESULT PAGE ============ -->
+<div id="result" class="screen">
+  <div class="result-bar"><span>診断結果</span></div>
+  <div class="container">
+    <div class="result-body" id="resultBody"></div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// CONFIG
+// ============================================================
+const LINE_URL = 'https://lin.ee/EFIZkVv';
+
+// Platform display map
+const PLATFORM_MAP = {
+  x: { name:'X (旧Twitter)', icon:'𝕏', color:'#000' },
+  instagram: { name:'Instagram', icon:'📷', color:'#E1306C' },
+  tiktok: { name:'TikTok', icon:'🎵', color:'#010101' },
+  youtube: { name:'YouTube', icon:'▶', color:'#FF0000' },
+  threads: { name:'Threads', icon:'🔗', color:'#000' },
+  other: { name:'その他', icon:'📱', color:'#333' },
 };
-const TYPE_ORDER=["stacker","viral","empathy","expert","practice","worldview","anonymous","sales"];
 
-/* QUESTIONS (18) */
-const QS=[
-  {id:1,q:"SNSå¯æ¥­ã®ç®çã¯ï¼",m:null,opts:[
-    {l:"æ1ä¸åãä½ããã",s:{stacker:7,anonymous:5,practice:4}},{l:"æ5ã10ä¸åãçããã",s:{stacker:8,sales:6,expert:5,practice:5}},{l:"æ¬æ°ã§äºæ¥­åããã",s:{sales:9,expert:7,worldview:6,stacker:5}},{l:"å½±é¿åãæã¡ãã",s:{viral:9,empathy:6,worldview:6}},{l:"èªåã«åãã¦ãããç¥ããã",s:{stacker:3,empathy:3,anonymous:3,practice:3}}]},
-  {id:2,q:"SNSçºä¿¡ã®çµé¨ã¯ï¼",m:null,opts:[
-    {l:"ã¾ã£ãããªã",s:{stacker:2,anonymous:2,empathy:2,practice:2}},{l:"å°ããã",s:{stacker:5,practice:5,empathy:4,expert:4}},{l:"åå¹´ä»¥ä¸ãã",s:{stacker:7,practice:7,expert:6,empathy:5,viral:4}},{l:"1å¹´ä»¥ä¸ãã",s:{stacker:8,expert:7,practice:7,sales:6,worldview:5,viral:5}}]},
-  {id:3,q:"ç¾å¨ã®ãã©ã­ã¯ã¼æ°ã¯ï¼",m:null,opts:[
-    {l:"0ã100",s:{stacker:3,anonymous:3,practice:2}},{l:"101ã500",s:{stacker:5,empathy:4,anonymous:4,practice:4}},{l:"501ã1000",s:{expert:5,stacker:5,practice:5,empathy:4}},{l:"1001ã3000",s:{viral:6,expert:6,sales:5,worldview:5,stacker:4}},{l:"3001ä»¥ä¸",s:{viral:8,sales:7,worldview:6,expert:6}}]},
-  {id:4,q:"çºä¿¡ã§ä½¿ããããã®ã¯ï¼",m:"ãã®è¨ºæ­ã§ã¯ããªãã«åãã¦ããæ¦ãæ¹ããããã¾ã",opts:[
-    {l:"èªåã®ä½é¨è«",s:{empathy:8,practice:7,stacker:6}},{l:"ãã¦ãã¦ãå­¦ã³",s:{expert:9,practice:6,anonymous:5}},{l:"æ¯è¼ãã¬ãã¥ã¼",s:{expert:7,anonymous:7,practice:6}},{l:"æè¦ãä¸»å¼µ",s:{viral:8,anonymous:6,empathy:4}},{l:"ä¸çè¦³ãé°å²æ°",s:{worldview:10,empathy:4}},{l:"ã¾ã ããããªã",s:{stacker:2,empathy:2,practice:2,anonymous:2}}]},
-  {id:5,q:"æç¨¿ãç¶ããåã¯ã©ã®ãããï¼",m:null,opts:[
-    {l:"æ¯æ¥ããã",s:{stacker:10,practice:7,expert:6,sales:4}},{l:"é±3ã4ãªãããã",s:{stacker:8,practice:6,expert:5,empathy:5}},{l:"æ°åæ¬¡ç¬¬",s:{viral:5,worldview:4,empathy:3}},{l:"ãã¾ãç¶ããªã",s:{viral:2,worldview:2}}]},
-  {id:6,q:"ããºã¸ã®èå³ã¯ï¼",m:null,opts:[
-    {l:"ããªãçããã",s:{viral:10,empathy:3,anonymous:3}},{l:"åãããå¬ãã",s:{viral:6,practice:4,empathy:4}},{l:"ããã¾ã§éè¦ããªã",s:{stacker:7,expert:6,practice:5}},{l:"ãããå®å®éè¦",s:{stacker:9,expert:7,sales:4}}]},
-  {id:7,q:"é¡åºãã«ã¤ãã¦ã©ãæãï¼",m:"ããªãã®çºä¿¡ã¹ã¿ã¤ã«ãè¦ãã¦ãã¾ã",opts:[
-    {l:"é¡åºãOK",s:{empathy:6,worldview:7,sales:5,viral:4}},{l:"æ¡ä»¶æ¬¡ç¬¬ã§OK",s:{empathy:4,practice:4,worldview:3}},{l:"å¿åã§ãããã",s:{anonymous:10,expert:5,stacker:4}},{l:"ã¾ã æ±ºãã¦ããªã",s:{stacker:2,practice:2,empathy:2,anonymous:2}}]},
-  {id:8,q:"äººã«æãããã¨ã¸ã®æµæã¯ï¼",m:null,opts:[
-    {l:"ã»ã¼ãªã",s:{expert:10,sales:6,stacker:4}},{l:"å°ããã",s:{expert:6,practice:4,empathy:4}},{l:"çµæ§ãã",s:{empathy:3,worldview:3,anonymous:2}},{l:"å¼·ãæµæããã",s:{worldview:2,empathy:2}}]},
-  {id:9,q:"èªåã®éç¨ãè¦ãããã¨ã¸ã®æµæã¯ï¼",m:null,opts:[
-    {l:"ã»ã¼ãªã",s:{empathy:10,practice:8,stacker:5}},{l:"å°ããã",s:{empathy:6,practice:5,stacker:4}},{l:"çµæ§ãã",s:{expert:4,anonymous:4,worldview:3}},{l:"å¼·ãæµæããã",s:{anonymous:5,expert:4}}]},
-  {id:10,q:"å£²ããã¨ã¸ã®æµæã¯ï¼",m:"ãã«e°ãã§çµæãåºã¾ã",opts:[
-    {l:"ã»ã¼ãªã",s:{sales:10,expert:6,viral:3}},{l:"å°ããã",s:{sales:6,stacker:4,expert:4}},{l:"çµæ§ãã",s:{empathy:4,worldview:3,practice:3}},{l:"å¼·ãæµæããã",s:{empathy:2,worldview:2,anonymous:2}}]},
-  {id:11,q:"åå¿ãå°ãªãã¦ãç¶ããããï¼",m:null,opts:[
-    {l:"ç¶ãããã",s:{stacker:10,practice:7,expert:6}},{l:"å·¥å¤«ããªãããªãç¶ãããã",s:{stacker:8,practice:6,expert:5,empathy:4}},{l:"1ã2é±éåå¿ããªãã¨ãã¤ã",s:{viral:5,empathy:3}},{l:"åå¿ããªãã¨ãããããªã",s:{viral:3,worldview:2}}]},
-  {id:12,q:"å¾æãããªã®ã¯ã©ãï¼",m:null,opts:[
-    {l:"ããããããèª¬æãã",s:{expert:10,sales:5,stacker:4}},{l:"äººãæ¹ãã¤ããè©±ããã",s:{empathy:8,viral:6,worldview:4}},{l:"è©¦ãã¦çµæãå±æãã",s:{practice:10,stacker:5,expert:4}},{l:"ä¼ç»ãèãã",s:{viral:8,anonymous:7,worldview:4}},{l:"å£²ãæµããä½ã",s:{sales:10,expert:5}},{l:"ã¾ã ããããªã",s:{stacker:2,practice:2,empathy:2,anonymous:2}}]},
-  {id:13,q:"ä»ä¸çªè¿ãæ©ã¿ã¯ï¼",m:"åãã¦ããªãæ¦ãæ¹ãè¦ãã¦ãã¾ã",opts:[
-    {l:"ä½ãçºä¿¡ããã°ãããããããªã",s:{stacker:3,empathy:3,anonymous:3,practice:3}},{l:"ãã©ã­ã¯ã¼ãå¢ããªã",s:{viral:4,empathy:4,stacker:4}},{l:"ç¶ããªã",s:{viral:2,worldview:2}},{l:"åçåã§ããªã",s:{sales:5,expert:4,stacker:3}},{l:"èªåã®å¼·ã¿ãããããªã",s:{empathy:3,worldview:3,practice:3}}]},
-  {id:14,q:"åãã¦ããã¨æãçºä¿¡ã¹ã¿ã¤ã«ã¯ï¼",m:null,opts:[
-    {l:"æããç³»",s:{expert:10,sales:4}},{l:"æé·éç¨ãè¦ããç³»",s:{practice:8,empathy:7,stacker:5}},{l:"å±æãåãç³»",s:{empathy:10,worldview:4}},{l:"ããºãçãç³»",s:{viral:10,anonymous:4}},{l:"é°å²æ°ã§æ¹ãã¤ããç³»",s:{worldview:10,empathy:4}},{l:"ã¾ã æ±ºã¾ã£ã¦ããªã",s:{stacker:2,practice:2,empathy:2}}]},
-  {id:15,q:"ãã£ã¦ã¿ããåçåã¢ãã«ã¯ï¼",m:null,opts:[
-    {l:"ã¢ãã£ãªã¨ã¤ã",s:{stacker:7,anonymous:7,practice:5}},{l:"ã³ã³ãã³ãè²©å£²",s:{expert:8,sales:7,worldview:4}},{l:"ã³ã³ãµã« / ç¸è«",s:{sales:9,expert:7}},{l:"SNSéç¨ä»£è¡",s:{sales:8,expert:5,practice:4}},{l:"PRæ¡ä»¶",s:{viral:7,worldview:6,empathy:4}},{l:"ã³ãã¥ããã£éå¶",s:{worldview:7,empathy:5,sales:5}},{l:"ã¾ã æ±ºã¾ã£ã¦ããªã",s:{stacker:2,empathy:2,practice:2}}]},
-  {id:16,q:"æ°ãããã¨ãå§ããæã®å¾åã¯ï¼",m:"ãã¨å°ãã§è¨ºæ­çµæãåºã¾ã",opts:[
-    {l:"ã¾ãåã",s:{practice:9,viral:6,sales:5,stacker:4}},{l:"å°ãèª¿ã¹ã¦ããåã",s:{stacker:7,expert:6,practice:5}},{l:"ããªãèª¿ã¹ã¦ããåã",s:{expert:8,anonymous:5,stacker:4}},{l:"èª¿ã¹ã¦æºè¶³ããã¡",s:{expert:3,anonymous:3}}]},
-  {id:17,q:"å¨å²ããè¨ããããããã¨ã¯ï¼",m:null,opts:[
-    {l:"ãããããã",s:{expert:9,sales:5}},{l:"è¡ååããã",s:{practice:8,viral:6,sales:5}},{l:"ã³ãã³ãå",s:{stacker:10,expert:4}},{l:"ã»ã³ã¹ããã",s:{worldview:9,viral:4}},{l:"è¦ªãã¿ããã",s:{empathy:9,worldview:4}},{l:"ç¹ã«ãªã",s:{stacker:2,empathy:2,practice:2}}]},
-  {id:18,q:"ä»åãã®è¨ºæ­ãåããçç±ã¯ï¼",m:null,opts:[
-    {l:"èªåã®ã¿ã¤ããç¥ããã",s:{stacker:2,empathy:2,anonymous:2,practice:2}},{l:"åãã¦ããçºä¿¡ãç¥ããã",s:{expert:3,empathy:3,practice:3}},{l:"åçåã«ã¼ããç¥ããã",s:{sales:5,expert:4,stacker:3}},{l:"ä»ã®ããæ¹ãåã£ã¦ãããç¢ºèªããã",s:{stacker:3,expert:3,practice:3}},{l:"åå¥ã«ç¸è«ããã",s:{sales:6,expert:3}}]}
+// ============================================================
+// QUESTIONS (16問: 媒体追加)
+// ============================================================
+const questions = [
+  {id:'q0_platform',num:1,title:'メインで運用しているSNSは？',desc:'一番力を入れている媒体を選んでください',type:'select',optionStyle:'icon',options:[
+    {l:'X (旧Twitter)',v:'x',icon:'𝕏'},
+    {l:'Instagram',v:'instagram',icon:'📷'},
+    {l:'TikTok',v:'tiktok',icon:'🎵'},
+    {l:'YouTube',v:'youtube',icon:'▶'},
+    {l:'Threads',v:'threads',icon:'🔗'},
+    {l:'その他',v:'other',icon:'📱'},
+  ]},
+  {id:'q1_account',num:2,title:'アカウントIDを教えてください',desc:'入力するとよりあなた向けの結果になります',type:'text',placeholder:'@username または プロフィールURL',helper:'入力内容は結果表示・個別分析の参照に利用します',required:false},
+  {id:'q2_followers',num:3,title:'現在のフォロワー数は？',type:'select',options:[
+    {l:'0〜100',v:'0-100'},{l:'101〜500',v:'101-500'},{l:'501〜1,000',v:'501-1000'},
+    {l:'1,001〜3,000',v:'1001-3000'},{l:'3,001〜10,000',v:'3001-10000'},{l:'10,001以上',v:'10001+'}
+  ]},
+  {id:'q3_likes',num:4,title:'投稿の平均いいね数は？',type:'select',options:[
+    {l:'10未満',v:'under10'},{l:'10〜30',v:'10-30'},{l:'31〜100',v:'31-100'},
+    {l:'101〜300',v:'101-300'},{l:'301以上',v:'301+'}
+  ]},
+  {id:'q4_posts_per_week',num:5,title:'週に何本くらい投稿してる？',type:'select',options:[
+    {l:'0本',v:'0'},{l:'1〜2本',v:'1-2'},{l:'3〜4本',v:'3-4'},{l:'5〜6本',v:'5-6'},{l:'毎日',v:'daily'}
+  ]},
+  {id:'q5_duration',num:6,title:'SNSの運用歴は？',type:'select',options:[
+    {l:'1ヶ月未満',v:'under1m'},{l:'1〜3ヶ月',v:'1-3m'},{l:'3〜6ヶ月',v:'3-6m'},
+    {l:'6ヶ月〜1年',v:'6m-1y'},{l:'1年以上',v:'1y+'}
+  ]},
+  {id:'q6_genre',num:7,title:'主な発信ジャンルは？',type:'select',options:[
+    {l:'副業',v:'side-business'},{l:'ビジネス',v:'business'},{l:'SNS運用 / マーケティング',v:'sns-marketing'},
+    {l:'AI活用',v:'ai'},{l:'キャリア / 転職',v:'career'},{l:'お金 / 投資 / 節約',v:'money'},
+    {l:'美容',v:'beauty'},{l:'健康 / ダイエット',v:'health'},{l:'ライフスタイル',v:'lifestyle'},
+    {l:'子育て / 家族',v:'parenting'},{l:'地方移住 / 働き方',v:'workstyle'},{l:'その他',v:'other'}
+  ]},
+  {id:'q7_style',num:8,title:'主な発信スタイルは？',type:'select',options:[
+    {l:'実体験共有',v:'experience'},{l:'ノウハウ解説',v:'knowhow'},{l:'比較 / レビュー',v:'review'},
+    {l:'日常発信',v:'daily'},{l:'ストーリー型',v:'story'},{l:'意見発信',v:'opinion'},{l:'まだ定まっていない',v:'undecided'}
+  ]},
+  {id:'q8_face',num:9,title:'顔出し状況は？',type:'select',options:[
+    {l:'顔出しあり',v:'face'},{l:'匿名',v:'anonymous'},{l:'音声のみ / 一部のみ',v:'partial'},{l:'まだ決めていない',v:'undecided'}
+  ]},
+  {id:'q9_revenue',num:10,title:'現在の収益化経験は？',type:'select',options:[
+    {l:'なし',v:'none'},{l:'少しある',v:'little'},{l:'月1万円未満',v:'under10k'},
+    {l:'月1〜10万円',v:'10k-100k'},{l:'月10万円以上',v:'100k+'}
+  ]},
+  {id:'q10_growth',num:11,title:'フォロワーの増加状況は？',type:'select',options:[
+    {l:'増えていない',v:'none'},{l:'少し増えている',v:'slow'},{l:'安定して増えている',v:'steady'},{l:'急増している',v:'rapid'}
+  ]},
+  {id:'q11_time',num:12,title:'SNSに使える時間は1日どのくらい？',type:'select',options:[
+    {l:'30分未満',v:'under30m'},{l:'30分〜1時間',v:'30m-1h'},{l:'1〜2時間',v:'1-2h'},
+    {l:'2〜3時間',v:'2-3h'},{l:'3時間以上',v:'3h+'}
+  ]},
+  {id:'q12_concern',num:13,title:'今の一番の悩みは？',type:'select',options:[
+    {l:'フォロワーが増えない',v:'followers'},{l:'投稿ネタが続かない',v:'content'},
+    {l:'収益化できない',v:'monetization'},{l:'方向性が定まらない',v:'direction'},
+    {l:'プロフィールが弱い',v:'profile'},{l:'導線がない',v:'funnel'}
+  ]},
+  {id:'q13_model',num:14,title:'将来やりたい収益化モデルは？',type:'select',options:[
+    {l:'アフィリエイト',v:'affiliate'},{l:'コンテンツ販売',v:'content-sales'},{l:'PR案件',v:'pr'},
+    {l:'コンサル / 直諈',v:'consulting'},{l:'SNS運用代行',v:'agency'},
+    {l:'コミュニティ運営',v:'community'},{l:'まだ決まっていない',v:'undecided'}
+  ]},
+  {id:'q14_seriousness',num:15,title:'今後どれくらい本気で伸ばしたい？',type:'select',options:[
+    {l:'興味がある程度',v:'curious'},{l:'月1万円を狙いたい',v:'10k'},
+    {l:'月5〜10万円を狙いたい',v:'50k-100k'},{l:'本気で事業化したい',v:'serious'}
+  ]},
+  {id:'q15_reason',num:16,title:'この診断を受けた理由は？',type:'select',options:[
+    {l:'自分の価値を知りたい',v:'value'},{l:'アカウントの可能性を知りたい',v:'potential'},
+    {l:'収益化できるか知りたい',v:'monetize'},{l:'改善ポイントを知りたい',v:'improve'},
+    {l:'個別に相談したい',v:'consult'}
+  ]},
 ];
 
-/* ============================================================
-   DIAGNOSIS ENGINE
-   ============================================================ */
-function calcScores(ans){const s={};TYPE_ORDER.forEach(t=>s[t]=0);ans.forEach((ai,qi)=>{const q=QS[qi];if(!q||ai<0||ai>=q.opts.length)return;Object.entries(q.opts[ai].s).forEach(([t,v])=>s[t]+=v);});return s;}
+// ============================================================
+// VALUATION LOGIC
+// ============================================================
+// Platform multiplier
+function platformMult(p){return{x:1.0,instagram:1.1,tiktok:1.15,youtube:1.3,threads:0.8,other:0.7}[p]||1.0}
 
-function adjust(sc,ans){
-  const a={...sc},c=[];const g=i=>ans[i]??-1;
-  if(g(4)===0&&g(10)===3){a.stacker-=10;a.empathy-=4;c.push("ç¶ç¶ææ¬²ã¯é«ãä¸æ¹ã§ãåå¿ä¾å­ãããå¼·ãå¾åãããã¾ã");}
-  if(g(7)===3&&g(13)===0){a.expert-=8;c.push("æããåã¸ã®é¢å¿ã¯ãããã®ã®ãç¾ç¶ã¯çºä¿¡ãã¼ãã«ãèª²é¡ã§ã");}
-  if(g(9)===3&&(g(14)===2||g(14)===3)){a.sales-=10;c.push("åçåææ¬²ã¯ããä¸æ¹ã§ãææ¡ã¸ã®å¿ççæµæãããã«ããã¯ã§ã");}
-  if(g(5)===0&&g(4)===3){a.stacker-=8;c.push("ç¬çºåå¯ãã®æèãå¼·ããç¶ç¶è¨­è¨ã¯å¥éå¿è¦ã§ã");}
-  if(g(6)===2&&g(3)===4){a.worldview-=5;a.anonymous+=3;c.push("è¦ãæ¹ããåãå£è¨­è¨ãéè¦ã«ãªããããã§ã");}
-  if(g(15)===3){a.practice-=6;a.sales-=4;a.stacker-=3;c.push("æå ±åéã«å¯¾ãã¦å®è¡éãä¸è¶³ããããå¾åãããã¾ã");}
-  if(g(8)===3&&g(13)===1){a.empathy-=6;a.practice-=5;c.push("éç¨ã®å±æã«ä¾¡å¤ã¯ããã¾ãããç¾ç¶ã¯èªå·±éç¤ºãã¼ãã«ãé«ãã§ã");}
-  if(g(11)===4&&g(9)===3){a.sales-=6;c.push("è¨­è¨çè§£ã¯ããä¸æ¹ã§ãå®éã®ææ¡å ´é¢ã«å¿ççãã¼ãã«ãæ®ã£ã¦ãã¾ã");}
-  return{scores:a,comments:c};
+function calcFollower(v){return{'0-100':1000,'101-500':5000,'501-1000':20000,'1001-3000':80000,'3001-10000':300000,'10001+':1000000}[v]||1000}
+function calcEngagement(v){return{under10:1000,'10-30':5000,'31-100':20000,'101-300':80000,'301+':200000}[v]||1000}
+function calcGenre(v){return{'sns-marketing':200000,'side-business':150000,ai:150000,business:120000,career:100000,money:100000,beauty:80000,health:80000,lifestyle:60000,parenting:60000,workstyle:60000,other:50000}[v]||50000}
+function calcContinuity(post,dur,time){
+  const p={'0':0,'1-2':5000,'3-4':20000,'5-6':50000,daily:100000}[post]||0;
+  const d={under1m:0,'1-3m':10000,'3-6m':30000,'6m-1y':60000,'1y+':100000}[dur]||0;
+  const t={under30m:0,'30m-1h':10000,'1-2h':30000,'2-3h':50000,'3h+':80000}[time]||0;
+  return Math.min(p+d+t,180000);
+}
+function calcGrowth(v){return{none:0,slow:20000,steady:80000,rapid:200000}[v]||0}
+function calcMonetization(rev,model,ser){
+  const r={none:0,little:20000,under10k:50000,'10k-100k':150000,'100k+':300000}[rev]||0;
+  const m={affiliate:40000,'content-sales':70000,pr:30000,consulting:60000,agency:60000,community:50000,undecided:10000}[model]||0;
+  const s={curious:0,'10k':20000,'50k-100k':50000,serious:100000}[ser]||0;
+  return r+m+s;
 }
 
-function confidence(ans){
-  let v=80;const g=i=>ans[i]??-1;
-  if((g(4)<=1&&g(10)<=1)||(g(4)>=2&&g(10)>=2))v+=5;
-  if((g(3)===0&&(g(13)===1||g(13)===2))||(g(3)===1&&g(13)===0)||(g(3)===3&&g(13)===3)||(g(3)===4&&g(13)===4))v+=5;
-  if((g(9)<=1&&[1,2,3].includes(g(14)))||(g(9)>=2&&[0,4,6].includes(g(14))))v+=5;
-  if((g(11)===0&&g(16)===0)||(g(11)===2&&g(16)===1))v+=5;
-  if(g(4)===0&&g(10)===3)v-=15;else if(g(4)<=1&&g(10)>=2)v-=10;
-  if(g(7)===3&&g(13)===0)v-=10;
-  if(g(8)===3&&(g(13)===1||g(13)===2))v-=10;
-  if(g(9)===3&&(g(14)===2||g(14)===3))v-=10;
-  if(g(15)===3&&g(16)===1)v-=8;
-  v=Math.max(40,Math.min(95,v));
-  let lb;if(v>=85)lb="åç­ã®ä¸è²«æ§ãé«ããæ¯è¼çç²¾åº¦ã®é«ãçµæã§ã";else if(v>=70)lb="ãããã­ä¸è²«ãã¦ãããåèå¤ã¨ãã¦ååæ´»ç¨ã§ãã¾ã";else if(v>=55)lb="ä¸é¨åç­ã«æºããããã¾ã";else lb="çæ³ã¨ç¾ç¶ã«ã®ã£ãããããå¯è½æ§ãããã¾ã";
-  return{score:v,label:lb};
+function calcConfidence(a){
+  let s=80;
+  const fLvl=['0-100','101-500','501-1000','1001-3000','3001-10000','10001+'].indexOf(a.q2_followers);
+  const lLvl=['under10','10-30','31-100','101-300','301+'].indexOf(a.q3_likes);
+  if(Math.abs(fLvl-lLvl)<=1)s+=5;
+  const pLvl=['0','1-2','3-4','5-6','daily'].indexOf(a.q4_posts_per_week);
+  const gLvl=['none','slow','steady','rapid'].indexOf(a.q10_growth);
+  if(pLvl>=gLvl)s+=5;
+  const dLvl=['under1m','1-3m','3-6m','6m-1y','1y+'].indexOf(a.q5_duration);
+  const rLvl=['none','little','under10k','10k-100k','100k+'].indexOf(a.q9_revenue);
+  if(dLvl>=rLvl)s+=5;
+  return s;
 }
 
-function topType(sc){let m=-999,p="stacker";Object.entries(sc).forEach(([k,v])=>{if(v>m){m=v;p=k;}});return p;}
-function secondType(sc,pri){let m=-999,s=null;Object.entries(sc).forEach(([k,v])=>{if(k!==pri&&v>m){m=v;s=k;}});return s;}
-
-/* ============================================================
-   SVG LINE ICON
-   ============================================================ */
-function LineIcon({size=24}){
-  return <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>;
+function applyAdjustments(a,bd){
+  const adj={...bd};let cAdj=0;const comments=[];
+  if(a.q2_followers==='0-100'&&a.q3_likes==='301+'){cAdj-=10;comments.push('一部回答にズレがある可能性があります');}
+  if(a.q4_posts_per_week==='0'&&a.q10_growth==='rapid'){cAdj-=15;adj.growthValue=Math.max(adj.growthValue-50000,0);comments.push('成長状況の認識と運用量にズレがある可能性があります');}
+  if(a.q9_revenue==='none'&&a.q14_seriousness==='serious')comments.push('収益化意欲は高いものの、まずは小さな成果づくりが優先です');
+  if(a.q7_style==='undecided'&&a.q12_concern==='direction')comments.push('発信スタイルの明確化が最優先課題です');
+  if(a.q11_time==='under30m'&&(a.q14_seriousness==='50k-100k'||a.q14_seriousness==='serious')){cAdj-=8;comments.push('目標に対して投下時間が不足している可能性があります');}
+  if((a.q13_model==='consulting'||a.q13_model==='content-sales')&&a.q9_revenue==='none'&&a.q2_followers==='0-100'){adj.monetizationPotentialValue=Math.max(adj.monetizationPotentialValue-30000,0);comments.push('現段階では、まず信頼構築と初期実縎づくりが重要です');}
+  return{adj,cAdj,comments};
 }
 
-/* ============================================================
-   APP
-   ============================================================ */
-function App(){
-  const [page,setPage]=useState("home");
-  const [ans,setAns]=useState([]);
-  const [qi,setQi]=useState(0);
-  const [result,setResult]=useState(null);
-  const [analyzing,setAnalyzing]=useState(false);
-  const [locked,setLocked]=useState(false);
+function calcPercentile(total){
+  if(total>=700001)return Math.floor(Math.random()*14)+1;
+  if(total>=300001)return Math.floor(Math.random()*20)+15;
+  if(total>=100001)return Math.floor(Math.random()*25)+35;
+  if(total>=30001)return Math.floor(Math.random()*20)+60;
+  return Math.floor(Math.random()*16)+80;
+}
 
-  const start=()=>{setAns([]);setQi(0);setPage("quiz");window.scrollTo({top:0,behavior:'instant'});};
-  const home=()=>{setPage("home");window.scrollTo({top:0,behavior:'instant'});};
+function predictFuture(cur,a,conf){
+  const gL=['none','slow','steady','rapid'].indexOf(a.q10_growth);
+  const pL=['0','1-2','3-4','5-6','daily'].indexOf(a.q4_posts_per_week);
+  const sL=['curious','10k','50k-100k','serious'].indexOf(a.q14_seriousness);
+  const dL=['under1m','1-3m','3-6m','6m-1y','1y+'].indexOf(a.q5_duration);
+  const gs=gL+pL+sL+dL;
+  let m3,m6,m12;
+  if(gs>=12){m3=1.5+Math.random()*.7;m6=2+Math.random()*1.5;m12=3+Math.random()*3;}
+  else if(gs>=7){m3=1.3+Math.random()*.5;m6=1.6+Math.random()*.9;m12=2.2+Math.random()*1.8;}
+  else{m3=1.1+Math.random()*.3;m6=1.2+Math.random()*.5;m12=1.4+Math.random()*.8;}
+  if(conf<60){m3*=.85;m6*=.8;m12*=.75;}
+  const r=v=>Math.round(v/10000)*10000;
+  return{three:r(cur*m3),six:r(cur*m6),twelve:r(cur*m12)};
+}
 
-  const answer=(oi)=>{
-    if(locked)return;
-    setLocked(true);
-    const na=[...ans];na[qi]=oi;setAns(na);
+function genStrengths(a,bd){
+  const s=[];
+  if(bd.genreValue>=120000)s.push('ジャンル自体は比較的収益化に向いています');
+  if(bd.continuityValue>=80000)s.push('継続性に一定の強みがあります');
+  if(bd.engagementValue>=20000)s.push('フォロワー規模以上に、エンゲージメントに強みがあります');
+  if(bd.growthValue>=80000)s.push('現在のフォロワー増加ペースは良好です');
+  if(a.q5_duration==='6m-1y'||a.q5_duration==='1y+')s.push('運用歴に対して、価値の伸び方は悪くありません');
+  if(a.q9_revenue!=='none')s.push('すでに収益化の経験があり、次のステップに進みやすい状態です');
+  if(!s.length)s.push('まだ伸びしろが多く、改善によって大きに価値が変わる段階です');
+  return s.slice(0,2);
+}
+function genWeaknesses(a,bd){
+  const w=[];
+  if(a.q4_posts_per_week==='0'||a.q4_posts_per_week==='1-2')w.push('投稏頻度が低く、価値の蓄積スピードが遅い可能性があります');
+  if(a.q9_revenue==='none'&&a.q13_model==='undecided')w.push('収益導線が弱く、価値を取り切れていません');
+  if(a.q7_style==='undecided')w.push('発信スタイルが未確定で、ブランドが積み上がりにくい状態です');
+  if(bd.engagementValue<=5000)w.push('いいね数が少なく、コンテンツの訴求力に改善余地があります');
+  if(a.q10_growth==='none')w.push('現在フォロワーが増えておらず、成長が停滞しています');
+  if(a.q11_time==='under30m')w.push('投下時間が少なく、成果が出にくい状態です');
+  if(!w.length)w.push('今のままだと、価値の伸びが鈍化しやすいです');
+  return w.slice(0,2);
+}
+function genSummary(total){
+  if(total>=500000)return'今のアカウントは、すでに伸ばす土台があります。戦い方を間違えなければ、資産価値をさらに高められる状態です。';
+  if(total>=150000)return'今のアカウントは、伸びしろは十分あります。ただし、いくつかの改善点を放置すると価値が頭打ちになりやすいです。';
+  return'今の価値はまだ小さいですが、伸びしろがないわけではありません。まずは土台設計を整えることで、アカウント価値は十分変えられます。';
+}
+function genLineCTA(total){
+  if(total>=500000)return'今のあなたは、改善次第でアカウント価値をさらに伸ばせる状態です。ここから先は、あなた専用の資産価値アップ戦略を確認してください。';
+  if(total>=150000)return'伸びしろは十分ありますが、自己流のままだと遠回りしやすい状態です。ここから先は、価値を上げるための具体戦略です。';
+  return'今のまま闇雲に続けると、努力の割に価値が積み上がりにくい可能性があります。ここから先は、価値を作るための土台設計です。';
+}
+function confLabel(s){
+  if(s>=85)return'比較的精度の高い結果です';
+  if(s>=70)return'参考値として十分活用できます';
+  if(s>=55)return'一部回答に揺れがあります';
+  return'現状認識と理想にギャップがある可能性があります';
+}
+
+const lockedItems=[
+  {t:'あなたのアカウント価値を上げる3つの改善ポイント',d:'今の資産価値を効率的に引き上げるための具体的な改善施策'},
+  {t:'あなた向けの収益化ルート',d:'回答内容から算出した、相性の良い収益化モデルと理由'},
+  {t:'3ヶ月の改善ロードマップ',d:'月ごとにやるべきことを整理した具体的なアクションプラン'},
+  {t:'プロフィール改善の方向性',d:'フォローされやすいプロフィールにするための改善案'},
+  {t:'最初に伸ばすべき投稿テーマ',d:'あなたのジャンルで反応が取れやすい投稿テーマの提案'},
+  {t:'個別相談で深掘りすべきポイント',d:'あなたの状況で最も効果的な相談テーマ'},
+];
+
+// ============================================================
+// STATE
+// ============================================================
+let currentQ = 0;
+const answers = {};
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+function startDiagnosis(){
+  currentQ=0;Object.keys(answers).forEach(k=>delete answers[k]);
+  showScreen('diagnosis');renderQuestion();
+}
+function goBack(){if(currentQ>0){currentQ--;renderQuestion();}}
+function goNext(){
+  if(currentQ<questions.length-1){currentQ++;renderQuestion();}
+  else showResult();
+}
+function selectOption(val){
+  answers[questions[currentQ].id]=val;
+  setTimeout(()=>{
+    if(currentQ<questions.length-1){currentQ++;renderQuestion();}
+    else showResult();
+  },200);
+}
+
+// ============================================================
+// RENDER QUESTION
+// ============================================================
+function renderQuestion(){
+  const q=questions[currentQ];const total=questions.length;
+  document.getElementById('stepLabel').textContent=`ステップ ${currentQ+1} / ${total}`;
+  document.getElementById('progressFill').style.width=`${((currentQ+1)/total)*100}%`;
+  document.getElementById('backBtn').disabled=currentQ===0;
+
+  const area=document.getElementById('questionArea');
+  const nw=document.getElementById('nextWrap');
+  nw.innerHTML='';
+
+  let html=`<div class="anim-slide-right"><h2 class="q-title">${q.title}</h2>`;
+  if(q.desc)html+=`<p class="q-desc">${q.desc}</p>`;
+
+  if(q.type==='text'){
+    const val=answers[q.id]||'';
+    html+=`<input class="text-input" type="text" placeholder="${q.placeholder||''}" value="${escapeHtml(val)}" oninput="answers['${q.id}']=this.value" id="textInput">`;
+    if(q.helper)html+=`<p class="q-helper">${q.helper}</p>`;
+    html+=`</div>`;
+    area.innerHTML=html;
+    nw.innerHTML=`<div class="next-wrap"><button class="next-btn" onclick="goNext()">${val?'次へ進む':'スキップして次へ'}</button><p class="skip-note">${val?'':'入力しなくても診断できます'}</p></div>`;
+    document.getElementById('textInput')?.focus();
+  } else {
+    html+=`<div class="options">`;
+    q.options.forEach((o,i)=>{
+      const sel=answers[q.id]===o.v?'selected':'';
+      const iconHtml=o.icon?`<span class="opt-icon">${o.icon}</span>`:'';
+      html+=`<button class="option-btn ${sel}" onclick="selectOption('${o.v}')">
+        <span class="radio-circle"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></span>
+        ${iconHtml}${o.l}
+      </button>`;
+    });
+    html+=`</div></div>`;
+    area.innerHTML=html;
+  }
+}
+function escapeHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+// ============================================================
+// SHOW RESULT
+// ============================================================
+function showResult(){
+  showScreen('result');
+  const el=document.getElementById('resultBody');
+  el.innerHTML=`<div class="loading"><div class="spinner"></div><p>診断結果を算出中...</p></div>`;
+
+  setTimeout(()=>{
+    const a=answers;
+    const pf=a.q0_platform||'x';
+    const pm=platformMult(pf);
+    const pfInfo=PLATFORM_MAP[pf]||PLATFORM_MAP.other;
+
+    const bd={
+      followerValue:Math.round(calcFollower(a.q2_followers)*pm),
+      engagementValue:Math.round(calcEngagement(a.q3_likes)*pm),
+      genreValue:calcGenre(a.q6_genre),
+      continuityValue:calcContinuity(a.q4_posts_per_week,a.q5_duration,a.q11_time),
+      growthValue:calcGrowth(a.q10_growth),
+      monetizationPotentialValue:calcMonetization(a.q9_revenue,a.q13_model,a.q14_seriousness)
+    };
+    const rawConf=calcConfidence(a);
+    const{adj,cAdj,comments}=applyAdjustments(a,bd);
+    const conf=Math.max(40,Math.min(95,rawConf+cAdj));
+    const total=adj.followerValue+adj.engagementValue+adj.genreValue+adj.continuityValue+adj.growthValue+adj.monetizationPotentialValue;
+    const pct=calcPercentile(total);
+    const fv=predictFuture(total,a,conf);
+    const strengths=genStrengths(a,adj);
+    const weaknesses=genWeaknesses(a,adj);
+    const summary=genSummary(total);
+    const lineIntro=genLineCTA(total);
+    const cLabel=confLabel(conf);
+
+    const acct=a.q1_account||'';
+    const acctDisplay=acct?(acct.startsWith('@')?acct:'@'+acct):'';
+
+    let html=`
+    ${acctDisplay?`<div class="result-account reveal">${pfInfo.icon} ${acctDisplay}</div>`:''}
+
+    <div class="value-card reveal" style="transition-delay:.1s">
+      <div class="platform-label"><span class="pl-icon">${pfInfo.icon}</span>${pfInfo.name}</div>
+      <div class="vc-label">あなたのSNS資産価値</div>
+      <div class="vc-amount" id="assetValue">¥0</div>
+      <div class="percentile-pill">上位 ${pct}%</div>
+      <div class="vc-conf">診断信頼度: ${conf}% — ${cLabel}</div>
+    </div>
+
+    <div class="stat-section reveal" style="transition-delay:.25s">
+      <div class="sh">将来価値の目安</div>
+      <div class="stat-row"><span class="sr-label">3ヶ月後</span><span class="sr-value">¥${fv.three.toLocaleString()}</span></div>
+      <div class="stat-row"><span class="sr-label">6ヶ月後</span><span class="sr-value">¥${fv.six.toLocaleString()}</span></div>
+      <div class="stat-row"><span class="sr-label">12ヶ月後</span><span class="sr-value">¥${fv.twelve.toLocaleString()}</span></div>
+      <div class="stat-note">※ 参考目安</div>
+    </div>
+
+    <div class="insight-card reveal" style="transition-delay:.4s">
+      <div class="ic-head"><div class="ic-dot ic-dot-blue"></div><h3>総評</h3></div>
+      <p>${summary}</p>
+      ${comments.map(c=>`<p class="comment-line">※ ${c}</p>`).join('')}
+    </div>
+
+    <div class="insight-card reveal" style="transition-delay:.55s">
+      <div class="ic-head"><div class="ic-dot ic-dot-green"></div><h3>強み</h3></div>
+      ${strengths.map(s=>`<p>${s}</p>`).join('')}
+    </div>
+
+    <div class="insight-card reveal" style="transition-delay:.7s">
+      <div class="ic-head"><div class="ic-dot ic-dot-amber"></div><h3>改善余地</h3></div>
+      ${weaknesses.map(w=>`<p>${w}</p>`).join('')}
+    </div>
+
+    <div class="locked-card reveal" style="transition-delay:.85s">
+      <div class="locked-overlay">
+        <div class="lock-circle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></div>
+        <p class="lo-t">ここから先は、あなた専用の詳細分析です</p>
+        <p class="lo-s">詳細結果はLINEで無料配布しています</p>
+      </div>
+      <div class="locked-bg">
+        ${lockedItems.map(it=>`<div class="locked-item"><h4>${it.t}</h4><p>${it.d}</p></div>`).join('')}
+      </div>
+    </div>
+
+    <div class="line-card reveal" style="transition-delay:1s">
+      <p class="lc-intro">${lineIntro}</p>
+      <a href="${LINE_URL}" target="_blank" rel="noopener noreferrer" class="line-btn" style="animation:pulseGlow 2s ease-in-out infinite">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+        LINEで詳細分析を受け取る
+      </a>
+      <p class="lc-sub">登録後すぐに詳細結果を確認できます</p>
+      <div class="lc-details">
+        <p>診断で入力したアカウント情報をもとに、続きをLINEで確認できます</p>
+        <p>個別相談に進みたい方はLINEからご案内します</p>
+      </div>
+    </div>
+
+    <button class="restart-btn" onclick="startDiagnosis()">もう一度診断する</button>
+    `;
+    el.innerHTML=html;
+    animateCountUp(document.getElementById('assetValue'),total,2500);
     setTimeout(()=>{
-      if(qi<QS.length-1){setQi(qi+1);setLocked(false);}
-      else{
-        setAnalyzing(true);
-        setTimeout(()=>{
-          const raw=calcScores(na);
-          const{scores:adj,comments}=adjust(raw,na);
-          const conf=confidence(na);
-          const pri=topType(adj);
-          const sec=secondType(adj,pri);
-          setResult({pri,sec,scores:adj,conf,comments,ans:na});
-          setAnalyzing(false);
-          setPage("result");
-          setLocked(false);
-          window.scrollTo({top:0,behavior:'instant'});
-        },2200);
-      }
-    },280);
-  };
-
-  if(analyzing)return <AnalyzingScreen />;
-  if(page==="home")return <HomePage onStart={start}/>;
-  if(page==="quiz")return <QuizPage qi={qi} ans={ans} onAnswer={answer} onBack={()=>{if(qi>0)setQi(qi-1);}} locked={locked}/>;
-  if(page==="result")return <ResultPage result={result} onRestart={home}/>;
-  return null;
+      const revs=el.querySelectorAll('.reveal');
+      const obs=new IntersectionObserver(entries=>{
+        entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+      },{threshold:.12});
+      revs.forEach(r=>obs.observe(r));
+      revs.forEach((r,i)=>{if(i<2)setTimeout(()=>r.classList.add('visible'),80+i*120);});
+    },50);
+  },1500);
 }
 
-/* ============================================================
-   ANALYZING SCREEN
-   ============================================================ */
-function AnalyzingScreen(){
-  const [step,setStep]=useState(0);
-  const msgs=["åç­ãéè¨ä¸­...","ã¿ã¤ãã¹ã³ã¢ãç®åºä¸­...","çç¾ãã§ãã¯ä¸­...","ããªãã®åã¡æ®ãåæä¸­..."];
-  useEffect(()=>{const t=setInterval(()=>setStep(p=>Math.min(p+1,msgs.length-1)),550);return()=>clearInterval(t);},[]);
-  return(
-    <div className="analyzing-overlay">
-      <div className="spinner"/>
-      <p className="analyzing-text">{msgs[step]}</p>
-      <div className="dot-pulse"><span/><span/><span/></div>
-    </div>
-  );
+function animateCountUp(el,target,duration){
+  let start=null;
+  function step(ts){
+    if(!start)start=ts;
+    const progress=Math.min((ts-start)/duration,1);
+    const eased=progress===1?1:1-Math.pow(2,-10*progress);
+    el.textContent='¥'+Math.floor(eased*target).toLocaleString();
+    if(progress<1)requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
 }
-
-/* ============================================================
-   HOME PAGE
-   ============================================================ */
-function HomePage({onStart}){
-  const benefits=[
-    {i:"ð¯",t:"èªåã®åã¡ç­ãããã"},
-    {i:"ð±",t:"åãã¦ããçºä¿¡ã¹ã¿ã¤ã«ãããã"},
-    {i:"ð°",t:"ç¸æ§ã®è¯ãåçåã¢ãã«ãããã"},
-    {i:"â ï¸",t:"ãã£ã¦ã¯ãããªãæ¦ãæ¹ãããã"},
-    {i:"ð",t:"è©³ç´°æ¦ç¥ã¯LINEã§åãåãã"}
-  ];
-  return(
-    <div className="container">
-      {/* Hero */}
-      <section style={{padding:'52px 20px 44px',textAlign:'center'}}>
-        <div className="animate-fade-up">
-          <span className="badge" style={{marginBottom:24,display:'inline-flex'}}>ç¡æã»å¿åã»60ç§ã§å®äº</span>
-          <h1 style={{fontSize:26,fontWeight:800,lineHeight:1.45,marginBottom:16}}>
-            ããªãã¯SNSå¯æ¥­ã§<br/><span style={{color:'var(--primary)'}}>ã©ã®ã¿ã¤ãï¼</span>
-          </h1>
-          <p style={{fontSize:14,color:'var(--text-sub)',lineHeight:1.8,marginBottom:32}}>
-            åãã¦ããçºä¿¡ã¹ã¿ã¤ã«ã¨<br/>åçåã«ã¼ããç¡æè¨ºæ­
-          </p>
-          <button onClick={onStart} className="btn-primary" style={{margin:'0 auto',display:'flex'}}>
-            ç¡æã§è¨ºæ­ãã
-          </button>
-          <p style={{fontSize:12,color:'var(--text-muted)',marginTop:12}}>ç´60ç§ / 18å / ç»é²ä¸è¦</p>
-        </div>
-      </section>
-
-      {/* Benefits */}
-      <section style={{padding:'32px 20px 36px',background:'var(--bg-sub)'}}>
-        <h2 style={{fontSize:15,fontWeight:700,textAlign:'center',marginBottom:20}}>ãã®è¨ºæ­ã§ããããã¨</h2>
-        <div style={{display:'flex',flexDirection:'column',gap:8}}>
-          {benefits.map((b,i)=>(
-            <div key={i} className="animate-fade-up" style={{animationDelay:`${i*80}ms`,display:'flex',alignItems:'center',gap:12,background:'#fff',borderRadius:'var(--radius-md)',padding:'12px 16px',boxShadow:'var(--shadow-sm)'}}>
-              <span style={{fontSize:18,flexShrink:0}}>{b.i}</span>
-              <span style={{fontSize:13,fontWeight:600,color:'var(--text)'}}>{b.t}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Type Gallery */}
-      <section className="section-pad">
-        <h2 style={{fontSize:16,fontWeight:700,textAlign:'center',marginBottom:6}}>8ã¤ã®SNSå¯æ¥­ã¿ã¤ã</h2>
-        <p style={{fontSize:12,color:'var(--text-muted)',textAlign:'center',marginBottom:24}}>ããªãã¯ã©ã®åã¡æ¹ã¿ã¤ãï¼</p>
-        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10}}>
-          {TYPE_ORDER.map((tid,i)=>{
-            const t=TYPES[tid];
-            return(
-              <div key={tid} className="animate-scale-in" style={{animationDelay:`${i*60}ms`,borderRadius:'var(--radius-lg)',padding:16,border:`2px solid ${t.color}20`,background:t.colorLight,textAlign:'center',transition:'transform .2s',cursor:'default'}}>
-                <div style={{width:48,height:48,borderRadius:14,background:t.gradient,display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 10px',fontSize:22,boxShadow:`0 4px 12px ${t.color}30`}}>{t.icon}</div>
-                <h3 style={{fontSize:12,fontWeight:700,color:t.color,marginBottom:4,lineHeight:1.4}}>{t.name}</h3>
-                <p style={{fontSize:11,color:'var(--text-sub)',lineHeight:1.4}}>{t.short}</p>
-              </div>
-            );
-          })}
-        </div>
-        <div style={{textAlign:'center',marginTop:28}}>
-          <button onClick={onStart} className="btn-primary" style={{maxWidth:280}}>èªåã®ã¿ã¤ããè¨ºæ­ãã</button>
-        </div>
-      </section>
-
-      {/* Sub Copy */}
-      <section style={{padding:'40px 20px',background:'var(--bg-sub)',textAlign:'center'}}>
-        <p style={{fontSize:14,color:'var(--text-sub)',lineHeight:1.9,marginBottom:24}}>
-          ããºåããç©ã¿ä¸ãåãã<br/>é¡åºãããå¿åãã<br/>
-          <b style={{color:'var(--text)'}}>ããªãã®åã¡ç­ãè¦ã¤ãã¾ãããã</b>
-        </p>
-        <p style={{fontSize:12,color:'var(--text-muted)',marginBottom:20}}>èªåã«åããªãæ¦ãæ¹ããã¦ããªãããã§ãã¯ãã¾ãããï¼</p>
-        <button onClick={onStart} className="btn-primary" style={{maxWidth:260}}>ç¡æã§è¨ºæ­ããï¼60ç§ï¼</button>
-      </section>
-
-      <footer style={{padding:24,textAlign:'center'}}><p style={{fontSize:11,color:'#d1d5db'}}>SNSå¯æ¥­ã¿ã¤ãè¨ºæ­</p></footer>
-    </div>
-  );
-}
-
-/* ============================================================
-   QUIZ PAGE
-   ============================================================ */
-function QuizPage({qi,ans,onAnswer,onBack,locked}){
-  const q=QS[qi];
-  const pct=Math.round(((qi+1)/QS.length)*100);
-  return(
-    <div className="container" style={{minHeight:'100vh',display:'flex',flexDirection:'column'}}>
-      <header style={{padding:'20px 20px 12px',position:'sticky',top:0,background:'rgba(255,255,255,.97)',backdropFilter:'blur(8px)',zIndex:10}}>
-        <div style={{display:'flex',alignItems:'center',gap:12,marginBottom:8}}>
-          {qi>0?(
-            <button onClick={onBack} style={{background:'none',border:'none',color:'var(--text-muted)',fontSize:13,display:'flex',alignItems:'center',gap:4,padding:'4px 0'}}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M15 19l-7-7 7-7"/></svg>
-              æ»ã
-            </button>
-          ):<div style={{width:52}}/>}
-          <div style={{flex:1}}>
-            <div style={{display:'flex',justifyContent:'space-between',marginBottom:4}}>
-              <span style={{fontSize:11,color:'var(--text-muted)',fontWeight:500}}>{qi+1} / {QS.length}</span>
-              <span style={{fontSize:11,color:'var(--text-muted)',fontWeight:500}}>{pct}%</span>
-            </div>
-            <div style={{width:'100%',height:6,background:'var(--border-light)',borderRadius:3,overflow:'hidden'}}>
-              <div style={{height:'100%',width:`${pct}%`,background:'var(--primary)',borderRadius:3,transition:'width .4s cubic-bezier(.4,0,.2,1)'}}/>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <div key={q.id} className="animate-fade-up" style={{flex:1,padding:'20px 20px 32px'}}>
-        {q.m&&<p style={{fontSize:12,color:'var(--primary)',textAlign:'center',marginBottom:18,fontWeight:600}}>{q.m}</p>}
-        <h2 style={{fontSize:17,fontWeight:700,textAlign:'center',lineHeight:1.55,marginBottom:28}}>Q{q.id}. {q.q}</h2>
-        <div style={{display:'flex',flexDirection:'column',gap:8}}>
-          {q.opts.map((o,i)=>(
-            <button key={i} onClick={()=>onAnswer(i)} disabled={locked}
-              style={{width:'100%',textAlign:'left',padding:'15px 18px',borderRadius:'var(--radius-md)',border:'2px solid var(--border)',background:'#fff',fontSize:14,fontWeight:500,color:'var(--text)',transition:'all .15s',opacity:locked?.6:1}}>
-              {o.l}
-            </button>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ============================================================
-   RESULT PAGE
-   ============================================================ */
-function ResultPage({result,onRestart}){
-  const t=TYPES[result.pri];
-  const sec=result.sec?TYPES[result.sec]:null;
-  const locked=[ t.name+"ã®3ã¶ææ¦ç¥","åãã¦ããã¸ã£ã³ã«TOP3","åãã¦ããåçåã¢ãã«TOP3","ä»ããã¹ããã¨ / ãããªãæ¹ããããã¨","æç¨¿ãã¼ãä¾","åå¥ç¸è«ã§æ·±æããã¹ãè«ç¹"];
-  const [showConf,setShowConf]=useState(false);
-  useEffect(()=>{setTimeout(()=>setShowConf(true),600);},[]);
-
-  return(
-    <div className="container" style={{paddingBottom:48}}>
-      {/* Header */}
-      <section className="animate-fade-up" style={{padding:'44px 20px 32px',textAlign:'center'}}>
-        <span className="badge" style={{marginBottom:24,display:'inline-flex'}}>è¨ºæ­çµæ</span>
-        <div className="animate-bounce-in" style={{animationDelay:'.2s',width:150,height:150,borderRadius:28,background:t.gradient,display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 24px',fontSize:64,boxShadow:`0 12px 32px ${t.color}35`}}>
-          {t.icon}
-        </div>
-        <h1 style={{fontSize:20,fontWeight:800,marginBottom:10,lineHeight:1.4}}>
-          ããªãã¯<br/>ã{t.name}ãã§ã
-        </h1>
-        <p style={{fontSize:15,fontWeight:700,color:t.color,marginBottom:16}}>{t.short}</p>
-        <p style={{fontSize:14,color:'var(--text-sub)',lineHeight:1.75,padding:'0 4px'}}>{t.desc}</p>
-      </section>
-
-      <div style={{padding:'0 20px'}}>
-        {/* çºä¿¡ã¹ã¿ã¤ã« */}
-        <div className="card animate-slide-right" style={{animationDelay:'.1s'}}>
-          <div className="card-title"><div className="card-title-bar" style={{background:t.color}}/> åãã¦ããçºä¿¡ã¹ã¿ã¤ã«</div>
-          <div style={{display:'flex',flexWrap:'wrap',gap:6}}>
-            {t.styles.map((s,i)=><span key={i} className="tag" style={{background:`${t.color}12`,color:t.color}}>{s}</span>)}
-          </div>
-        </div>
-
-        {/* åçåã¢ãã« */}
-        <div className="card animate-slide-right" style={{animationDelay:'.2s'}}>
-          <div className="card-title"><div className="card-title-bar" style={{background:t.color}}/> åãã¦ããåçåã¢ãã«</div>
-          {t.monetization.map((m,i)=>(
-            <div key={i} style={{display:'flex',alignItems:'center',gap:10,marginBottom:8}}>
-              <div style={{width:24,height:24,borderRadius:12,background:t.gradient,color:'#fff',display:'flex',alignItems:'center',justifyContent:'center',fontSize:12,fontWeight:700,flexShrink:0}}>{i+1}</div>
-              <span style={{fontSize:14,fontWeight:600}}>{m}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* æ¦ãæ¹ */}
-        <div className="card animate-slide-right" style={{animationDelay:'.3s'}}>
-          <div className="card-title"><div className="card-title-bar" style={{background:t.color}}/> ç¸æ§ã®è¯ãæ¦ãæ¹</div>
-          {t.strategies.map((s,i)=>(
-            <div key={i} style={{display:'flex',gap:8,marginBottom:6}}>
-              <span style={{color:t.color,fontWeight:700,flexShrink:0}}>â¢</span>
-              <span style={{fontSize:13,color:'var(--text-sub)',lineHeight:1.6}}>{s}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* æ³¨æç¹ */}
-        <div className="animate-slide-right" style={{animationDelay:'.4s',background:'#fffbeb',borderRadius:'var(--radius-lg)',border:'1px solid #fde68a',padding:20,marginBottom:12}}>
-          <div style={{fontSize:14,fontWeight:700,color:'#92400e',marginBottom:8,display:'flex',alignItems:'center',gap:6}}>â ï¸ æ³¨æç¹</div>
-          <p style={{fontSize:13,color:'#a16207',lineHeight:1.65}}>{t.warning}</p>
-          {result.comments.length>0&&(
-            <div style={{marginTop:10,paddingTop:10,borderTop:'1px solid #fde68a'}}>
-              {result.comments.map((c,i)=><p key={i} style={{fontSize:12,color:'#b45309',lineHeight:1.5,marginTop:i?4:0}}>{c}</p>)}
-            </div>
-          )}
-        </div>
-
-        {/* ä¿¡é ¼åº¦ */}
-        <div className="card animate-slide-right" style={{animationDelay:'.5s'}}>
-          <div className="card-title">è¨ºæ­ä¿¡é ¼åº¦</div>
-          <div style={{display:'flex',alignItems:'center',gap:12,marginBottom:6}}>
-            <div style={{flex:1,height:8,background:'var(--border-light)',borderRadius:4,overflow:'hidden'}}>
-              <div style={{height:'100%',width:showConf?`${result.conf.score}%`:'0%',background:t.gradient,borderRadius:4,transition:'width 1.2s cubic-bezier(.4,0,.2,1)'}}/>
-            </div>
-            <span style={{fontSize:15,fontWeight:700,color:'var(--text)',minWidth:42,textAlign:'right'}}>{result.conf.score}%</span>
-          </div>
-          <p style={{fontSize:12,color:'var(--text-muted)'}}>{result.conf.label}</p>
-        </div>
-
-        {/* ãµãã¿ã¤ã */}
-        {sec&&(
-          <div className="card animate-slide-right" style={{animationDelay:'.6s'}}>
-            <div className="card-title">ç¸æ§ã®è¯ããµãã¿ã¤ã</div>
-            <div style={{display:'flex',alignItems:'center',gap:12}}>
-              <div style={{width:48,height:48,borderRadius:14,background:sec.gradient,display:'flex',alignItems:'center',justifyContent:'center',fontSize:22,boxShadow:`0 4px 12px ${sec.color}25`}}>{sec.icon}</div>
-              <div><p style={{fontSize:14,fontWeight:700}}>{sec.name}</p><p style={{fontSize:12,color:'var(--text-muted)'}}>{sec.short}</p></div>
-            </div>
-          </div>
-        )}
-
-        {/* LINEèªå°ãã­ã¹ã */}
-        <div style={{textAlign:'center',padding:'20px 0 8px'}}>
-          <p style={{fontSize:14,color:'var(--text-sub)',lineHeight:1.8}}>ããªãã®ã¿ã¤ãã¯è¦ãã¦ãã¾ããã</p>
-          <p style={{fontSize:14,color:'var(--text-sub)',lineHeight:1.8}}>ããããåã¯<b style={{color:'var(--text)'}}>æ¦ãæ¹ã®è¨­è¨</b>ãéè¦ã§ãã</p>
-        </div>
-
-        {/* ã­ãã¯ã»ã¯ã·ã§ã³ */}
-        <div style={{position:'relative',marginTop:12}}>
-          <div style={{borderRadius:'var(--radius-lg)',border:'2px solid var(--border-light)',background:'var(--bg-sub)',padding:24,overflow:'hidden',position:'relative',minHeight:200}}>
-            <h3 style={{fontSize:15,fontWeight:700,marginBottom:16}}>ããªãå°ç¨ã®è©³ç´°åæ</h3>
-            <div style={{opacity:.3,filter:'blur(2.5px)',pointerEvents:'none',userSelect:'none'}}>
-              {locked.map((item,i)=>(
-                <div key={i} style={{display:'flex',alignItems:'center',gap:10,marginBottom:14}}>
-                  <div style={{width:22,height:22,borderRadius:11,background:'#cbd5e1',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,fontSize:10}}>ð</div>
-                  <span style={{fontSize:13,color:'var(--text-sub)'}}>{item}</span>
-                </div>
-              ))}
-            </div>
-            <div style={{position:'absolute',inset:0,background:'linear-gradient(to bottom, transparent 10%, rgba(255,255,255,.85) 50%, white 70%)',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-end',paddingBottom:28}}>
-              <div style={{background:'rgba(255,255,255,.95)',padding:'8px 18px',borderRadius:'var(--radius-full)',border:'1px solid var(--border-light)',marginBottom:10,display:'flex',alignItems:'center',gap:6,boxShadow:'var(--shadow-sm)'}}>
-                <span style={{fontSize:12}}>ð</span>
-                <span style={{fontSize:12,fontWeight:600,color:'var(--text-sub)'}}>è©³ç´°çµæã¯LINEã§ç¡æéå¸ãã¦ãã¾ã</span>
-              </div>
-              <p style={{fontSize:11,color:'var(--text-muted)'}}>ãã®ç¶ãã§ã¯ãããªãã®ã¿ã¤ãã«åãåã¡æ¹ãå·ä½åãã¾ã</p>
-            </div>
-          </div>
-        </div>
-
-        {/* LINE CTA */}
-        <div style={{textAlign:'center',marginTop:24}}>
-          <a href={LINE_URL} target="_blank" rel="noopener noreferrer" className="btn-line" style={{display:'inline-flex'}}>
-            <LineIcon size={22}/>
-            ç¡æã§ããªãåãã®æ¦ç¥ãåãåã
-          </a>
-          <p style={{fontSize:12,color:'var(--text-muted)',marginTop:12}}>ç»é²å¾ããã«è©³ç´°çµæãç¢ºèªã§ãã¾ã</p>
-        </div>
-
-        {/* 2nd CTA */}
-        <div style={{marginTop:24,background:t.colorLight,borderRadius:'var(--radius-lg)',padding:24,textAlign:'center',border:`1px solid ${t.color}20`}}>
-          <p style={{fontSize:13,color:'var(--text-sub)',lineHeight:1.7,marginBottom:16}}>
-            ããªãã®ã¿ã¤ãã«åããã<br/><b style={{color:t.color}}>3ã¶æã­ã¼ãããã</b>ã¨<br/>
-            <b style={{color:t.color}}>åå¥ç¸è«</b>ã®ãæ¡åãLINEã§åãåãã¾ã
-          </p>
-          <a href={LINE_URL} target="_blank" rel="noopener noreferrer" className="btn-line" style={{display:'inline-flex',maxWidth:300,fontSize:14}}>
-            <LineIcon size={20}/>
-            ä»ããLINEç»é²ãã
-          </a>
-        </div>
-
-        {/* ããä¸åº¦ */}
-        <div style={{textAlign:'center',paddingTop:32}}>
-          <button onClick={onRestart} style={{background:'none',border:'none',fontSize:13,color:'var(--text-muted)',textDecoration:'underline',cursor:'pointer'}}>ããä¸åº¦è¨ºæ­ãã</button>
-        </div>
-      </div>
-
-      <footer style={{padding:'32px 20px',textAlign:'center'}}><p style={{fontSize:11,color:'#d1d5db'}}>SNSå¯æ¥­ã¿ã¤ãè¨ºæ­</p></footer>
-    </div>
-  );
-}
-
-/* ============================================================
-   MOUNT
-   ============================================================ */
-ReactDOM.render(<App/>,document.getElementById("root"));
 </script>
 </body>
 </html>
