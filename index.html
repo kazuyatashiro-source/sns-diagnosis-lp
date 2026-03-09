@@ -1,0 +1,119 @@
+# SNS Diagnosis LPnt-size:12px;color:var(--text-third);margin-top:10px}
+.line-card .lc-details{margin-top:12px}
+.line-card .lc-details p{font-size:11px;color:var(--text-third);margin-bottom:2px}
+
+.restart-btn{
+  display:block;width:100%;margin-top:24px;padding:14px;
+  background:transparent;border:1px solid var(--border);border-radius:999px;
+  font-size:14px;font-weight:700;color:var(--text-primary);cursor:pointer;
+  transition:background .12s;
+}
+.restart-btn:hover{background:rgba(239,243,244,.1)}
+
+/* Loading */
+.loading{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:80vh;gap:12px}
+.spinner{width:28px;height:28px;border:3px solid var(--blue);border-top-color:transparent;border-radius:50%;animation:spin .7s linear infinite}
+.loading p{font-size:14px;color:var(--text-secondary)}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease-out,transform .55s ease-out}
+.reveal.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- ============ TOP PAGE ============ -->
+<div id="top" class="screen active">
+  <!-- X-style header -->
+  <div class="x-header">
+    <div class="logo">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      <span>SNS資産価値診断</span>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Hero -->
+    <section class="hero anim-fade">
+      <div class="badge">無料・匿名・60秒で完了</div>
+
+      <div class="sns-icons anim-slide-up" style="animation-delay:.1s">
+        <div class="sns-icon">𝕏</div>
+        <div class="sns-icon" style="background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);border:none;color:#fff;font-size:18px">📷</div>
+        <div class="sns-icon" style="background:#010101;border-color:#333">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V9.42a8.16 8.16 0 004.76 1.52V7.5a4.85 4.85 0 01-1-.81z"/></svg>
+        </div>
+        <div class="sns-icon" style="background:#FF0000;border:none;color:#fff;font-size:14px;font-weight:700">▶</div>
+      </div>
+
+      <h1>あなたのSNSアカウント、<br>今いくらの価値がある？</h1>
+      <p class="sub">X・Instagram・TikTok・YouTube —<br>アカウントと運用状況から<br>SNS資産価値を無料で可視化します。</p>
+
+      <button class="btn-blue" onclick="startDiagnosis()">
+        無料で診断する
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+      </button>
+      <p class="meta">所要時間：約60秒 ｜ 登録不要</p>
+    </section>
+
+    <!-- Benefits as tweet-like cards -->
+    <section class="benefits-section anim-slide-up" style="animation-delay:.15s">
+      <h2 class="benefits-title">この診断でわかること</h2>
+      <div class="benefit-tweet"><div class="benefit-avatar">💰</div><div class="benefit-body"><div class="bname">資産価値 <span class="bhandle">@asset</span></div><div class="btext">今のSNS資産価値が円単位でわかる</div></div></div>
+      <div class="benefit-tweet"><div class="benefit-avatar">📈</div><div class="benefit-body"><div class="bname">将来予測 <span class="bhandle">@future</span></div><div class="btext">3・6・12ヶ月後の将来価値がわかる</div></div></div>
+      <div class="benefit-tweet"><div class="benefit-avatar">💡</div><div class="benefit-body"><div class="bname">分析 <span class="bhandle">@analysis</span></div><div class="btext">あなたの強み / 弱みが具体的にわかる</div></div></div>
+      <div class="benefit-tweet"><div class="benefit-avatar">🎯</div><div class="benefit-body"><div class="bname">戦略 <span class="bhandle">@strategy</span></div><div class="btext">価値を上げるための方向性がわかる</div></div></div>
+      <div class="benefit-tweet"><div class="benefit-avatar">📩</div><div class="benefit-body"><div class="bname">詳細結果 <span class="bhandle">@detail</span></div><div class="btext">詳細戦略はLINEで受け取れる</div></div></div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="bottom-cta anim-fade" style="animation-delay:.3s">
+      <button class="btn-blue" onclick="startDiagnosis()">今すぐ診断を始める</button>
+      <p class="trust-text">
+        アカウント情報を入れると、よりあなた向けの結果になります。<br>
+        <span style="color:var(--text-third)">※ 入力情報は結果表示と個別分析の参照にのみ使用します</span>
+      </p>
+    </section>
+  </div>
+</div>
+
+<!-- ============ DIAGNOSIS PAGE ============ -->
+<div id="diagnosis" class="screen">
+  <div class="diag-bar">
+    <button class="diag-back" id="backBtn" onclick="goBack()">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m7-7l-7 7 7 7"/></svg>
+    </button>
+    <div class="diag-info">
+      <div class="di-title">SNS資産価値診断</div>
+      <div class="di-step" id="stepLabel"></div>
+    </div>
+  </div>
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="container">
+    <div class="question-area" id="questionArea"></div>
+    <div id="nextWrap"></div>
+  </div>
+</div>
+
+<!-- ============ RESULT PAGE ============ -->
+<div id="result" class="screen">
+  <div class="result-bar"><span>診断結果</span></div>
+  <div class="container">
+    <div class="result-body" id="resultBody"></div
+  </div>
+</div>
+
+<script>
+// ============================================================
+// CONFIG
+// ============================================================
+const LINE_URL = 'https://lin.ee/EFIZkVv';
+
+// Platform display map
+const PLATFORM_MAP = {
+  x: { name:'X (旧Twitter)', icon:'𝕏', color:'#000' },
+  instagram: { name:'Instagram', icon:'📷', color:'#E1306C' },
+  tiktok: { name:'TikTok', icon:'🎵', color:'#010101' },
+  youtube: { name:'YouTube', icon:'▶', color:'#FF0000' },
+  threads: { name:'Threads', icon:'🔗', color:'#000' },
+  ot
