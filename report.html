@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>SNS資産価値 詳細レポート</title>
+<meta name="description" content="あなたのSNS資産価値を詳細分析。改善ポイントと収益化ロードマップ付き。">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#000;--bg-primary:#000;--bg-secondary:#16181c;--bg-third:#1d1f23;
+  --border:#2f3336;--border-light:#38444d;
+  --text-primary:#e7e9ea;--text-secondary:#71767b;--text-third:#536471;
+  --blue:#1d9bf0;--blue-dark:#1a8cd8;--blue-light:rgba(29,155,240,.1);
+  --green:#00ba7c;--green-light:rgba(0,186,124,.1);
+  --amber:#f7931a;--amber-light:rgba(247,147,26,.1);
+  --line-green:#06C755;
+  --red:#f4212e;--red-light:rgba(244,33,46,.1);
+}
+html{-webkit-tap-highlight-color:transparent;scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Hiragino Sans",sans-serif;
+  background:var(--bg-primary);color:var(--text-primary);
+  min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+a{color:var(--blue);text-decoration:none}
+
+.container{max-width:600px;margin:0 auto;padding:0 16px}
+
+/* Animations */
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulseGlow{0%,100%{box-shadow:0 0 16px rgba(6,199,85,.25)}50%{box-shadow:0 0 36px rgba(6,199,85,.5)}}
+@keyframes countPulse{0%{transform:scale(1)}50%{transform:scale(1.03)}100%{transform:scale(1)}}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease-out,transform .55s ease-out}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* Header */
+.x-header{
+  position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;justify-content:center;
+  height:53px;padding:0 16px;
+  background:rgba(0,0,0,.75);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.x-header .logo{display:flex;align-items:center;gap:6px}
+.x-header .logo svg{width:24px;height:24px;color:var(--text-primary)}
+.x-header .logo span{font-size:16px;font-weight:700;letter-spacing:-.02em}
+
+/* Report badge */
+.report-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;font-weight:600;color:var(--green);
+  background:var(--green-light);border:1px solid rgba(0,186,124,.2);
+  border-radius:999px;padding:4px 12px;margin-left:8px;
+}
+
+/* Section */
+.section{padding:20px 0;border-bottom:1px solid var(--border)}
+.section:last-child{border-bottom:none}
+.section-head{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.section-num{
+  width:24px;height:24px;border-radius:50%;
+  background:var(--blue);color:#fff;font-size:12px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.section-title{font-size:17px;font-weight:800}
+
+/* Value card */
+.value-card{
+  text-align:center;padding:24px 16px;margin:8px 0;
+  border:1px solid var(--border);border-radius:16px;
+  background:var(--bg-secondary);
+}
+.vc-label{font-size:13px;color:var(--text-secondary);font-weight:500;margin-bottom:6px}
+.vc-amount{font-size:40px;font-weight:900;letter-spacing:-.03em;color:var(--text-primary);margin-bottom:10px}
+.percentile-pill{
+  display:inline-flex;align-items:center;gap:4px;
+  background:var(--blue-light);border:1px solid rgba(29,155,240,.2);
+  border-radius:999px;padding:4px 12px;
+  font-size:13px;font-weight:700;color:var(--blue);
+}
+.vc-conf{font-size:11px;color:var(--text-third);margin-top:8px}
+.platform-label{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12px;color:var(--text-secondary);margin-bottom:10px;
+}
+
+/* Breakdown bars */
+.breakdown-item{
+  display:flex;align-items:center;gap:12px;
+  padding:10px 0;border-bottom:1px solid rgba(47,51,54,.5);
+}
+.breakdown-item:last-child{border-bottom:none}
+.bd-label{width:120px;font-size:13px;color:var(--text-secondary);flex-shrink:0}
+.bd-bar-wrap{flex:1;height:8px;background:var(--bg-third);border-radius:4px;overflow:hidden}
+.bd-bar{height:100%;border-radius:4px;transition:width 1.2s ease-out}
+.bd-value{width:80px;text-align:right;font-size:14px;font-weight:700;flex-shrink:0}
+
+/* Stat cards */
+.stat-section{border:1px solid var(--border);border-radius:16px;background:var(--bg-secondary);margin-top:12px;overflow:hidden}
+.stat-section .sh{padding:14px 16px 0;font-size:15px;font-weight:800}
+.stat-row{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--border)}
+.stat-row:last-child{border-bottom:none}
+.stat-row .sr-label{font-size:14px;color:var(--text-secondary)}
+.stat-row .sr-value{font-size:15px;font-weight:700}
+.stat-note{padding:4px 16px 12px;text-align:right;font-size:11px;color:var(--text-third)}
+
+/* Revenue simulation */
+.rev-card{
+  border:1px solid var(--border);border-radius:16px;
+  background:var(--bg-secondary);padding:16px;margin-top:12px;
+}
+.rev-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.rev-title{font-size:14px;font-weight:700}
+.rev-model-badge{
+  font-size:11px;color:var(--amber);background:var(--amber-light);
+  border:1px solid rgba(247,147,26,.2);border-radius:999px;padding:3px 10px;
+}
+.rev-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(47,51,54,.5)}
+.rev-row:last-child{border-bottom:none}
+.rev-label{font-size:13px;color:var(--text-secondary)}
+.rev-value{font-size:15px;font-weight:700}
+.rev-value.highlight{color:var(--green);font-size:17px}
+
+/* Insight cards */
+.insight-card{border:1px solid var(--border);border-radius:16px;background:var(--bg-secondary);margin-top:12px;padding:16px}
+.insight-card .ic-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.ic-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.ic-dot-blue{background:var(--blue)}
+.ic-dot-green{background:var(--green)}
+.ic-dot-amber{background:var(--amber)}
+.ic-dot-red{background:var(--red)}
+.insight-card h3{font-size:15px;font-weight:700}
+.insight-card p{font-size:14px;color:var(--text-secondary);line-height:1.6;margin-bottom:4px}
+
+/* Roadmap */
+.roadmap-month{
+  border:1px solid var(--border);border-radius:16px;
+  background:var(--bg-secondary);margin-top:12px;overflow:hidden;
+}
+.rm-header{
+  display:flex;align-items:center;gap:10px;
+  padding:12px 16px;background:var(--bg-third);
+  border-bottom:1px solid var(--border);
+}
+.rm-num{
+  width:28px;height:28px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;color:#fff;flex-shrink:0;
+}
+.rm-label{font-size:14px;font-weight:700}
+.rm-body{padding:12px 16px}
+.rm-task{
+  display:flex;align-items:flex-start;gap:8px;
+  padding:6px 0;font-size:13px;color:var(--text-secondary);line-height:1.5;
+}
+.rm-check{color:var(--blue);flex-shrink:0;margin-top:2px}
+
+/* Profile tips */
+.tip-card{
+  border:1px solid var(--border);border-radius:12px;
+  background:var(--bg-third);padding:12px 14px;margin-top:8px;
+}
+.tip-label{font-size:11px;font-weight:600;color:var(--blue);margin-bottom:4px;text-transform:uppercase;letter-spacing:.05em}
+.tip-text{font-size:13px;color:var(--text-secondary);line-height:1.6}
+
+/* CTA */
+.line-card{
+  border-radius:16px;padding:24px 16px;text-align:center;margin-top:16px;
+  border:1px solid rgba(29,155,240,.25);
+  background:linear-gradient(180deg,rgba(29,155,240,.06),var(--bg-secondary));
+}
+.line-card p{font-size:14px;color:var(--text-secondary);line-height:1.7;margin-bottom:16px}
+.line-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--line-green);color:#fff;font-size:16px;font-weight:700;
+  border:none;border-radius:999px;padding:14px 28px;cursor:pointer;
+  text-decoration:none;transition:all .15s;
+}
+.line-btn:active{transform:scale(.96)}
+.line-btn svg{width:22px;height:22px}
+.line-sub{font-size:12px;color:var(--text-third);margin-top:10px}
+
+/* Footer */
+.report-footer{text-align:center;padding:32px 16px;font-size:11px;color:var(--text-third);line-height:1.7}
+
+/* Error state */
+.error-state{text-align:center;padding:60px 20px}
+.error-state h2{font-size:20px;margin-bottom:12px}
+.error-state p{color:var(--text-secondary);margin-bottom:24px}
+.error-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--blue);color:#fff;font-size:15px;font-weight:700;
+  border:none;border-radius:999px;padding:12px 28px;cursor:pointer;text-decoration:none;
+}
+</style>
+</head>
+<body>
+
+<div class="x-header">
+  <div class="logo">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    <span>SNS資産価値診断</span>
+    <span class="report-badge">詳細レポート</span>
+  </div>
+</div>
+
+<div class="container" id="reportContainer">
+  <!-- Content rendered by JS -->
+</div>
+
+<script>
+// ============================================================
+// CONFIG
+// ============================================================
+const LINE_URL = 'https://lin.ee/EFIZkVv';
+const DIAGNOSIS_URL = './index.html';
+
+const PLATFORM_MAP = {
+  x:{name:'X (旧Twitter)',icon:'𝕏',color:'#000'},
+  instagram:{name:'Instagram',icon:'📷',color:'#E1306C'},
+  tiktok:{name:'TikTok',icon:'🎵',color:'#010101'},
+  youtube:{name:'YouTube',icon:'▶',color:'#FF0000'},
+  threads:{name:'Threads',icon:'🔗',color:'#000'},
+  other:{name:'その他',icon:'📱',color:'#333'},
+};
+
+const GENRE_MAP = {
+  'side-business':'副業','business':'ビジネス','sns-marketing':'SNS運用','ai':'AI活用',
+  'career':'キャリア','money':'お金・投資','beauty':'美容','health':'健康',
+  'lifestyle':'ライフスタイル','parenting':'子育て','workstyle':'働き方','other':'その他'
+};
+const MODEL_MAP = {
+  affiliate:'アフィリエイト','content-sales':'コンテンツ販売',pr:'PR案件',
+  consulting:'コンサル・相談',agency:'SNS運用代行',community:'コミュニティ運営',undecided:'未定'
+};
+const STYLE_MAP = {
+  experience:'実体験共有',knowhow:'ノウハウ解説',review:'比較・レビュー',
+  daily:'日常発信',story:'ストーリー型',opinion:'意見発信',undecided:'未定'
+};
+const CONCERN_MAP = {
+  followers:'フォロワー増加',content:'投稿ネタ',monetization:'収益化',
+  direction:'方向性',profile:'プロフィール',funnel:'導線設計'
+};
+
+// ============================================================
+// VALUATION LOGIC (same as diagnosis app)
+// ============================================================
+function platformMult(p){return{x:1.0,instagram:1.1,tiktok:1.15,youtube:1.3,threads:0.8,other:0.7}[p]||1.0}
+function calcFollower(v){return{'0-100':1000,'101-500':5000,'501-1000':20000,'1001-3000':80000,'3001-10000':300000,'10001+':1000000}[v]||1000}
+function calcEngagement(v){return{under10:1000,'10-30':5000,'31-100':20000,'101-300':80000,'301+':200000}[v]||1000}
+function calcGenre(v){return{'sns-marketing':200000,'side-business':150000,ai:150000,business:120000,career:100000,money:100000,beauty:80000,health:80000,lifestyle:60000,parenting:60000,workstyle:60000,other:50000}[v]||50000}
+function calcContinuity(post,dur,time){
+  const p={'0':0,'1-2':5000,'3-4':20000,'5-6':50000,daily:100000}[post]||0;
+  const d={under1m:0,'1-3m':10000,'3-6m':30000,'6m-1y':60000,'1y+':100000}[dur]||0;
+  const t={under30m:0,'30m-1h':10000,'1-2h':30000,'2-3h':50000,'3h+':80000}[time]||0;
+  return Math.min(p+d+t,180000);
+}
+function calcGrowth(v){return{none:0,slow:20000,steady:80000,rapid:200000}[v]||0}
+function calcMonetization(rev,model,ser){
+  const r={none:0,little:20000,under10k:50000,'10k-100k':150000,'100k+':300000}[rev]||0;
+  const m={affiliate:40000,'content-sales':70000,pr:30000,consulting:60000,agency:60000,community:50000,undecided:10000}[model]||0;
+  const s={curious:0,'10k':20000,'50k-100k':50000,serious:100000}[ser]||0;
+  return r+m+s;
+}
+
+function calcConfidence(a){
+  let s=80;
+  const fLvl=['0-100','101-500','501-1000','1001-3000','3001-10000','10001+'].indexOf(a.q2_followers);
+  const lLvl=['under10','10-30','31-100','101-300','301+'].indexOf(a.q3_likes);
+  if(Math.abs(fLvl-lLvl)<=1)s+=5;
+  const pLvl=['0','1-2','3-4','5-6','daily'].indexOf(a.q4_posts_per_week);
+  const gLvl=['none','slow','steady','rapid'].indexOf(a.q10_growth);
+  if(pLvl>=gLvl)s+=5;
+  const dLvl=['under1m','1-3m','3-6m','6m-1y','1y+'].indexOf(a.q5_duration);
+  const rLvl=['none','little','under10k','10k-100k','100k+'].indexOf(a.q9_revenue);
+  if(dLvl>=rLvl)s+=5;
+  return s;
+}
+
+function applyAdjustments(a,bd){
+  const adj={...bd};let cAdj=0;const comments=[];
+  if(a.q2_followers==='0-100'&&a.q3_likes==='301+'){cAdj-=10;comments.push('一部回答にズレがある可能性があります');}
+  if(a.q4_posts_per_week==='0'&&a.q10_growth==='rapid'){cAdj-=15;adj.growthValue=Math.max(adj.growthValue-50000,0);comments.push('成長と運用量にズレがある可能性があります');}
+  if(a.q9_revenue==='none'&&a.q14_seriousness==='serious')comments.push('まずは小さな成果づくりが優先です');
+  if(a.q7_style==='undecided'&&a.q12_concern==='direction')comments.push('発信スタイルの明確縬が最優先課題です');
+  if(a.q11_time==='under30m'&&(a.q14_seriousness==='50k-100k'||a.q14_seriousness==='serious')){cAdj-=8;comments.push('目標に対して投下時間が不足している可能性があります');}
+  return{adj,cAdj,comments};
+}
+
+function calcPercentile(total){
+  if(total>=700001)return Math.floor(Math.random()*14)+1;
+  if(total>=300001)return Math.floor(Math.random()*20)+15;
+  if(total>=100001)return Math.floor(Math.random()*25)+35;
+  if(total>=30001)return Math.floor(Math.random()*20)+60;
+  return Math.floor(Math.random()*16)+80;
+}
+
+function predictFuture(cur,a,conf){
+  const gL=['none','slow','steady','rapid'].indexOf(a.q10_growth);
+  const pL=['0','1-2','3-4','5-6','daily'].indexOf(a.q4_posts_per_week);
+  const sL=['curious','10k','50k-100k','serious'].indexOf(a.q14_seriousness);
+  const dL=['under1m','1-3m','3-6m','6m-1y','1y+'].indexOf(a.q5_duration);
+  const gs=gL+pL+sL+dL;
+  let m3,m6,m12;
+  if(gs>=12){m3=1.5+Math.random()*.7;m6=2+Math.random()*1.5;m12=3+Math.random()*3;}
+  else if(gs>=7){m3=1.3+Math.random()*.5;m6=1.6+Math.random()*.9;m12=2.2+Math.random()*1.8;}
+  else{m3=1.1+Math.random()*.3;m6=1.2+Math.random()*.5;m12=1.4+Math.random()*.8;}
+  if(conf<60){m3*=.85;m6*=.8;m12*=.75;}
+  const r=v=>Math.round(v/10000)*10000;
+  return{three:r(cur*m3),six:r(cur*m6),twelve:r(cur*m12)};
+}
+
+// ============================================================
+// REVENUE SIMULATION
+// ============================================================
+function calcRevenueSim(a, total) {
+  const model = a.q13_model || 'undecided';
+  const followers = a.q2_followers;
+  const engagement = a.q3_likes;
+  const genre = a.q6_genre;
+
+  // Base monthly revenue estimates by model
+  const modelBase = {
+    affiliate: { low: 3000, mid: 30000, high: 150000 },
+    'content-sales': { low: 5000, mid: 50000, high: 300000 },
+    pr: { low: 5000, mid: 30000, high: 200000 },
+    consulting: { low: 10000, mid: 80000, high: 500000 },
+    agency: { low: 30000, mid: 100000, high: 500000 },
+    community: { low: 5000, mid: 50000, high: 300000 },
+    undecided: { low: 1000, mid: 15000, high: 80000 },
+  };
+
+  const base = modelBase[model] || modelBase.undecided;
+
+  // Follower multiplier
+  const fMult = {'0-100':0.3,'101-500':0.5,'501-1000':0.7,'1001-3000':1.0,'3001-10000':1.5,'10001+':2.5}[followers]||0.3;
+
+  // Engagement multiplier
+  const eMult = {under10:0.5,'10-30':0.7,'31-100':1.0,'101-300':1.3,'301+':1.8}[engagement]||0.5;
+
+  // Genre multiplier
+  const gMult = {'sns-marketing':1.3,'side-business':1.2,ai:1.2,business:1.1,career:1.0,money:1.1,beauty:0.9,health:0.9,lifestyle:0.7,parenting:0.7,workstyle:0.8,other:0.6}[genre]||0.7;
+
+  const mult = fMult * eMult * gMult;
+
+  const current = Math.round(base.low * mult / 1000) * 1000;
+  const m3 = Math.round(base.low * mult * 1.5 / 1000) * 1000;
+  const m6 = Math.round(base.mid * mult * 0.6 / 1000) * 1000;
+  const m12 = Math.round(base.mid * mult / 1000) * 1000;
+  const potential = Math.round(base.high * mult * 0.5 / 1000) * 1000;
+
+  return { current, m3, m6, m12, potential, model };
+}
+
+// ============================================================
+// REPORT-SPECIFIC INSIGHTS
+// ============================================================
+function genDetailedStrengths(a, bd) {
+  const s = [];
+  if(bd.genreValue >= 120000) s.push({title:'収益化向きのジャンル', text:`${GENRE_MAP[a.q6_genre]||'選択ジャンル'}は、SNS収益化と相性が良いジャンルです。市場ニーズが明確で、マネタイズの選択肢も豊富です。`});
+  if(bd.continuityValue >= 80000) s.push({title:'継続力がある', text:'投稿頻度と運用歴のバランスが取れており、アルゴリズムに評価されやすい運用ができています。'});
+  if(bd.engagementValue >= 20000) s.push({title:'エンゲージメントが高い', text:'フォロワー規模に対していいね率が高く、コンテンツの訴求力があります。この強みを活かした収益化が効果的です。'});
+  if(bd.growthValue >= 80000) s.push({title:'成長トレンドが良好', text:'フォロワーの増加ペースが安定しており、この勢いを維持できれば資産価値は加速的に伸びます。'});
+  if(a.q9_revenue !== 'none') s.push({title:'収益化の実縞あり', text:'すでに収益化の経験があるため、次のステップ（単価アップ・横展開）に進みやすい状態です。</text>});
+  if(a.q7_style !== 'undecided') s.push({title:'発信スタイルが確立', text:`${STYLE_MAP[a.q7_style]||''}という明確な発信スタイルがあり、ブランドが積み上がりやすい状態です。`});
+  if(!s.length) s.push({title:'伸びしろが大きい', text:'まだ発展途上ですが、改善の余地が多いということは伸びしろが大きいということでもあります。'});
+  return s.slice(0,3);
+}
+
+function genDetailedWeaknesses(a, bd) {
+  const w = [];
+  if(a.q4_posts_per_week==='0'||a.q4_posts_per_week==='1-2') w.push({title:'投稿頻度が低い', text:'現在の投稿頻度では、アルゴリズムの優遇を受けにくく、フォロワー増加やリーチが伸びにくい状態です。最低でも週3〜4本を目指しましょう。'});
+  if(a.q9_revenue==='none'&&a.q13_model==='undecided') w.push({title:'収益導線がない', text:'収益化モデルが未定のまま発信を続けると、フォロワーが増えても収益に繋がりません。早めにマネタイズの方向性を決めることが重要です。'});
+  if(a.q7_style==='undecided') w.push({title:'発信スタイルが未確定', text:'スタイルが定まっていないと、フォロワーが「この人をフォローする理由」を見つけにくくなります。まず1つのスタイルに絞って発信を続けましょう。'});
+  if(bd.engagementValue<=5000) w.push({title:'エンゲージメントが低い', text:'いいね数が少ないと、アルゴリズムが投稿をあまり拡散しません。投稿の冒頭（フック）を改善し、保存やシェアされるコンテンツを意識しましょう。'});
+  if(a.q10_growth==='none') w.push({title:'フォロワー増加が停滞', text:'現在フォロワーが増えていない状態です。プロフィールの見直し、投稿時間の最適化、トレンド活用など、流入経路を増やす施策が必要です。'});
+  if(a.q11_time==='under30m') w.push({title:'投下時間が不足', text:'1日30分未満では十分な成果を出すのが難しいです。最低1時間は確保し、コンテンツ制作とリサーチに充てましょう。'});
+  if(!w.length) w.push({title:'改善ポイントは軽微', text:'大きな弱点はありませんが、より高い成果を目指すなら、現在の運用を一段レベルアップさせる必要があります。'});
+  return w.slice(0,3);
+}
+
+function genImprovementPoints(a, bd) {
+  const points = [];
+
+  // Profile improvement
+  if(a.q12_concern==='profile'||bd.engagementValue<=10000) {
+    points.push({
+      title:'プロフィール改善',
+      items:[
+        '1行目に「誰に何を届けるか」を明記する',
+        '実縞や数字を入れて信頼性を上げる',
+        'CTA（「フォローで〇〇が学べる」等）を入れる',
+        'アイコンを覚えやすいデザインに変更する',
+      ]
+    });
+  }
+
+  // Content improvement
+  if(a.q3_likes==='under10'||a.q3_likes==='10-30') {
+    points.push({
+      title:'コンテンツ力の強化',
+      items:[
+        '投稿の1行目（フック）を「共感」か「驚き」で始める',
+        '「保存したくなる」実用的な情報を盛り込む',
+        '投稿フォーマットを3パターンに絞って型化する',
+        'トレンドワードやハッシュタグを戦略的に活用する',
+      ]
+    });
+  }
+
+  // Monetization
+  if(a.q9_revenue==='none'||a.q9_revenue==='little') {
+    points.push({
+      title:'収益化導線の構築',
+      items:[
+        'まず無料→有料の階段を設計する',
+        'プロフィールにリンク（LINE / LP）を註置する',
+        `${MODEL_MAP[a.q13_model]||'選択した収益化モデル'}に合わせた訴求を投稿に織り込む`,
+        '月に1回は「導線に誘導する」投稿を入れる',
+      ]
+    });
+  }
+
+  // Growth
+  if(a.q10_growth==='none'||a.q10_growth==='slow') {
+    points.push({
+      title:'フォロワー増加施策',
+      items:[
+        '投稿時間を反応の多い時間帯に固定する',
+        '同ジャンルのアカウントに積極的に絡む',
+        'リポスト・引用RTで拡散のきっかけを作る',
+        '定期的な企画投稿でバズの種を撒く',
+      ]
+    });
+  }
+
+  // Posting frequency
+  if(a.q4_posts_per_week==='0'||a.q4_posts_per_week==='1-2') {
+    points.push({
+      title:'投稿頻度の改善',
+      items:[
+        '週3〜4本を目標にスケジュールを組む',
+        '投稿テンプレートを作成して制作時間を短縮する',
+        'ネタ帳を作り、日常からコンテンツの種を拾う',
+        'バッチ制作（まとめて作る）で効率を上げる',
+      ]
+    });
+  }
+
+  if(!points.length) {
+    points.push({
+      title:'さらなる成長に向けて',
+      items:[
+        '現在の成功パターンを分析・言語化して型にする',
+        '新しい収益化チャネルを1つ追加する',
+        'コラボレーションで新規層にリーチする',
+        'データに基づいたPDCAサイクルを回す',
+      ]
+    });
+  }
+  return points.slice(0,3);
+}
+
+function genRoadmap(a, bd, total) {
+  const genre = GENRE_MAP[a.q6_genre] || '選択ジャンル';
+  const model = MODEL_MAP[a.q13_model] || '選択モデル';
+  const platform = PLATFORM_MAP[a.q0_platform]?.name || 'SNS';
+
+  // Month 1: Foundation
+  const m1 = {
+    label: '1ヶ月目：土台整備',
+    color: 'var(--blue)',
+    tasks: [
+      `${platform}のプロフィールを〈誰に何を届けるか」が一目でわかる形に書き直す`,
+      '投稿テンプレートを3パターン作成し、制作を型化する',
+      `週${a.q4_posts_per_week==='0'||a.q4_posts_per_week==='1-2'?'3〜4':'5'}本の投稿スケジュールを確立する`,
+      '同ジャンルの上位アカウント5つを分析し、成功パターンを把握する',
+    ]
+  };
+
+  // Month 2: Growth
+  const m2 = {
+    label: '2ヶ月目：成長加速',
+    color: 'var(--green)',
+    tasks: [
+      '反応の良かった投稿パターンを特定し、重点的に作成する',
+      `${genre}ジャンルのトレンドを定期的にリサーチして投稿に反映する`,
+      'エンゲージメント率を上げるための双方向コミュニケーションを強化する',
+      `${model}に向けた導線設計を開始する（LINEやLP等）`,
+    ]
+  };
+
+  // Month 3: Monetization
+  const m3 = {
+    label: '3ヶ月目：収益化開始',
+    color: 'var(--amber)',
+    tasks: [
+      `${model}の初回商品・サービスを小さく始める`,
+      '無料→有料の導線をテストし、コンバージョン率を測定する',
+      '投稿からの誘導を最適化し、月間の成果を集計する',
+      '結果を振り返り、次の3ヶ月の戦略を立てる',
+    ]
+  };
+
+  return [m1, m2, m3];
+}
+
+function genPostThemes(a) {
+  const genre = a.q6_genre;
+  const themes = {
+    'side-business': ['副業の始め方ロードマップ','失敗談から学ぶ副業の落とし穴','副業1ヶ月目のリアルな数字公開','本業との両立テクニック','初心者が最初にやるべき3つのこと'],
+    'business': ['ビジネスの仕組み化テクニック','成功者が共通してやっていること','売上を伸ばす具体的な施策','集客の自動化方法','ビジネスマインドセットの話'],
+    'sns-marketing': ['フォロワーを増やす投稿の型','プロフィール改善ビフォーアフター','投稿時間の最適化データ','エンゲージメントを上げるテクニック','SNS運用のよくある間違い'],
+    'ai': ['初心者向けAI活用術','ChatGPTで仕事を時短する方法','AI × 副業の組み合わせ','知らないと損するAIツール紹介','AIを使った収益化アイデア'],
+    'career': ['転職で年収を上げた方法','キャリアの選び方フレームワーク','面接で受かるコツ','スキルアップのロードマップ','働き方の選択肢を広げる方法'],
+    'money': ['貯金を増やす具体的な奭法','初心者向け投資の始め方','知らないと損する節約衃','お金の知識クイズ','資産形成のステップ'],
+    'beauty': ['コスパ最強の美容アイテム','ビフォーアフター公開','朝のスキンケアルーティン','プロ直伝のメイクテク','美容の裏技・豆知識'],
+    'health': ['続けられるダイエット方法','食事管理のコツ','維トレ初心者向けメニュー','健康習慣ビフォーアフター','栄養知識の豆知識'],
+    'lifestyle': ['暮らしを整えるルーティン','買ってよかったもの紹介','時間の使い方テクニック','ミニマリスト生活のコツ','日常を楽しむアイデア'],
+    'parenting': ['子育ての時短テクニック','年齢別おすすめグッズ','ママ・パパの息抜き方法','教育費の賢い貯め方','子供との遊びアイデア'],
+    'workstyle': ['リモートワークの生産性アップ術','地方移住のリアル','副業OKな働き方','フリーランスの始め方','ワークライフバランスの整え方'],
+  };
+  return themes[genre] || themes['side-business'];
+}
+
+function confLabel(s){
+  if(s>=85)return'比較的精度の高い結果です';
+  if(s>=70)return'参考値として十分活用できます';
+  if(s>=55)return'一部回答に揺れがあります';
+  return'現状認識と理想にギャップがある可能性があります';
+}
+
+// ============================================================
+// DECODE & RENDER
+// ============================================================
+function decodeData() {
+  const params = new URLSearchParams(window.location.search);
+  const d = params.get('d');
+  if (!d) return null;
+  try {
+    return JSON.parse(atob(d));
+  } catch(e) {
+    return null;
+  }
+}
+
+function renderReport(a) {
+  const pf = a.q0_platform || 'x';
+  const pm = platformMult(pf);
+  const pfInfo = PLATFORM_MAP[pf] || PLATFORM_MAP.other;
+
+  const bd = {
+    followerValue: Math.round(calcFollower(a.q2_followers)*pm),
+    engagementValue: Math.round(calcEngagement(a.q3_likes)*pm),
+    genreValue: calcGenre(a.q6_genre),
+    continuityValue: calcContinuity(a.q4_posts_per_week, a.q5_duration, a.q11_time),
+    growthValue: calcGrowth(a.q10_growth),
+    monetizationPotentialValue: calcMonetization(a.q9_revenue, a.q13_model, a.q14_seriousness)
+  };
+
+  const rawConf = calcConfidence(a);
+  const {adj, cAdj, comments} = applyAdjustments(a, bd);
+  const conf = Math.max(40, Math.min(95, rawConf + cAdj));
+  const total = adj.followerValue + adj.engagementValue + adj.genreValue + adj.continuityValue + adj.growthValue + adj.monetizationPotentialValue;
+  const pct = calcPercentile(total);
+  const fv = predictFuture(total, a, conf);
+  const revSim = calcRevenueSim(a, total);
+
+  const strengths = genDetailedStrengths(a, adj);
+  const weaknesses = genDetailedWeaknesses(a, adj);
+  const improvements = genImprovementPoints(a, adj);
+  const roadmap = genRoadmap(a, adj, total);
+  const postThemes = genPostThemes(a);
+
+  const acct = a.q1_account || '';
+  const acctDisplay = acct ? (acct.startsWith('@') ? acct : '@'+acct) : '';
+
+  const maxBd = Math.max(adj.followerValue, adj.engagementValue, adj.genreValue, adj.continuityValue, adj.growthValue, adj.monetizationPotentialValue, 1);
+
+  const bdColors = {
+    followerValue: 'var(--blue)',
+    engagementValue: 'var(--green)',
+    genreValue: 'var(--amber)',
+    continuityValue: '#8b5cf6',
+    growthValue: '#ec4899',
+    monetizationPotentialValue: '#06b6d4',
+  };
+  const bdLabels = {
+    followerValue: 'フォロワー',
+    engagementValue: 'エンゲージメント',
+    genreValue: 'ジャンル',
+    continuityValue: '継続性',
+    growthValue: '成長性',
+    monetizationPotentialValue: '収益化ポテンシャル',
+  };
+
+  let html = '';
+
+  // ===== Section 1: Overview =====
+  html += `
+  <div class="section reveal">
+    ${acctDisplay ? `<div style="text-align:center;padding:8px 0;font-size:14px;color:var(--text-secondary)">${pfInfo.icon} ${acctDisplay}</div>` : ''}
+    <div class="value-card">
+      <div class="platform-label"><span style="font-size:16px">${pfInfo.icon}</span>${pfInfo.name}</div>
+      <div class="vc-label">あなたのSNS資産価値</div>
+      <div class="vc-amount" id="assetValue">¥0</div>
+      <div class="percentile-pill">上位 ${pct}%</div>
+      <div class="vc-conf">診断信頼度: ${conf}% — ${confLabel(conf)}</div>
+    </div>
+  </div>`;
+
+  // ===== Section 2: Breakdown =====
+  html += `
+  <div class="section reveal">
+    <div class="section-head"><div class="section-num">1</div><div class="section-title">資産価値の内訳</div></div>
+    <div style="border:1px solid var(--border);border-radius:16px;background:var(--bg-secondary);padding:16px">
+    ${Object.keys(bdLabels).map(key => `
+      <div class="breakdown-item">
+        <div class="bd-label">${bdLabels[key]}</div>
+        <div class="bd-bar-wrap"><div class="bd-bar" style="width:0%;background:${bdColors[key]}" data-target="${(adj[key]/maxBd*100).toFixed(1)}"></div></div>
+        <div class="bd-value">¥${adj[key].toLocaleString()}</div>
+      </div>
+    `).join('')}
+    </div>
+  </div>`;
+
+  // ===== Section 3: Future Value =====
+  html += `
+  <div class="section reveal">
+    <div class="section-head"><div class="section-num">2</div><div class="section-title">将来価値の予測</div></div>
+    <div class="stat-section">
+      <div class="sh">資産価値の推移予測</div>
+      <div class="stat-row"><span class="sr-label">現在</span><span class="sr-value">¥${total.toLocaleString()}</span></div>
+      <div class="stat-row"><span class="sr-label">3ヶ月後</span><span class="sr-value" style="color:var(--green)">¥${fv.three.toLocaleString()}</span></div>
+      <div class="stat-row"><span class="sr-label">6ヶ月後</span><span class="sr-value" style="color:var(--green)">¥${fv.six.toLocaleString()}</span></div>
+      <div class="stat-row"><span class="sr-label">12ヶ月後</span><span class="sr-value" style="color:var(--green)">¥${fv.twelve.toLocaleString()}</span></div>
+      <div class="stat-note">※ 改善施策を実行した場合の参考目安</div>
+    </div>
+  </div>`;
+
+  // ===== Section 4: Revenue Simulation =====
+  html += `
+  <div class="section reveal">
+    <div class="section-head"><div class="section-num">3</div><div class="section-title">収益シミュレーション</div></div>
+    <div class="rev-card">
+      <div class="rev-header">
+        <div class="rev-title">想定収益モデル</div>
+        <div class="rev-model-badge">${MODEL_MAP[revSim.model]||'未定'}</div>
+      </div>
+      <div class="rev-row"><span class="rev-label">現在の推定月収</span><span class="rev-value">¥${revSim.current.toLocaleString()}</span></div>
+      <div class="rev-row"><span class="rev-label">3ヶ月後</span><span class="rev-value">¥${revSim.m3.toLocaleString()}</span></div>
+      <div class="rev-row"><span class="rev-label">6ヶ月後</span><span class="rev-value">¥${revSim.m6.toLocaleString()}</span></div>
+      <div class="rev-row"><span class="rev-label">12ヶ月後</span><span class="rev-value highlight">¥${revSim.m12.toLocaleString()}</span></div>
+      <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border)">
+        <div class="rev-row"><span class="rev-label">ポテンシャル上限</span><span class="rev-value" style="color:var(--amber)">¥${revSim.potential.toLocaleString()}/月</span></div>
+      </div>
+      <div style="font-size:11px;color:var(--text-third);margin-top:8px;text-align:right">※ 改善施策を実行した場合の参考目安</div>
+    </div>
+  </div>`;
+
+  // ===== Section 5: Strengths & Weaknesses =====
+  html += `
+  <div class="section reveal">
+    <div class="section-head"><div class="section-num">4</div><div class="section-title">強み・改善余地の分析</div></div>
+    ${strengths.map(s => `
+    <div class="insight-card" style="margin-top:8px">
+      <div class="ic-head"><div class="ic-dot ic-dot-green"></div><h3>${s.title}</h3></div>
+      <p>${s.text}</p>
+    </div>`).join('')}
+    ${weaknesses.map(w => `
+    <div class="insight-card" style="margin-top:8px">
+      <div class="ic-head"><div class="ic-dot ic-dot-amber"></div><h3>${w.title}</h3></div>
+      <p>${w.text}</p>
+    </div>`).join('')}
+    ${comments.length ? `
+    <div class="insight-card" style="margin-top:8px">
+      <div class="ic-head"><div class="ic-dot ic-dot-red"></div><h3>注意事項</h3></div>
+      ${comments.map(c => `<p style="color:var(--amber)">※ ${c}</p>`).join('')}
+    </div>` : ''}
+  </div>`;
+
+  // ===== Section 6: Improvement Points =====
+  html += `
+  <div class="section reveal">
+    <div class="section-head"><div class="section-num">5</div><div class="section-title">具体的な改善ポイント</div></div>
+    ${improvements.map(imp => `
+    <div class="insight-card" style="margin-top:8px">
+      <div class="ic-head"><div class="ic-dot ic-dot-blue"></div><h3>${imp.title}</h3></div>
+      ${imp.items.map(item => `
+      <div style="display:flex;align-items:flex-start;gap:8px;padding:4px 0">
+        <span class="rm-check">✓</span>
+        <span style="font-size:13px;color:var(--text-secondary);line-height:1.5">${item}</span>
+      </div>`).join('')}
+    </div>`).join('')}
+  </div>`;
+
+  // ===== Section 7: Post Themes =====
+  html += `
+  <div class="section reveal">
+    <div class="section-head"><div class="section-num">6</div><div class="section-title">最初に伸ばすべき投稿テーマ</div></div>
+    <div style="border:1px solid var(--border);border-radius:16px;background:var(--bg-secondary);padding:16px">
+      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:12px">${GENRE_MAP[a.q6_genre]||'選択'}ジャンルで反応が取れやすいテーマ例：</p>
+      ${postThemes.map((t,i) => `
+      <div class="tip-card">
+        <div class="tip-label">テーマ ${i+1}</div>
+        <div class="tip-text">${t}</div>
+      </div>`).join('')}
+    </div>
+  </div>`;
+
+  // ===== Section 8: 3-Month Roadmap =====
+  html += `
+  <div class="section reveal">
+    <div class="section-head"><div class="section-num">7</div><div class="section-title">3ヶ月 改善ロードマップ</div></div>
+    ${roadmap.map(m => `
+    <div class="roadmap-month">
+      <div class="rm-header">
+        <div class="rm-num" style="background:${m.color}">${m.label.charAt(0)}</div>
+        <div class="rm-label">${m.label}</div>
+      </div>
+      <div class="rm-body">
+        ${m.tasks.map(t => `
+        <div class="rm-task">
+          <span class="rm-check">✓</span>
+          <span>${t}</span>
+        </div>`).join('')}
+      </div>
+    </div>`).join('')}
+  </div>`;
+
+  // ===== CTA =====
+  html += `
+  <div class="section reveal">
+    <div class="line-card">
+      <p>ここまでが自動診断の結果です。<br>さらに個別のアドバイスが必要な方は、<br>LINEからご相談ください。</p>
+      <a href="${LINE_URL}" target="_blank" rel="noopener noreferrer" class="line-btn" style="animation:pulseGlow 2s ease-in-out infinite">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+        LINEで個別相談する
+      </a>
+      <p class="line-sub">SNS診断ナビ公式LINEで、あなた専用のアドバイスをお届けします</p>
+    </div>
+  </div>`;
+
+  // ===== Footer =====
+  html += `
+  <div class="report-footer">
+    <p>本レポートはSNS資産価値診断の回答をもとに自動生成されています。</p>
+    <p>掲載の数値はすべて参考目安であり、実際の収益を保証するものではありません。</p>
+    <p style="margin-top:8px">© SNS診断ナド</p>
+  </div>`;
+
+  document.getElementById('reportContainer').innerHTML = html;
+
+  // Animate count up
+  setTimeout(() => {
+    animateCountUp(document.getElementById('assetValue'), total, 2500);
+  }, 300);
+
+  // Animate bars
+  setTimeout(() => {
+    document.querySelectorAll('.bd-bar').forEach(bar => {
+      bar.style.width = bar.dataset.target + '%';
+    });
+  }, 800);
+
+  // Reveal animation
+  setTimeout(() => {
+    const revs = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if(e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, {threshold: .08});
+    revs.forEach(r => obs.observe(r));
+    revs.forEach((r,i) => { if(i<3) setTimeout(()=>r.classList.add('visible'), 100+i*150); });
+  }, 100);
+}
+
+function animateCountUp(el, target, duration) {
+  let start = null;
+  function step(ts) {
+    if(!start) start = ts;
+    const progress = Math.min((ts-start)/duration, 1);
+    const eased = progress===1 ? 1 : 1-Math.pow(2,-10*progress);
+    el.textContent = '¥' + Math.floor(eased*target).toLocaleString();
+    if(progress<1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+function showError() {
+  document.getElementById('reportContainer').innerHTML = `
+    <div class="error-state">
+      <h2>レポートデータがありません</h2>
+      <p>まずSNS資産価値診断を受けて、<br>結果からレポートを取得してください。</p>
+      <a href="${DIAGNOSIS_URL}" class="error-btn">診断を受ける</a>
+    </div>
+  `;
+}
+
+// ===== INIT =====
+const data = decodeData();
+if(data) {
+  renderReport(data);
+} else {
+  showError();
+}
+</script>
+</body>
+</html>
