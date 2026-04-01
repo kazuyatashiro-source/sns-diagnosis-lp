@@ -3,792 +3,1103 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>SNS資産価値診断 | あなたのSNSアカウント、今いくらの価値がある？</title>
-<meta name="description" content="X・Instagram・TikTok・YouTube — あなたのSNSアカウントの資産価値を無料診断。60秒で可視化。">
+<title>SNS副業収益ポテンシャル診断</title>
+<meta name="description" content="あなたはSNS副業でどこまで稼げる？29問に答えるだけで、向いている発信ジャンルと収益化ルートがわかります。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- GA/GTM: Replace G-XXXXXXXXXX with your ID -->
+<!--
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+-->
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --black:#000;--bg-primary:#000;--bg-secondary:#16181c;--bg-third:#1d1f23;
-  --border:#2f3336;--border-light:#38444d;
-  --text-primary:#e7e9ea;--text-secondary:#71767b;--text-third:#536471;
-  --blue:#1d9bf0;--blue-dark:#1a8cd8;--blue-light:rgba(29,155,240,.1);
-  --green:#00ba7c;--green-light:rgba(0,186,124,.1);
-  --amber:#f7931a;--amber-light:rgba(247,147,26,.1);
-  --line-green:#06C755;
+:root {
+  --lime: #C5FF00;
+  --lime-dark: #a8d900;
+  --black: #111111;
+  --dark: #222222;
+  --gray: #555555;
+  --gray-light: #888888;
+  --gray-border: #e0e0e0;
+  --bg: #ffffff;
+  --bg-section: #f5f5f5;
+  --bg-dark: #111111;
+  --text: #111111;
+  --text-sub: #555555;
+  --text-dim: #999999;
+  --text-white: #ffffff;
+  --accent-red: #e53e3e;
+  --accent-orange: #ed8936;
+  --accent-green: #38a169;
 }
-html{-webkit-tap-highlight-color:transparent;scroll-behavior:smooth}
-body{
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Hiragino Sans",sans-serif;
-  background:var(--bg-primary);color:var(--text-primary);
-  min-height:100vh;min-height:100dvh;
-  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Noto Sans JP', 'Hiragino Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  min-height: 100vh;
 }
-a{color:var(--blue);text-decoration:none}
+button { font-family: inherit; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
 
-/* Container - X mobile width */
-.container{max-width:600px;margin:0 auto}
-
-/* ===== Animations ===== */
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-@keyframes slideInRight{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
-@keyframes pulseGlow{0%,100%{box-shadow:0 0 16px rgba(6,199,85,.25)}50%{box-shadow:0 0 36px rgba(6,199,85,.5)}}
-@keyframes countPulse{0%{transform:scale(1)}50%{transform:scale(1.03)}100%{transform:scale(1)}}
-@keyframes spin{to{transform:rotate(360deg)}}
-.anim-fade{animation:fadeIn .5s ease-out both}
-.anim-slide-up{animation:slideUp .5s ease-out both}
-.anim-slide-right{animation:slideInRight .35s ease-out both}
-
-/* ===== Screens ===== */
-.screen{display:none;min-height:100vh;min-height:100dvh}
-.screen.active{display:flex;flex-direction:column}
-
-/* ===== X-style Header Bar ===== */
-.x-header{
-  position:sticky;top:0;z-index:50;
-  display:flex;align-items:center;justify-content:center;
-  height:53px;padding:0 16px;
-  background:rgba(0,0,0,.75);backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--border);
+/* Primary CTA Button - Lime green rounded */
+.btn-primary {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 18px 48px; border-radius: 60px; border: none;
+  font-size: 17px; font-weight: 800; color: var(--black);
+  background: var(--lime);
+  transition: all 0.25s ease; position: relative;
+  box-shadow: 0 2px 12px rgba(197,255,0,0.3);
 }
-.x-header .logo{display:flex;align-items:center;gap:6px}
-.x-header .logo svg{width:24px;height:24px;color:var(--text-primary)}
-.x-header .logo span{font-size:18px;font-weight:700;letter-spacing:-.02em}
+.btn-primary:hover { background: var(--lime-dark); transform: translateY(-1px); box-shadow: 0 4px 20px rgba(197,255,0,0.4); }
+.btn-primary:active { transform: scale(0.97); }
 
-/* ===== Top Page ===== */
-#top{padding:0}
-.hero{padding:40px 16px;text-align:center;border-bottom:1px solid var(--border)}
-.hero .badge{
-  display:inline-flex;align-items:center;gap:6px;
-  font-size:12px;font-weight:500;color:var(--blue);
-  background:var(--blue-light);border:1px solid rgba(29,155,240,.2);
-  border-radius:999px;padding:6px 14px;margin-bottom:20px;
-}
-.hero h1{font-size:26px;font-weight:800;line-height:1.35;margin-bottom:14px;letter-spacing:-.02em}
-.hero .sub{font-size:14px;color:var(--text-secondary);line-height:1.7;margin-bottom:28px}
-.btn-blue{
-  display:inline-flex;align-items:center;gap:8px;
-  background:var(--blue);color:#fff;font-size:16px;font-weight:700;
-  border:none;border-radius:999px;padding:14px 32px;cursor:pointer;transition:all .15s;
-}
-.btn-blue:hover{background:var(--blue-dark)}
-.btn-blue:active{transform:scale(.97)}
-.btn-blue svg{width:18px;height:18px}
-.hero .meta{font-size:12px;color:var(--text-third);margin-top:12px}
 
-/* SNS icons row */
-.sns-icons{display:flex;justify-content:center;gap:16px;margin-bottom:24px}
-.sns-icon{
-  width:44px;height:44px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  background:var(--bg-secondary);border:1px solid var(--border);
-  font-size:20px;
+/* Black section */
+.section-dark {
+  background: var(--bg-dark);
+  color: var(--text-white);
+  padding: 48px 20px;
 }
 
-/* Benefits - tweet style cards */
-.benefits-section{border-bottom:1px solid var(--border)}
-.benefits-title{padding:12px 16px;font-size:18px;font-weight:800}
-.benefit-tweet{
-  display:flex;gap:12px;padding:12px 16px;
-  border-bottom:1px solid var(--border);transition:background .15s;
+/* Card */
+.card {
+  background: var(--bg);
+  border-radius: 16px;
+  padding: 24px 20px;
+  margin-bottom: 16px;
+  border: 1px solid var(--gray-border);
 }
-.benefit-tweet:hover{background:rgba(255,255,255,.03)}
-.benefit-avatar{
-  width:40px;height:40px;border-radius:50%;
-  background:var(--blue-light);display:flex;align-items:center;justify-content:center;
-  font-size:18px;flex-shrink:0;
-}
-.benefit-body .bname{font-size:14px;font-weight:700;margin-bottom:2px}
-.benefit-body .bhandle{font-size:13px;color:var(--text-secondary)}
-.benefit-body .btext{font-size:14px;color:var(--text-primary);line-height:1.5;margin-top:6px}
-
-/* CTA bottom */
-.bottom-cta{padding:24px 16px;text-align:center;border-top:1px solid var(--border)}
-.trust-text{font-size:12px;color:var(--text-third);line-height:1.7;margin-top:16px}
-
-/* ===== Diagnosis ===== */
-#diagnosis{padding:0}
-.diag-bar{
-  position:sticky;top:0;z-index:50;
-  display:flex;align-items:center;gap:16px;
-  height:53px;padding:0 16px;
-  background:rgba(0,0,0,.75);backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--border);
-}
-.diag-back{
-  width:34px;height:34px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  background:transparent;border:none;cursor:pointer;
-  transition:background .15s;color:var(--text-primary);
-}
-.diag-back:hover{background:rgba(239,243,244,.1)}
-.diag-back:disabled{opacity:.3;pointer-events:none}
-.diag-back svg{width:20px;height:20px}
-.diag-info{flex:1}
-.diag-info .di-title{font-size:15px;font-weight:700}
-.diag-info .di-step{font-size:13px;color:var(--text-secondary)}
-
-.progress-track{height:4px;background:var(--bg-secondary)}
-.progress-fill{height:100%;background:var(--blue);transition:width .45s ease-out}
-
-.question-area{flex:1;padding:20px 16px 32px}
-.q-title{font-size:20px;font-weight:800;line-height:1.35;margin-bottom:6px}
-.q-desc{font-size:14px;color:var(--text-secondary);margin-bottom:20px;line-height:1.5}
-.q-helper{font-size:12px;color:var(--text-third);margin-top:10px}
-
-.text-input{
-  width:100%;background:var(--bg-primary);
-  border:1px solid var(--border);border-radius:4px;
-  padding:16px 12px;color:var(--text-primary);font-size:16px;
-  outline:none;transition:border-color .2s,box-shadow .2s;
-}
-.text-input::placeholder{color:var(--text-third)}
-.text-input:focus{border-color:var(--blue);box-shadow:0 0 0 1px var(--blue)}
-
-.options{display:flex;flex-direction:column;gap:0}
-.option-btn{
-  display:flex;align-items:center;gap:12px;width:100%;text-align:left;
-  background:transparent;border:none;border-bottom:1px solid var(--border);
-  padding:16px 4px;cursor:pointer;
-  font-size:15px;color:var(--text-primary);
-  transition:background .12s;
-}
-.option-btn:first-child{border-top:1px solid var(--border)}
-.option-btn:hover{background:rgba(255,255,255,.03)}
-.option-btn:active{background:rgba(29,155,240,.08)}
-.option-btn.selected{background:var(--blue-light);color:var(--blue)}
-.radio-circle{
-  width:20px;height:20px;border-radius:50%;
-  border:2px solid var(--border-light);
-  flex-shrink:0;display:flex;align-items:center;justify-content:center;
-  transition:all .15s;
-}
-.option-btn.selected .radio-circle{border-color:var(--blue);background:var(--blue)}
-.radio-circle svg{width:12px;height:12px;color:#fff;display:none}
-.option-btn.selected .radio-circle svg{display:block}
-
-/* Platform icons in options */
-.opt-icon{font-size:18px;flex-shrink:0;width:28px;text-align:center}
-
-.next-wrap{padding:0 16px 24px}
-.next-btn{
-  width:100%;background:var(--blue);color:#fff;font-size:15px;font-weight:700;
-  border:none;border-radius:999px;padding:14px;cursor:pointer;transition:all .12s;
-}
-.next-btn:hover{background:var(--blue-dark)}
-.next-btn:active{transform:scale(.98)}
-.skip-note{font-size:12px;color:var(--text-third);margin-top:8px;text-align:center}
-
-/* ===== Result ===== */
-#result{padding:0}
-.result-bar{
-  position:sticky;top:0;z-index:50;
-  display:flex;align-items:center;justify-content:center;
-  height:53px;padding:0 16px;
-  background:rgba(0,0,0,.75);backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--border);
-}
-.result-bar span{font-size:17px;font-weight:800}
-
-.result-body{padding:0 16px 40px}
-.result-account{
-  text-align:center;padding:16px 0 8px;
-  font-size:14px;color:var(--text-secondary);
+.card-dark {
+  background: #1a1a1a;
+  border-radius: 16px;
+  padding: 24px 20px;
+  margin-bottom: 16px;
+  border: 1px solid #333;
 }
 
-/* Main value card */
-.value-card{
-  text-align:center;padding:28px 16px;margin:8px 0 4px;
-  border:1px solid var(--border);border-radius:16px;
-  background:var(--bg-secondary);
+/* Lime accent card */
+.card-lime {
+  background: var(--lime);
+  border-radius: 16px;
+  padding: 24px 20px;
+  margin-bottom: 16px;
+  color: var(--black);
 }
-.value-card .vc-label{font-size:13px;color:var(--text-secondary);font-weight:500;margin-bottom:8px}
-.value-card .vc-amount{font-size:42px;font-weight:900;letter-spacing:-.03em;color:var(--text-primary);margin-bottom:12px}
-.percentile-pill{
-  display:inline-flex;align-items:center;gap:4px;
-  background:var(--blue-light);border:1px solid rgba(29,155,240,.2);
-  border-radius:999px;padding:5px 14px;
-  font-size:13px;font-weight:700;color:var(--blue);
+
+/* Section title with lime accent line */
+.section-title {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: var(--gray-light);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
-.vc-conf{font-size:11px;color:var(--text-third);margin-top:10px}
-
-/* Platform label */
-.platform-label{
-  display:inline-flex;align-items:center;gap:6px;
-  font-size:12px;color:var(--text-secondary);margin-bottom:12px;
+.section-title::before {
+  content: '';
+  display: inline-block;
+  width: 24px; height: 3px;
+  background: var(--lime);
+  border-radius: 2px;
 }
-.platform-label .pl-icon{font-size:16px}
-
-/* Stat cards */
-.stat-section{border:1px solid var(--border);border-radius:16px;background:var(--bg-secondary);margin-top:12px;overflow:hidden}
-.stat-section .sh{padding:14px 16px 0;font-size:15px;font-weight:800}
-.stat-row{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--border)}
-.stat-row:last-child{border-bottom:none}
-.stat-row .sr-label{font-size:14px;color:var(--text-secondary)}
-.stat-row .sr-value{font-size:15px;font-weight:700}
-.stat-note{padding:4px 16px 12px;text-align:right;font-size:11px;color:var(--text-third)}
-
-/* Insight cards */
-.insight-card{border:1px solid var(--border);border-radius:16px;background:var(--bg-secondary);margin-top:12px;padding:16px}
-.insight-card .ic-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
-.ic-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.ic-dot-blue{background:var(--blue)}
-.ic-dot-green{background:var(--green)}
-.ic-dot-amber{background:var(--amber)}
-.insight-card h3{font-size:15px;font-weight:700}
-.insight-card p{font-size:14px;color:var(--text-secondary);line-height:1.6;margin-bottom:4px}
-.comment-line{font-size:13px;color:var(--amber);margin-top:8px}
-
-/* Locked */
-.locked-card{position:relative;overflow:hidden;border:1px solid var(--border);border-radius:16px;margin-top:12px}
-.locked-bg{padding:16px;filter:blur(5px);opacity:.5;pointer-events:none}
-.locked-item{background:var(--bg-third);border-radius:10px;padding:12px;margin-bottom:8px}
-.locked-item h4{font-size:13px;font-weight:700;color:var(--text-secondary);margin-bottom:2px}
-.locked-item p{font-size:11px;color:var(--text-third)}
-.locked-overlay{
-  position:absolute;inset:0;z-index:2;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
-  background:rgba(0,0,0,.5);backdrop-filter:blur(6px);padding:20px;text-align:center;
+.section-title-dark {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: #888;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
-.lock-circle{
-  width:48px;height:48px;border-radius:50%;
-  background:var(--bg-third);border:1px solid var(--border);
-  display:flex;align-items:center;justify-content:center;
+.section-title-dark::before {
+  content: '';
+  display: inline-block;
+  width: 24px; height: 3px;
+  background: var(--lime);
+  border-radius: 2px;
 }
-.lock-circle svg{width:22px;height:22px;color:var(--blue)}
-.locked-overlay .lo-t{font-size:14px;font-weight:700}
-.locked-overlay .lo-s{font-size:12px;color:var(--text-secondary)}
 
-/* LINE CTA */
-.line-card{
-  border-radius:16px;padding:24px 16px;text-align:center;margin-top:16px;
-  border:1px solid rgba(6,199,85,.25);
-  background:linear-gradient(180deg,rgba(6,199,85,.06),var(--bg-secondary));
+/* Progress bar */
+.progress-track {
+  height: 4px; background: #e5e5e5; border-radius: 4px; overflow: hidden;
 }
-.line-card .lc-intro{font-size:14px;color:var(--text-secondary);line-height:1.7;margin-bottom:20px}
-.line-btn{
-  display:inline-flex;align-items:center;gap:8px;
-  background:var(--line-green);color:#fff;font-size:16px;font-weight:700;
-  border:none;border-radius:999px;padding:14px 28px;cursor:pointer;
-  text-decoration:none;transition:all .15s;
+.progress-fill {
+  height: 100%; background: var(--lime); border-radius: 4px;
+  transition: width 0.4s ease;
 }
-.line-btn:active{transform:scale(.96)}
-.line-btn svg{width:22px;height:22px}
-.line-card .lc-sub{font-size:12px;color:var(--text-third);margin-top:10px}
-.line-card .lc-details{margin-top:12px}
-.line-card .lc-details p{font-size:11px;color:var(--text-third);margin-bottom:2px}
 
-.restart-btn{
-  display:block;width:100%;margin-top:24px;padding:14px;
-  background:transparent;border:1px solid var(--border);border-radius:999px;
-  font-size:14px;font-weight:700;color:var(--text-primary);cursor:pointer;
-  transition:background .12s;
+/* Option button */
+.opt-btn {
+  display: flex; align-items: center; gap: 12px;
+  width: 100%; text-align: left; padding: 16px 20px;
+  background: var(--bg); border: 2px solid var(--gray-border);
+  border-radius: 14px; font-size: 15px; font-weight: 600;
+  color: var(--text); margin-bottom: 10px;
+  transition: all 0.2s ease;
 }
-.restart-btn:hover{background:rgba(239,243,244,.1)}
+.opt-btn:hover { border-color: var(--lime); background: #fafff0; }
+.opt-btn.selected {
+  border-color: var(--lime); background: #f4ffe0;
+  box-shadow: 0 0 0 1px var(--lime);
+}
+.opt-checkbox {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; border-radius: 6px;
+  border: 2px solid var(--gray-border); font-size: 12px;
+  font-weight: 800; color: var(--black); flex-shrink: 0;
+  transition: all 0.2s;
+}
+.opt-btn.selected .opt-checkbox {
+  background: var(--lime); border-color: var(--lime);
+}
 
-/* Loading */
-.loading{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:80vh;gap:12px}
-.spinner{width:28px;height:28px;border:3px solid var(--blue);border-top-color:transparent;border-radius:50%;animation:spin .7s linear infinite}
-.loading p{font-size:14px;color:var(--text-secondary)}
+/* Axis bar */
+.axis-bar-track {
+  flex: 1; height: 8px; background: #e5e5e5; border-radius: 8px; overflow: hidden;
+}
+.axis-bar-fill {
+  height: 100%; border-radius: 8px;
+  transition: width 1s ease;
+}
 
-/* Reveal */
-.reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease-out,transform .55s ease-out}
-.reveal.visible{opacity:1;transform:translateY(0)}
+/* Rank badge */
+.rank-badge {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 800; flex-shrink: 0;
+  background: var(--bg-section); color: var(--text);
+  border: 2px solid var(--gray-border);
+}
+.rank-1 { background: var(--lime); border-color: var(--lime); color: var(--black); }
+.rank-2 { background: #222; border-color: #222; color: white; }
+.rank-3 { background: #e5e5e5; border-color: #e5e5e5; color: #555; }
+
+/* Income row */
+.income-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 0; border-bottom: 1px solid var(--gray-border);
+}
+.income-row:last-child { border-bottom: none; }
+
+/* Weakness item */
+.weakness-item {
+  padding: 16px 0; border-bottom: 1px solid var(--gray-border);
+}
+.weakness-item:last-child { border-bottom: none; }
+
+
+/* Tags */
+.tag {
+  display: inline-block;
+  padding: 8px 14px;
+  background: white;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-sub);
+  border: 1px solid var(--gray-border);
+}
+
+/* Stripe accent */
+.stripe-accent {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: var(--gray-light);
+  display: inline-block;
+  padding: 4px 0;
+  margin-bottom: 8px;
+}
+
+/* Encouragement pill */
+.enc-pill {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #fffce8;
+  border: 1px solid var(--lime);
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* Spinner */
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(197,255,0,0.3);
+  border-top-color: var(--lime);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Fade animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+.fade-d1 { animation: fadeIn 0.6s ease-out 0.1s both; }
+.fade-d2 { animation: fadeIn 0.6s ease-out 0.2s both; }
+.fade-d3 { animation: fadeIn 0.6s ease-out 0.3s both; }
+.fade-d4 { animation: fadeIn 0.6s ease-out 0.4s both; }
+
+/* Step card container */
+.step-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 24px;
+  padding: 0;
+}
+
+.step-card svg {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  margin-bottom: 16px;
+}
+
+.step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: var(--lime);
+  color: var(--black);
+  border-radius: 50%;
+  font-size: 24px;
+  font-weight: 900;
+  margin-bottom: 12px;
+}
+
+.step-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.step-desc {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+/* Feature icon */
+.feature-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--lime);
+  border-radius: 12px;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+/* Stats section */
+.stats-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 16px;
+  margin: 32px 0;
+}
+
+.stat-item {
+  text-align: center;
+  flex: 1;
+}
+
+.stat-number {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--lime);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--text-sub);
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .btn-primary { padding: 16px 40px; font-size: 16px; }
+}
 </style>
 </head>
 <body>
-
-<!-- ============ TOP PAGE ============ -->
-<div id="top" class="screen active">
-  <!-- X-style header -->
-  <div class="x-header">
-    <div class="logo">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-      <span>SNS資産価値診断</span>
-    </div>
-  </div>
-
-  <div class="container">
-    <!-- Hero -->
-    <section class="hero anim-fade">
-      <div class="badge">無料・匿名・60秒で完了</div>
-
-      <div class="sns-icons anim-slide-up" style="animation-delay:.1s">
-        <div class="sns-icon">𝕏</div>
-        <div class="sns-icon" style="background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);border:none;color:#fff;font-size:18px">📷</div>
-        <div class="sns-icon" style="background:#010101;border-color:#333">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V9.42a8.16 8.16 0 004.76 1.52V7.5a4.85 4.85 0 01-1-.81z"/></svg>
-        </div>
-        <div class="sns-icon" style="background:#FF0000;border:none;color:#fff;font-size:14px;font-weight:700">▶</div>
-      </div>
-
-      <h1>あなたのSNSアカウント、<br>今いくらの価値がある？</h1>
-      <p class="sub">X・Instagram・TikTok・YouTube —<br>アカウントと運用状況から<br>SNS資産価値を無料で可視化します。</p>
-
-      <button class="btn-blue" onclick="startDiagnosis()">
-        無料で診断する
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
-      </button>
-      <p class="meta">所要時間：約60秒 ｜ 登録不要</p>
-    </section>
-
-    <!-- Benefits as tweet-like cards -->
-    <section class="benefits-section anim-slide-up" style="animation-delay:.15s">
-      <h2 class="benefits-title">この診断でわかること</h2>
-      <div class="benefit-tweet"><div class="benefit-avatar">💰</div><div class="benefit-body"><div class="bname">資産価値 <span class="bhandle">@asset</span></div><div class="btext">今のSNS資産価値が円協位でわかる</div></div></div>
-      <div class="benefit-tweet"><div class="benefit-avatar">📈</div><div class="benefit-body"><div class="bname">将来予測 <span class="bhandle">@future</span></div><div class="btext">3・6・12ヶ月後の将来価値がわかる</div></div></div>
-      <div class="benefit-tweet"><div class="benefit-avatar">💡</div><div class="benefit-body"><div class="bname">分析 <span class="bhandle">@analysis</span></div><div class="btext">あなたの強み / 弱みが具体的にわかる</div></div></div>
-      <div class="benefit-tweet"><div class="benefit-avatar">🎯</div><div class="benefit-body"><div class="bname">戦略 <span class="bhandle">@strategy</span></div><div class="btext">価値を上げるための方向性がわかる</div></div></div>
-      <div class="benefit-tweet"><div class="benefit-avatar">📩</div><div class="benefit-body"><div class="bname">詳細結果 <span class="bhandle">@detail</span></div><div class="btext">詳細戦略はLINEで受け取れる</div></div></div>
-    </section>
-
-    <!-- Bottom CTA -->
-    <section class="bottom-cta anim-fade" style="animation-delay:.3s">
-      <button class="btn-blue" onclick="startDiagnosis()">今すぐ診断を始める</button>
-      <p class="trust-text">
-        アカウント情報を入れると、よりあなた向けの結果になります。<br>
-        <span style="color:var(--text-third)">※ 入力情報は結果表示と個別分析の参照にのみ使用します</span>
-      </p>
-    </section>
-  </div>
-</div>
-
-<!-- ============ DIAGNOSIS PAGE ============ -->
-<div id="diagnosis" class="screen">
-  <div class="diag-bar">
-    <button class="diag-back" id="backBtn" onclick="goBack()">
-      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m7-7l-7 7 7 7"/></svg>
-    </button>
-    <div class="diag-info">
-      <div class="di-title">SNS資産価値診断</div>
-      <div class="di-step" id="stepLabel"></div>
-    </div>
-  </div>
-  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
-  <div class="container">
-    <div class="question-area" id="questionArea"></div>
-    <div id="nextWrap"></div>
-  </div>
-</div>
-
-<!-- ============ RESULT PAGE ============ -->
-<div id="result" class="screen">
-  <div class="result-bar"><span>診断結果</span></div>
-  <div class="container">
-    <div class="result-body" id="resultBody"></div>
-  </div>
-</div>
+<div id="app"></div>
 
 <script>
 // ============================================================
-// CONFIG
 // ============================================================
-const LINE_URL = 'https://lin.ee/EFIZkVv';
-
-// Platform display map
-const PLATFORM_MAP = {
-  x: { name:'X (旧Twitter)', icon:'𝕏', color:'#000' },
-  instagram: { name:'Instagram', icon:'📷', color:'#E1306C' },
-  tiktok: { name:'TikTok', icon:'🎵', color:'#010101' },
-  youtube: { name:'YouTube', icon:'▶', color:'#FF0000' },
-  threads: { name:'Threads', icon:'🔗', color:'#000' },
-  other: { name:'その他', icon:'📱', color:'#333' },
-};
 
 // ============================================================
-// QUESTIONS (16問: 媒体追加)
+// QUESTIONS (ALL 29 QUESTIONS - EXACT COPY)
 // ============================================================
-const questions = [
-  {id:'q0_platform',num:1,title:'メインで運用しているSNSは？',desc:'一番力を入れている媒体を選んでください',type:'select',optionStyle:'icon',options:[
-    {l:'X (旧Twitter)',v:'x',icon:'𝕏'},
-    {l:'Instagram',v:'instagram',icon:'📷'},
-    {l:'TikTok',v:'tiktok',icon:'🎵'},
-    {l:'YouTube',v:'youtube',icon:'▶'},
-    {l:'Threads',v:'threads',icon:'🔗'},
-    {l:'その他',v:'other',icon:'📱'},
-  ]},
-  {id:'q1_account',num:2,title:'アカウントIDを教えてください',desc:'入力するとよりあなた向けの結果になります',type:'text',placeholder:'@username または プロフィールURL',helper:'入力内容は結果表示・個別分析の参照に利用します',required:false},
-  {id:'q2_followers',num:3,title:'現在のフォロワー数は？',type:'select',options:[
-    {l:'0〜100',v:'0-100'},{l:'101〜500',v:'101-500'},{l:'501〜1,000',v:'501-1000'},
-    {l:'1,001〜3,000',v:'1001-3000'},{l:'3,001〜10,000',v:'3001-10000'},{l:'10,001以上',v:'10001+'}
-  ]},
-  {id:'q3_likes',num:4,title:'投稿の平均いいね数は？',type:'select',options:[
-    {l:'10未満',v:'under10'},{l:'10〜30',v:'10-30'},{l:'31〜100',v:'31-100'},
-    {l:'101〜300',v:'101-300'},{l:'301以上',v:'301+'}
-  ]},
-  {id:'q4_posts_per_week',num:5,title:'週に何本くらい投稿してる？',type:'select',options:[
-    {l:'0本',v:'0'},{l:'1〜2本',v:'1-2'},{l:'3〜4本',v:'3-4'},{l:'5〜6本',v:'5-6'},{l:'毎日',v:'daily'}
-  ]},
-  {id:'q5_duration',num:6,title:'SNSの運用歴は？',type:'select',options:[
-    {l:'1ヶ月未満',v:'under1m'},{l:'1〜3ヶ月',v:'1-3m'},{l:'3〜6ヶ月',v:'3-6m'},
-    {l:'6ヶ月〜1年',v:'6m-1y'},{l:'1年以上',v:'1y+'}
-  ]},
-  {id:'q6_genre',num:7,title:'主な発信ジャンルは？',type:'select',options:[
-    {l:'副業',v:'side-business'},{l:'ビジネス',v:'business'},{l:'SNS運用 / マーケティング',v:'sns-marketing'},
-    {l:'AI活用',v:'ai'},{l:'キャリア / 転職',v:'career'},{l:'お金 / 投資 / 節約',v:'money'},
-    {l:'美容',v:'beauty'},{l:'健康 / ダイエット',v:'health'},{l:'ライフスタイル',v:'lifestyle'},
-    {l:'子育て / 家族',v:'parenting'},{l:'地方移住 / 働き方',v:'workstyle'},{l:'その他',v:'other'}
-  ]},
-  {id:'q7_style',num:8,title:'主な発信スタイルは？',type:'select',options:[
-    {l:'実体験共有',v:'experience'},{l:'ノウハウ解説',v:'knowhow'},{l:'比較 / レビュー',v:'review'},
-    {l:'日常発信',v:'daily'},{l:'ストーリー型',v:'story'},{l:'意見発信',v:'opinion'},{l:'まだ定まっていない',v:'undecided'}
-  ]},
-  {id:'q8_face',num:9,title:'顔出し状況は？',type:'select',options:[
-    {l:'顔出しあり',v:'face'},{l:'匿名',v:'anonymous'},{l:'音声のみ / 一部のみ',v:'partial'},{l:'まだ決めていない',v:'undecided'}
-  ]},
-  {id:'q9_revenue',num:10,title:'現在の収益化経験は？',type:'select',options:[
-    {l:'なし',v:'none'},{l:'少しあり',v:'little'},{l:'月1万円未満',v:'under10k'},
-    {l:'月1〜10万円',v:'10k-100k'},{l:'月10万円以上',v:'100k+'}
-  ]},
-  {id:'q10_growth',num:11,title:'フォロワーの増加状況は？',type:'select',options:[
-    {l:'増えていない',v:'none'},{l:'少し増えている',v:'slow'},{l:'安定して増えている',v:'steady'},{l:'急増している',v:'rapid'}
-  ]},
-  {id:'q11_time',num:12,title:'SNSに使える時間は1日どのくらい？',type:'select',options:[
-    {l:'30分未満',v:'under30m'},{l:'30分〜1時間',v:'30m-1h'},{l:'1〜2時間',v:'1-2h'},
-    {l:'2〜3時間',v:'2-3h'},{l:'3時間以上',v:'3h+'}
-  ]},
-  {id:'q12_concern',num:13,title:'今の一番の悩みは？',type:'select',options:[
-    {l:'フォロワーが増えない',v:'followers'},{l:'投稿ネタが続かない',v:'content'},
-    {l:'収益化できない',v:'monetization'},{l:'方向性が定まらない',v:'direction'},
-    {l:'プロフィールが弱い',v:'profile'},{l:'導線がない',v:'funnel'}
-  ]},
-  {id:'q13_model',num:14,title:'将来やりたい収益化モデルは？',type:'select',options:[
-    {l:'アフィリエイト',v:'affiliate'},{l:'コンテンツ販売',v:'content-sales'},{l:'PR案件',v:'pr'},
-    {l:'コンサル / 相談',v:'consulting'},{l:'SNS運用代行',v:'agency'},
-    {l:'コミュニティ運営',v:'community'},{l:'まだ決まっていない',v:'undecided'}
-  ]},
-  {id:'q14_seriousness',num:15,title:'今後どれくらい本気で伸ばしたい？',type:'select',options:[
-    {l:'興味がある程度',v:'curious'},{l:'月1万円を狙いたい',v:'10k'},
-    {l:'月5〜10万円を狙いたい',v:'50k-100k'},{l:'本気で事業化したい',v:'serious'}
-  ]},
-  {id:'q15_reason',num:16,title:'この診断を受けた理由は？',type:'select',options:[
-    {l:'自分の価値を知りたい',v:'value'},{l:'アカウントの可能性を知りたい',v:'potential'},
-    {l:'収益化できるか知りたい',v:'monetize'},{l:'改善ポイントを知りたい',v:'improve'},
-    {l:'個別に相談したい',v:'consult'}
-  ]},
-];
-
-// ============================================================
-// VALUATION LOGIC
-// ============================================================
-// Platform multiplier
-function platformMult(p){return{x:1.0,instagram:1.1,tiktok:1.15,youtube:1.3,threads:0.8,other:0.7}[p]||1.0}
-
-function calcFollower(v){return{'0-100':1000,'101-500':5000,'501-1000':20000,'1001-3000':80000,'3001-10000':300000,'10001+':1000000}[v]||1000}
-function calcEngagement(v){return{under10:1000,'10-30':5000,'31-100':20000,'101-300':80000,'301+':200000}[v]||1000}
-function calcGenre(v){return{'sns-marketing':200000,'side-business':150000,ai:150000,business:120000,career:100000,money:100000,beauty:80000,health:80000,lifestyle:60000,parenting:60000,workstyle:60000,other:50000}[v]||50000}
-function calcContinuity(post,dur,time){
-  const p={'0':0,'1-2':5000,'3-4':20000,'5-6':50000,daily:100000}[post]||0;
-  const d={under1m:0,'1-3m':10000,'3-6m':30000,'6m-1y':60000,'1y+':100000}[dur]||0;
-  const t={under30m:0,'30m-1h':10000,'1-2h':30000,'2-3h':50000,'3h+':80000}[time]||0;
-  return Math.min(p+d+t,180000);
-}
-function calcGrowth(v){return{none:0,slow:20000,steady:80000,rapid:200000}[v]||0}
-function calcMonetization(rev,model,ser){
-  const r={none:0,little:20000,under10k:50000,'10k-100k':150000,'100k+':300000}[rev]||0;
-  const m={affiliate:40000,'content-sales':70000,pr:30000,consulting:60000,agency:60000,community:50000,undecided:10000}[model]||0;
-  const s={curious:0,'10k':20000,'50k-100k':50000,serious:100000}[ser]||0;
-  return r+m+s;
-}
-
-function calcConfidence(a){
-  let s=80;
-  const fLvl=['0-100','101-500','501-1000','1001-3000','3001-10000','10001+'].indexOf(a.q2_followers);
-  const lLvl=['under10','10-30','31-100','101-300','301+'].indexOf(a.q3_likes);
-  if(Math.abs(fLvl-lLvl)<=1)s+=5;
-  const pLvl=['0','1-2','3-4','5-6','daily'].indexOf(a.q4_posts_per_week);
-  const gLvl=['none','slow','steady','rapid'].indexOf(a.q10_growth);
-  if(pLvl>=gLvl)s+=5;
-  const dLvl=['under1m','1-3m','3-6m','6m-1y','1y+'].indexOf(a.q5_duration);
-  const rLvl=['none','little','under10k','10k-100k','100k+'].indexOf(a.q9_revenue);
-  if(dLvl>=rLvl)s+=5;
-  return s;
-}
-
-function applyAdjustments(a,bd){
-  const adj={...bd};let cAdj=0;const comments=[];
-  if(a.q2_followers==='0-100'&&a.q3_likes==='301+'){cAdj-=10;comments.push('一部回答にズレがある可能性があります');}
-  if(a.q4_posts_per_week==='0'&&a.q10_growth==='rapid'){cAdj-=15;adj.growthValue=Math.max(adj.growthValue-50000,0);comments.push('成長状況の認識と運用量にズレがある可能性があります');}
-  if(a.q9_revenue==='none'&&a.q14_seriousness==='serious')comments.push('収益化意欲は高いものの、まずは小さな成果づくりが優先です');
-  if(a.q7_style==='undecided'&&a.q12_concern==='direction')comments.push('発信スタイルの明確化が最優先課題です');
-  if(a.q11_time==='under30m'&&(a.q14_seriousness==='50k-100k'||a.q14_seriousness==='serious')){cAdj-=8;comments.push('目標に対して投下時間が不足している可能性があります');}
-  if((a.q13_model==='consulting'||a.q13_model==='content-sales')&&a.q9_revenue==='none'&&a.q2_followers==='0-100'){adj.monetizationPotentialValue=Math.max(adj.monetizationPotentialValue-30000,0);comments.push('現段階では、まず信頼橋築と初期実績づくりが重要です');}
-  return{adj,cAdj,comments};
-}
-
-function calcPercentile(total){
-  if(total>=700001)return Math.floor(Math.random()*14)+1;
-  if(total>=300001)return Math.floor(Math.random()*20)+15;
-  if(total>=100001)return Math.floor(Math.random()*25)+35;
-  if(total>=30001)return Math.floor(Math.random()*20)+60;
-  return Math.floor(Math.random()*16)+80;
-}
-
-function predictFuture(cur,a,conf){
-  const gL=['none','slow','steady','rapid'].indexOf(a.q10_growth);
-  const pL=['0','1-2','3-4','5-6','daily'].indexOf(a.q4_posts_per_week);
-  const sL=['curious','10k','50k-100k','serious'].indexOf(a.q14_seriousness);
-  const dL=['under1m','1-3m','3-6m','6m-1y','1y+'].indexOf(a.q5_duration);
-  const gs=gL+pL+sL+dL;
-  let m3,m6,m12;
-  if(gs>=12){m3=1.5+Math.random()*.7;m6=2+Math.random()*1.5;m12=3+Math.random()*3;}
-  else if(gs>=7){m3=1.3+Math.random()*.5;m6=1.6+Math.random()*.9;m12=2.2+Math.random()*1.8;}
-  else{m3=1.1+Math.random()*.3;m6=1.2+Math.random()*.5;m12=1.4+Math.random()*.8;}
-  if(conf<60){m3*=.85;m6*=.8;m12*=.75;}
-  const r=v=>Math.round(v/10000)*10000;
-  return{three:r(cur*m3),six:r(cur*m6),twelve:r(cur*m12)};
-}
-
-function genStrengths(a,bd){
-  const s=[];
-  if(bd.genreValue>=120000)s.push('ジャンル自体は比較的収益化に向いています');
-  if(bd.continuityValue>=80000)s.push('継続性に一定の強みがあります');
-  if(bd.engagementValue>=20000)s.push('フォロワー規模以上に、エンゲージメントに強みがあります');
-  if(bd.growthValue>=80000)s.push('現在のフォロワー増加ペースは良好です');
-  if(a.q5_duration==='6m-1y'||a.q5_duration==='1y+')s.push('運用歴に対して、価値の伸び方は悪くありません');
-  if(a.q9_revenue!=='none')s.push('すでに収益化の経験があり、次のステップに進みやすい状態です');
-  if(!s.length)s.push('まだ伸びしろが多く、改善によって大きに価値が変わる段階です');
-  return s.slice(0,2);
-}
-function genWeaknesses(a,bd){
-  const w=[];
-  if(a.q4_posts_per_week==='0'||a.q4_posts_per_week==='1-2')w.push('投稧頻度が低く、価値の蓄積スピードが遅い可能性があります');
-  if(a.q9_revenue==='none'&&a.q13_model==='undecided')w.push('収益導線が弱く、価値を取り切れていません');
-  if(a.q7_style==='undecided')w.push('発信スタイルが未確定で、ブランドが積み上がりにくい状態です');
-  if(bd.engagementValue<=5000)w.push('いいね数が少なく、コンテンツの訴求力に改善余地があります');
-  if(a.q10_growth==='none')w.push('現在フォロワーが増えておらず、成長が停滞しています');
-  if(a.q11_time==='under30m')w.push('投下時間が少なく、成果が出にくい状態です');
-  if(!w.length)w.push('今のままだと、価値の伸びが鈍化しやすいです');
-  return w.slice(0,2);
-}
-function genSummary(total){
-  if(total>=500000)return'今のアカウントは、すでに伸ばす土台があります。戦い方を間違えなければ、資産価値をさらに高められる状態です。';
-  if(total>=150000)return'今のアカウントは、伸びしろは十分あります。ただし、いくつかの改善点を放置すると価値が頭打ちになりやすいです。';
-  return'今の価値はまだ小さいですが、伸びしろがないわけではありません。まずは土台設計を整えることで、アカウント価値は十分変えられます。';
-}
-function genLineCTA(total){
-  if(total>=500000)return'今のあなたは、改善次第でアカウント価値をさらに伸ばせる状態です。ここから先は、あなた専用の資産価値アップ戦略を確認してください。';
-  if(total>=150000)return'伸びしろは十分ありますが、自己流のままだと退回りしやすい状態です。ここから先は、価値を上げるための具体戦略です。';
-  return'今のまま闉雷に続けると、努力の割に価値が積み上がりにくい可能性があります。ここから先は、価値を作るための土台設計です。';
-}
-function confLabel(s){
-  if(s>=85)return'比較的精度の高い結果です';
-  if(s>=70)return'参考値として十分活用できます';
-  if(s>=55)return'一部回答に揺れがあります';
-  return'現状認識と理想にギャップがある可能性があります';
-}
-
-const lockedItems=[
-  {t:'あなたのアカウント価値を上げる3つの改善ポイント',d:'今の資産価値を効率的に引き上げるための具体的な改善施策'},
-  {t:'あなた向けの収益化ルート',d:'回答内容から綗出した、相性の良い収益化モデルと理由'},
-  {t:'3ヶ月の改善ロードマップ',d:'月ごとにやるべきことを整理した具体的なアクションプラン'},
-  {t:'プロフィール改善の方向性',d:'フォローされやすいプロフィールにするための改善案'},
-  {t:'最初に伸ばすべき投稧テーマ',d:'あなたのジャンルで反応が取れやすい投稿テーマの提案'},
-  {t:'個別相談で深掘りすべきポイント',d:'あなたの状況で最も効果的な相談テーマ'},
+const QUESTIONS=[
+{id:"Q1",question:"SNS発信の経験は?",description:"スタート地点を把握します",category:"BACKGROUND",allowMultiple:false,intentTag:"sns_experience",options:[
+{label:"発信経験があり、フォロワーも多い(1万人以上)",scoring:{expression:9,market:9,monetization:8,continuity:8}},
+{label:"発信経験あり、ある程度のフォロワーがいる(1k~1万人)",scoring:{expression:8,market:8,monetization:7,continuity:7}},
+{label:"発信経験あり、だが伸び悩んでいる(~1k人)",scoring:{expression:6,market:5,monetization:4,continuity:6}},
+{label:"個人利用だけで、発信経験は浅い",scoring:{expression:4,market:4,monetization:2,continuity:4}},
+{label:"SNSはほぼ未経験",scoring:{expression:2,market:2,monetization:1,continuity:3}}
+]},
+{id:"Q2",question:"年齢層と職業カテゴリは?",description:"ターゲット設定に使用",category:"BACKGROUND",allowMultiple:false,intentTag:"age_work",options:[
+{label:"20代、会社員 / 学生",scoring:{market:8,execution:8}},
+{label:"30代、会社員",scoring:{market:8,execution:7}},
+{label:"40代以上、会社員",scoring:{market:7,execution:6}},
+{label:"フリーランス / 個人事業",scoring:{market:8,execution:9}},
+{label:"主婦 / 育休中",scoring:{market:7,execution:7}},
+{label:"その他(ニート含む)",scoring:{market:5,execution:5}}
+]},
+{id:"Q3",question:"SNS発信に使える時間は?(1日)",description:"投下時間を把握",category:"RESOURCE",allowMultiple:false,intentTag:"daily_time",options:[
+{label:"30分未満",scoring:{continuity:3,execution:3}},
+{label:"30分~1時間",scoring:{continuity:6,execution:6}},
+{label:"1~2時間",scoring:{continuity:8,execution:8}},
+{label:"2時間以上",scoring:{continuity:9,execution:9}}
+]},
+{id:"Q4",question:"初期投資はできる?",description:"教材・ツール・広告費など",category:"RESOURCE",allowMultiple:false,intentTag:"investment_capacity",options:[
+{label:"概ね1万円以上できる",scoring:{monetization:8,execution:8}},
+{label:"概ね5,000円程度なら",scoring:{monetization:6,execution:6}},
+{label:"ほぼ無料でやりたい",scoring:{monetization:4,execution:5}},
+{label:"全くできない",scoring:{monetization:2,execution:2}}
+]},
+{id:"Q5",question:"現在のフォロワー数は?",description:"スケール段階を把握",category:"BACKGROUND",allowMultiple:false,intentTag:"followers",options:[
+{label:"1万人以上",scoring:{market:10,monetization:9}},
+{label:"1,000~1万人",scoring:{market:8,monetization:7}},
+{label:"100~1,000人",scoring:{market:6,monetization:5}},
+{label:"100人未満",scoring:{market:4,monetization:3}},
+{label:"ゼロ / アカウントなし",scoring:{market:2,monetization:1}}
+]},
+{id:"Q6",question:"顔出し発信できる?",description:"ブランド化戦略に影響",category:"APTITUDE",allowMultiple:false,intentTag:"face_reveal",options:[
+{label:"得意。むしろ顔出しで差別化したい",scoring:{expression:10,market:9,monetization:8}},
+{label:"できるが、できれば避けたい",scoring:{expression:7,market:7,monetization:6}},
+{label:"できれば したくない",scoring:{expression:5,market:5,monetization:4}},
+{label:"絶対にしたくない。匿名必須",scoring:{expression:3,market:6,monetization:3}}
+]},
+{id:"Q7",question:"何を発信すべきか決まっている?",description:"ジャンル選定度を判定",category:"CLARITY",allowMultiple:false,intentTag:"genre_clarity",options:[
+{label:"決まっている。軸が明確",scoring:{expression:8,market:8,execution:9}},
+{label:"だいたい決まっている",scoring:{expression:6,market:7,execution:7}},
+{label:"いくつか候補がある",scoring:{expression:5,market:5,execution:5}},
+{label:"全然決まっていない",scoring:{expression:2,market:2,execution:2}}
+]},
+{id:"Q8",question:"自分の強みや専門性は?",description:"発信軸を判定",category:"STRENGTH",allowMultiple:false,intentTag:"expertise",options:[
+{label:"複数ある。自信も高い",scoring:{expression:9,market:8,execution:8}},
+{label:"1~2個ある",scoring:{expression:7,market:7,execution:7}},
+{label:"あると思うが、確信がない",scoring:{expression:5,market:5,execution:5}},
+{label:"ない。これから探す状態",scoring:{expression:2,market:2,execution:2}}
+]},
+{id:"Q9",question:"発信に対する心理的抵抗は?",description:"メンタル準備度を判定",category:"MINDSET",allowMultiple:false,intentTag:"publish_resistance",options:[
+{label:"ない。むしろ楽しみ",scoring:{expression:10,continuity:9,execution:9}},
+{label:"少しはあるが、やれる",scoring:{expression:7,continuity:7,execution:7}},
+{label:"結構ある。批判も心配",scoring:{expression:4,continuity:4,execution:4}},
+{label:"強い抵抗。発信が怖い",scoring:{expression:2,continuity:2,execution:2}}
+]},
+{id:"Q10",question:"批判や炎上への耐性は?",description:"メンタルレジリエンスを判定",category:"MINDSET",allowMultiple:false,intentTag:"criticism_resilience",options:[
+{label:"気にならない。むしろ話題として活用できる",scoring:{continuity:10,execution:9}},
+{label:"ある程度は気にするが、続けられる",scoring:{continuity:7,execution:7}},
+{label:"結構気になる。落ち込みやすい",scoring:{continuity:4,execution:4}},
+{label:"強く気になる。止めたくなる可能性",scoring:{continuity:2,execution:2}}
+]},
+{id:"Q11",question:"習慣形成のスキルは?",description:"日々の継続を判定",category:"CONTINUITY",allowMultiple:false,intentTag:"habit_forming",options:[
+{label:"ルーティンを作るのが得意",scoring:{continuity:10,execution:8}},
+{label:"意識すればできる",scoring:{continuity:7,execution:7}},
+{label:"三日坊主になりがち",scoring:{continuity:4,execution:4}},
+{label:"習慣化が苦手",scoring:{continuity:2,execution:3}}
+]},
+{id:"Q12",question:"過去に挫折した副業や発信経験は?",description:"再チャレンジ適性を判定",category:"CONTINUITY",allowMultiple:false,intentTag:"past_failure",options:[
+{label:"挫折経験なし",scoring:{continuity:8,execution:7}},
+{label:"1回ある",scoring:{continuity:7,execution:7}},
+{label:"2~3回ある",scoring:{continuity:4inuity:5,execution:5}},
+{label:"何度もある",scoring:{continuity:3,execution:3}}
+]},
+{id:"Q13",question:"希望する収益目標は?(月額)",description:"目標に応じた戦略を設計",category:"GOAL",allowMultiple:false,intentTag:"income_goal",options:[
+{label:"1~3万円",scoring:{monetization:6,execution:6}},
+{label:"3~10万円",scoring:{monetization:7,execution:7}},
+{label:"10~30万円",scoring:{monetization:8,execution:8}},
+{label:"30万円以上",scoring:{monetization:9,execution:9}}
+]},
+{id:"Q14",question:"いつまでに最初の収益を得たい?",description:"タイムラインを設計",category:"GOAL",allowMultiple:false,intentTag:"timeline",options:[
+{label:"1ヶ月以内",scoring:{execution:9,monetization:7}},
+{label:"3ヶ月以内",scoring:{execution:8,monetization:8}},
+{label:"6ヶ月以内",scoring:{execution:6,monetization:7}},
+{label:"1年以内",scoring:{execution:5,monetization:6}}
+]},
+{id:"Q15",question:"興味のある発信ジャンルは?",description:"複数選択OK",category:"GENRE",allowMultiple:true,intentTag:"genre_interest",options:[
+{label:"副業",scoring:{market:8}},{label:"転職 / キャリア",scoring:{market:8}},{label:"起業 / ビジネス",scoring:{market:8}},{label:"SNS運用 / マーケ",scoring:{market:8}},{label:"AI活用",scoring:{market:8}},{label:"営業",scoring:{market:8}},{label:"ライフスタイル",scoring:{market:7}},{label:"子育て / 家族",scoring:{market:7}},{label:"恋愛 / 人間関係",scoring:{market:7}},{label:"健康 / ダイエット",scoring:{market:7}},{label:"美容",scoring:{market:7}},{label:"ファッション",scoring:{market:7}},{label:"ガジェット",scoring:{market:7}},{label:"お金 / 節約 / 投資",scoring:{market:8}},{label:"勉強 / 読書 / 学習法",scoring:{market:7}},{label:"地方移住 / 働き方",scoring:{market:7}},{label:"筋トレ / スポーツ",scoring:{market:7}},{label:"旅行",scoring:{market:7}},{label:"グルメ",scoring:{market:7}},{label:"その他",scoring:{market:6}}
+]},
+{id:"Q16",question:"実際に発信できそうなものは?",description:"複数選択OK",category:"APTITUDE",allowMultiple:true,intentTag:"content_type",options:[
+{label:"自分の実体験",scoring:{expression:9,market:8,monetization:8}},{label:"学んだことの要約",scoring:{expression:7,market:7,monetization:6}},{label:"ノウハウ解説",scoring:{expression:8,market:8,monetization:8}},{label:"比較レビュー",scoring:{expression:7,market:8,monetization:7}},{label:"日常発信",scoring:{expression:6,market:6,monetization:5}},{label:"意見発信",scoring:{expression:8,market:7,monetization:7}},{label:"図解",scoring:{expression:8,market:8,monetization:7}},{label:"ストーリー投稿",scoring:{expression:9,market:8,monetization:8}},{label:"まだわからない",scoring:{expression:3,market:3,monetization:2}}
+]},
+{id:"Q17",question:"興味のある収益化手段は?",description:"複数選択OK",category:"MONETIZE",allowMultiple:true,intentTag:"monetization_interest",options:[
+{label:"アフィリエイト",scoring:{monetization:8}},{label:"自分の商品販売",scoring:{monetization:9}},{label:"コンサル / 相談",scoring:{monetization:8}},{label:"SNS運用代行",scoring:{monetization:8}},{label:"PR案件",scoring:{monetization:7}},{label:"コミュニティ運営",scoring:{monetization:7}},{label:"コンテンツ販売",scoring:{monetization:9}},{label:"まだ決まっていない",scoring:{monetization:3}}
+]},
+{id:"Q18",question:"今の自分に一番近い悩みは?",description:"課題の可視化に使用",category:"ISSUE",allowMultiple:false,intentTag:"pain_point",options:[
+{label:"何を発信すればいいかわからない",scoring:{expression:3,market:3,execution:4}},{label:"フォロワーが増えない",scoring:{expression:5,market:5,execution:5}},{label:"続かない",scoring:{continuity:2,execution:2}},{label:"稼ぎ方がわからない",scoring:{monetization:3,execution:4}},{label:"自信がない",scoring:{expression:3,execution:3}},{label:"時間がない",scoring:{continuity:3,execution:3}},{label:"方向性が定まらない",scoring:{market:3,execution:4}}
+]},
+{id:"Q19",question:"SNSを見る時間は?(1日)",description:"情報収集と行動のバランスを判定",category:"ACTION",allowMultiple:false,intentTag:"browse_time",options:[
+{label:"30分未満",scoring:{continuity:4,expression:4,market:4,execution:4}},{label:"30分~1時間",scoring:{continuity:6,expression:6,market:6,execution:6}},{label:"1~2時間",scoring:{continuity:8,expression:8,market:8,execution:8}},{label:"2~4時間",scoring:{continuity:8,expression:8,market:9,execution:7}},{label:"4時間以上",scoring:{continuity:6,expression:7,market:8,execution:5}}
+]},
+{id:"Q20",question:"理想に近い発信スタイルは?",description:"あなたに合う型を判定",category:"STYLE",allowMultiple:false,intentTag:"style",options:[
+{label:"専門家として教える",scoring:{expression:8,market:8,monetization:9}},
+{label:"自分の成長過程を見せる",scoring:{expression:8,market:8,monetization:7}},
+{label:"体験を共有して共感を取る",scoring:{expression:9,market:8,monetization:7}},
+{label:"実績で引っ張る",scoring:{expression:7,market:7,monetization:8}},
+{label:"世界観でファンを作る",scoring:{expression:8,market:7,monetization:7}},
+{label:"まだ決めていない",scoring:{expression:3,market:3,monetization:3}}
+]},
+{id:"Q21",question:"新しいことを始める時の傾向は?",description:"行動スタイルを判定",category:"ACTION",allowMultiple:"action_style",options:[
+{label:"まず動きながら覚える",scoring:{continuity:8,execution:10,monetization:8}},{label:"軽く調べてから始める",scoring:{continuity:8,execution:8,monetization:7}},{label:"かなり調べてから始める",scoring:{continuity:6,execution:5,monetization:5}},{label:"調べて満足して動けないことが多い",scoring:{continuity:3,execution:2,monetization:2}}
+]},
+{id:"Q22",question:"最も続いた取り組みの期間は？",description:"継続力の実績を判定",category:"CONTINUITY",allowMultiple:false,intentTag:"longest_streak",options:[
+{label:"1ヶ月未満",scoring:{continuity:2,execution:2}},{label:"1〜3ヶ月",scoring:{continuity:4,execution:4}},{label:"3〜6ヶ月",scoring:{continuity:6,execution:6}},{label:"6ヶ月〜1年",scoring:{continuity:8,execution:8}},{label:"1年以上",scoring:{continuity:10,execution:9}}
+]},
+{id:"Q23",question:"周囲からよく言われることは？",description:"他者視点の強みを判定",category:"STRENGTH",allowMultiple:false,intentTag:"peer_feedback",options:[
+{label:"説明が上手い",scoring:{expression:9,monetization:8}},{label:"行動力がある",scoring:{execution:9,continuity:7}},{label:"コツコツ型",scoring:{continuity:9,execution:7}},{label:"センスがある",scoring:{expression:7,market:7}},{label:"親しみやすい",scoring:{expression:8,monetization:7}},{label:"特にない / わからない",scoring:{continuity:3,expression:3,market:3,monetization:3,execution:3}}
+]},
+{id:"Q24",question:"お金なしでも発信したいテーマは？",description:"発信持続力を判定",category:"CONTINUITY",allowMultiple:false,intentTag:"intrinsic_motivation",options:[
+{label:"ある",scoring:{continuity:10,expression:8,market:7}},{label:"なんとなくある",scoring:{continuity:7,expression:6,market:6}},{label:"稼げるならやる",scoring:{continuity:4,monetization:6,execution:5}},{label:"ない",scoring:{continuity:2,expression:3,market:3}}
+]},
+{id:"Q25",question:"反応が少なくても投稿を続けられる？",description:"初期フェーズの耐性を判定",category:"CONTINUITY",allowMultiple:false,intentTag:"resilience",options:[
+{label:"続けられる",scoring:{continuity:10,execution:9,expression:7}},{label:"工夫しながらなら",scoring:{continuity:8,execution:8,expression:7}},{label:"1〜2週間無反応はきつい",scoring:{continuity:5,execution:5,expression:5}},{label:"反応ないとやめたくなる",scoring:{continuity:2,execution:2,expression:3}}
+]},
+{id:"Q26",question:"商品紹介への心理的抵抗は？",description:"収益化適性を判定",category:"MONETIZE",allowMultiple:false,intentTag:"selling_resistance",options:[
+{label:"価値があれば普通に勧められる",scoring:{monetization:10,execution:8}},{label:"少し抵抗はあるが必要だと思う",scoring:{monetization:7,execution:6}},{label:"売り込みっぽくて苦手",scoring:{monetization:4,execution:4}},{label:"強い抵抗がある",scoring:{monetization:1,execution:2}}
+]},
+{id:"Q27",question:"実績が弱くても発信できる？",description:"発信開始ハードルを判定",category:"APTITUDE",allowMultiple:false,intentTag:"low_authority_publish",options:[
+{label:"できる。過程も価値だと思う",scoring:{expression:9,execution:8,market:8}},{label:"少し不安だができる",scoring:{expression:7,execution:6,market:7}},{label:"実績出るまで発信しにくい",scoring:{expression:4,execution:4,market:4}},{label:"実績がないと無理",scoring:{expression:2,execution:2,market:3}}
+]},
+{id:"Q28",question:"目標のためにやれることは？",description:"複数選択OK",category:"ACTION",allowMultiple:true,intentTag:"executable_tasks",options:[
+{label:"毎日投稿",scoring:{continuity:8,execution:8}},{label:"リサーチ",scoring:{market:8,execution:6}},{label:"リプや交流",scoring:{expression:7,monetization:7}},{label:"商品導線づくり",scoring:{monetization:9,execution:7}},{label:"学習",scoring:{continuity:7,execution:6}},{label:"正直どれも自信がない",scoring:{continuity:2,expression:2,market:2,monetization:2,execution:2}}
+]},
+{id:"Q29",question:"今回この診断を受けた理由は？",description:"最適な結果を出すために",category:"INTENT",allowMultiple:false,intentTag:"reason",options:[
+{label:"自分に向いているか知りたい",scoring:{}},{label:"何を発信すべきか知りたい",scoring:{}},{label:"収益化の方法を知りたい",scoring:{}},{label:"今のやり方が合っているか確認したい",scoring:{}},{label:"個別に相談したい",scoring:{}}
+]}
 ];
 
 // ============================================================
 // STATE
 // ============================================================
-let currentQ = 0;
-const answers = {};
+let state = { screen:"top", currentQ:0, answers:{}, multiSelect:[], result:null };
 
 // ============================================================
-// NAVIGATION
+// DIAGNOSIS LOGIC
 // ============================================================
-function showScreen(id){
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  window.scrollTo(0,0);
-}
-function startDiagnosis(){
-  currentQ=0;Object.keys(answers).forEach(k=>delete answers[k]);
-  showScreen('diagnosis');renderQuestion();
-}
-function goBack(){if(currentQ>0){currentQ--;renderQuestion();}}
-function goNext(){
-  if(currentQ<questions.length-1){currentQ++;renderQuestion();}
-  else showResult();
-}
-function selectOption(val){
-  answers[questions[currentQ].id]=val;
-  setTimeout(()=>{
-    if(currentQ<questions.length-1){currentQ++;renderQuestion();}
-    else showResult();
-  },200);
-}
+function calculateAxisScores(ans){const axes={continuity:0,expression:0,market:0,monetization:0,execution:0};const ak=Object.keys(axes);QUESTIONS.forEach(q=>{const sel=ans[q.id];if(sel===undefined||sel===null)return;if(q.allowMultiple){const idx=Array.isArray(sel)?sel:[sel];if(!idx.length)return;const sets=idx.map(i=>q.options[i]?.scoring||{});const merged={};ak.forEach(k=>{const vals=sets.map(s=>s[k]||0).filter(v=>v>0);if(!vals.length)return;vals.sort((a,b)=>b-a);merged[k]=vals.slice(0,3).reduce((s,v)=>s+v,0)/Math.min(vals.length,3)});let decay=1;if(q.id==="Q15"){if(idx.length<=1)decay=1;else if(idx.length===2)decay=0.95;else if(idx.length===3)decay=0.9;else decay=0.8;if(idx.length===1)merged.market=Math.max(merged.market||0,8);else if(idx.length===2)merged.market=Math.max(merged.market||0,7);else if(idx.length===3)merged.market=Math.max(merged.market||0,6);else merged.market=Math.min(merged.market||0,4)}ak.forEach(k=>{if(merged[k])axes[k]+=merged[k]*decay})}else{const i=typeof sel==="number"?sel:0;const sc=q.options[i]?.scoring||{};Object.entries(sc).forEach(([k,v])=>{axes[k]+=v})}});return axes}
+
+function normalizeAxisScores(raw){const ak=["continuity","expression","market","monetization","execution"];const mm={};ak.forEach(k=>{let mn=0,mx=0;QUESTIONS.forEach(q=>{const v=q.options.map(o=>o.scoring[k]||0);if(!v.length)return;mn+=Math.min(...v);mx+=Math.max(...v)});mm[k]={min:mn,max:mx}});const n={};ak.forEach(k=>{const{min,max}=mm[k];const r=max-min||1;n[k]=Math.round(Math.max(0,Math.min(100,((raw[k]-min)/r)*100)))});return n}
+
+function applyConsistencyAdjustments(axes,ans){const adj={...axes};const msgs=[];let tAdj=0,cAdj=0;const g=id=>{const a=ans[id];if(a===undefined||a===null)return-1;return Array.isArray(a)?a[0]??-1:a};const gi=id=>{const a=ans[id];if(!a&&a!==0)return[];return Array.isArray(a)?a:[a]};const q3=g("Q3"),q4=g("Q4"),q5=g("Q5"),q7=g("Q7"),q9=g("Q9"),q10=g("Q10"),q11=g("Q11"),q12=g("Q12"),q13=g("Q13"),q19=g("Q19"),q20=g("Q20"),q21=g("Q21"),q24=g("Q24"),q25=g("Q25"),q26=g("Q26"),q27=g("Q27");const q16i=gi("Q16"),q17i=gi("Q17"),q28i=gi("Q28");
+if(q3===0&&q13===3){tAdj-=8;adj.execution=Math.max(0,adj.execution-10);msgs.push("目標に対して投下時間が不足しています")}
+if(q11===0&&q12===3){cAdj-=20;adj.continuity=Math.max(0,adj.continuity-12);msgs.push("継続意識は高い一方で、実績とのズレがあります")}
+if((q9>=2||q10>=2)&&(q17i.includes(1)||q17i.includes(2))){adj.monetization=Math.max(0,adj.monetization-8);msgs.push("発信抵抗と希望する収益モデルにズレがあります")}
+if(q7===3&&q16i.includes(8)&&q20===5){adj.market=Math.max(0,adj.market-15);adj.expression=Math.max(0,adj.expression-10);msgs.push("まずはジャンルと発信軸の明確化が必要です")}
+if(q4===0&&q5===0&&q13>=2){adj.monetization=Math.max(0,adj.monetization-10);adj.execution=Math.max(0,adj.execution-6);msgs.push("初期段階では、まず土台作りが優先です")}
+if(q19===4&&q3===0){adj.execution=Math.max(0,adj.execution-6);msgs.push("情報収集が行動量を上回っている可能性があります")}
+if(q21===3&&!q28i.includes(0)&&!q28i.includes(3)){adj.execution=Math.max(0,adj.execution-8);msgs.push("情報収集に偏り、実行への変換が弱い可能性があります")}
+if(q25===3&&q24===3){adj.continuity=Math.max(0,adj.continuity-10);msgs.push("外部反応依存が強く、初期フェーズで離脱しやすい傾向があります")}
+if(q26===3&&(q17i.includes(1)||q17i.includes(2))){adj.monetization=Math.max(0,adj.monetization-10);msgs.push("販売行為への抵抗が、希望モデルの障壁になっています")}
+if(q27===3&&q4===0){adj.expression=Math.max(0,adj.expression-8);adj.execution=Math.max(0,adj.execution-6);msgs.push("実績待ちの状態だと、スタートが遅れやすくなります")}
+return{adjustedAxes:adj,contradictionMessages:msgs,totalScoreAdj:tAdj,confidenceAdj:cAdj}}
+
+function calculateConfidenceScore(ans){let s=85;const g=id=>{const a=ans[id];if(a===undefined||a===null)return-1;return Array.isArray(a)?a[0]??-1:a};const gi=id=>{const a=ans[id];if(!a&&a!==0)return[];return Array.isArray(a)?a:[a]};const q8=g("Q8"),q9=g("Q9"),q10=g("Q10"),q11=g("Q11"),q12=g("Q12"),q7=g("Q7"),q20=g("Q20"),q21=g("Q21"),q22=g("Q22"),q25=g("Q25"),q3=g("Q3"),q13=g("Q13"),q19=g("Q19");const q15i=gi("Q15"),q16i=gi("Q16");
+if(q11<=1&&q12<=1)s+=5;else if(q11===0&&q12>=2)s-=15;
+const er=[q8,q9,q10].filter(v=>v>=0);if(er.length===3){const sp=Math.max(...er)-Math.min(...er);if(sp<=1)s+=5;else if(sp>=3)s-=10}
+if(q7<=1&&!q16i.includes(8)&&q16i.length>0&&q20<5)s+=5;else if(q7>1&&(q16i.includes(8)||!q16i.length)&&q20===5)s-=8;
+if(q21<=1&&q22>=3&&q25<=1)s+=5;
+if(q3===0&&q13===3)s-=15;if(q15i.length>=5)s-=8;if(q19>=3&&q3<=1)s-=10;
+return Math.max(40,Math.min(95,s))}
+
+function calculateTotalScore(ax){return Math.round(ax.continuity*0.25+ax.expression*0.20+ax.market*0.20+ax.monetization*0.20+ax.execution*0.15)}
+
+function detectInfluencerType(ans){const g=id=>{const a=ans[id];if(a===undefined||a===null)return-1;return Array.isArray(a)?a[0]??-1:a};const gi=id=>{const a=ans[id];if(!a&&a!==0)return[];return Array.isArray(a)?a:[a]};const q6=g("Q6"),q8=g("Q8"),q9=g("Q9"),q10=g("Q10"),q20=g("Q20"),q23=g("Q23"),q27=g("Q27");const q16i=gi("Q16");const sc={story:0,expert:0,empathy:0,practice:0,worldview:0,anonymous:0,grinder:0};
+if(q6>=2)sc.anonymous+=3;if(q6<=1){sc.story+=2;sc.expert+=1}
+if(q8<=1){sc.story+=3;sc.empathy+=2;sc.expert+=2}if(q8>=3){sc.anonymous+=2;sc.grinder+=1}
+if(q9<=1&&q10<=1){sc.story+=1;sc.expert+=2;sc.empathy+=1}if(q9>=2||q10>=2){sc.anonymous+=2;sc.grinder+=2}
+if(q16i.includes(0))sc.story+=2;if(q16i.includes(2))sc.expert+=3;if(q16i.includes(7))sc.story+=2;if(q16i.includes(6))sc.expert+=2;if(q16i.includes(5))sc.empathy+=2;if(q16i.includes(4))sc.worldview+=2;if(q16i.includes(3))sc.practice+=2;
+if(q20===0)sc.expert+=4;if(q20===1){sc.practice+=3;sc.story+=2}if(q20===2)sc.empathy+=4;if(q20===3)sc.expert+=2;if(q20===4)sc.worldview+=4;
+if(q23===0)sc.expert+=3;if(q23===1){sc.practice+=2;sc.grinder+=2}if(q23===2)sc.grinder+=3;if(q23===3)sc.worldview+=2;if(q23===4)sc.empathy+=3;
+if(q27<=1){sc.story+=2;sc.practice+=2}if(q27>=2)sc.grinder+=1;
+const types=[{key:"story",name:"ストーリー型インフルエンサー",emoji:"📖",desc:"「過程」と「変化」を見せることで人を惹きつけるタイプ。リアルな試行錯誤の共有が武器になります。"},{key:"expert",name:"専門家型インフルエンサー",emoji:"🎓",desc:"「わかりやすく整理して伝える」ことで価値を出しやすいタイプ。ノウハウ・解説コンテンツと相性◎"},{key:"empathy",name:"共感型発信者",emoji:"💬",desc:"「わかる」「自分もそう」と思わせる発信で支持を集めやすいタイプ。体験共有が強みに。"},{key:"practice",name:"実践共有型クリエイター",emoji:"🔬",desc:"学んだことを試し、過程を見せることで信頼を作りやすいタイプ。実践ログが向いています。"},{key:"worldview",name:"世界観型クリエイター",emoji:"🎨",desc:"「この人の空気感が好き」で選ばれやすいタイプ。価値観・ライフスタイルの見せ方が重要。"},{key:"anonymous",name:"匿名発信特化型",emoji:"🦊",desc:"切り口・言語化・企画力で勝負しやすいタイプ。匿名でも十分に伸ばせる設計が可能です。"},{key:"grinder",name:"積み上げ型副業プレイヤー",emoji:"⚡",desc:"継続と改善でじわじわ伸ばす戦い方に向いています。再現性重視の設計が結果に直結。"}];
+types.sort((a,b)=>(sc[b.key]||0)-(sc[a.key]||0));return types[0]}
+
+function detectBestGenres(ans){const gi=id=>{const a=ans[id];if(!a&&a!==0)return[];return Array.isArray(a)?a:[a]};const g=id=>{const a=ans[id];if(a===undefined||a===null)return-1;return Array.isArray(a)?a[0]??-1:a};const q15i=gi("Q15"),q16i=gi("Q16"),q20=g("Q20"),q7=g("Q7"),q24=g("Q24"),q2=g("Q2");const labels=QUESTIONS.find(q=>q.id==="Q15").options.map(o=>o.label);const reasons={"副業":"実体験と成長過程の発信と相性◎","転職 / キャリア":"会社員経験の言語化が強みに","起業 / ビジネス":"実践知と行動力をコンテンツ化","SNS運用 / マーケ":"改善プロセスの共有と相性◎","AI活用":"実践→要約発信がしやすい","営業":"対人スキルの言語化で差別化","ライフスタイル":"世界観構築がそのまま発信に","子育て / 家族":"日常リアルと共感性を活用","恋愛 / 人間関係":"悩みの言語化で共感を獲得","健康 / ダイエット":"変化の過程がコンテンツ化しやすい","美容":"レビュー・ビフォーアフターと相性◎","ファッション":"世界観とスタイルを発信に変換","ガジェット":"レビュー・比較で差別化","お金 / 節約 / 投資":"情報整理型と相性◎","勉強 / 読書 / 学習法":"学びの過程を発信に変換","地方移住 / 働き方":"ライフスタイルの違いがコンテンツに","筋トレ / スポーツ":"変化とデータが発信に直結","旅行":"体験コンテンツの素材が豊富","グルメ":"レビュー・発見の共有でエンゲージメント◎","その他":"ニッチな切り口で差別化"};
+const sc={};labels.forEach(g=>sc[g]=0);q15i.forEach(i=>{const l=labels[i];if(l)sc[l]+=10});
+if(q20===0)["SNS運用 / マーケ","AI活用","お金 / 節約 / 投資","副業"].forEach(g=>sc[g]=(sc[g]||0)+3);
+if(q20===1||q20===2)["副業","健康 / ダイエット","子育て / 家族","転職 / キャリア"].forEach(g=>sc[g]=(sc[g]||0)+3);
+if(q20===4)["ライフスタイル","ファッション","旅行"].forEach(g=>sc[g]=(sc[g]||0)+3);
+if(q7<=1)q15i.forEach(i=>{const l=labels[i];if(l)sc[l]+=4});
+if(q16i.includes(0))["副業","転職 / キャリア","健康 / ダイエット"].forEach(g=>sc[g]=(sc[g]||0)+2);
+if(q16i.includes(2))["SNS運用 / マーケ","AI活用","お金 / 節約 / 投資"].forEach(g=>sc[g]=(sc[g]||0)+2);
+if(q2===0||q2===1)["副業","転職 / キャリア"].forEach(g=>sc[g]=(sc[g]||0)+2);
+if(q2===5)["子育て / 家族","ライフスタイル"].forEach(g=>sc[g]=(sc[g]||0)+2);
+if(q24<=1)q15i.forEach(i=>{const l=labels[i];if(l)sc[l]+=2});
+return Object.entries(sc).filter(([,v])=>v>0).sort((a,b)=>b[1]-a[1]).slice(0,3).map(([name])=>({name,reason:reasons[name]||"あなたの回答傾向と相性◎"}))}
+
+function detectMonetizationModels(ans){const g=id=>{const a=ans[id];if(a===undefined||a===null)return-1;return Array.isArray(a)?a[0]??-1:a};const gi=id=>{const a=ans[id];if(!a&&a!==0)return[];return Array.isArray(a)?a:[a]};const q6=g("Q6"),q7=g("Q7"),q4=g("Q4"),q5=g("Q5"),q9=g("Q9"),q10=g("Q10"),q14=g("Q14"),q26=g("Q26");const q17i=gi("Q17"),q28i=gi("Q28");
+const models=[{name:"アフィリエイト",score:3,reason:"実績が少なくても収益化しやすいモデル"},{name:"コンテンツ販売",score:0,reason:"知識を整理して価値に変えやすい"},{name:"コンサル / 相談",score:0,reason:"言語化力が収益に直結"},{name:"SNS運用代行",score:0,reason:"改善視点と実務力で差別化"},{name:"PR案件",score:0,reason:"影響力が整うと伸びやすい"},{name:"コミュニティ運営",score:0,reason:"人を巻き込む力と相性◎"},{name:"自社商品販売",score:0,reason:"導線設計まで強いと利益率◎"},{name:"スポット営業獲得",score:0,reason:"最短で売上を作りやすい"}];
+const f=n=>models.find(m=>m.name===n);const q17l=["アフィリエイト","自社商品販売","コンサル / 相談","SNS運用代行","PR案件","コミュニティ運営","コンテンツ販売"];
+q17i.forEach(i=>{const l=q17l[i];const m=f(l);if(m)m.score+=8});
+if(q26<=1){f("コンサル / 相談").score+=5;f("自社商品販売").score+=5;f("スポット営業獲得").score+=4}
+if(q14<=1){f("スポット営業獲得").score+=5;f("コンサル / 相談").score+=3}
+if(q7<=1){f("コンテンツ販売").score+=5;f("コンサル / 相談").score+=4;f("自社商品販売").score+=4}
+if(q4<=1||q5<=1){f("アフィリエイト").score+=5;f("SNS運用代行").score+=3}
+if(q5>=3)f("PR案件").score+=5;if(q6<=1){f("PR案件").score+=3;f("コンサル / 相談").score+=2}
+if(q9<=1&&q10<=1)f("コンテンツ販売").score+=3;if(q26>=2){f("コンサル / 相談").score-=3;f("自社商品販売").score-=3}
+if(q28i.includes(3)){f("コンテンツ販売").score+=3;f("自社商品販売").score+=3}if(q28i.includes(2))f("コミュニティ運営").score+=3;
+models.sort((a,b)=>b.score-a.score);return models.slice(0,3)}
+
+function estimateIncomeRange(total,hasStrong){let t=total>=70?"high":total>=50?"mid":"low";if(hasStrong&&t==="high")t="mid";if(hasStrong&&t==="mid")t="low";return{high:{m3:"3〜5万円",m6:"5〜15万円",m12:"15〜30万円"},mid:{m3:"1〜3万円",m6:"3〜10万円",m12:"10〜20万円"},low:{m3:"0〜1万円",m6:"1〜3万円",m12:"3〜10万円"}}[t]}
+
+function generateWeaknesses(axes,msgs){const w=[];const info={continuity:{name:"継続力",msg:"能力より継続設計がボトルネック。続けられる仕組みを先に作る必要があります。"},expression:{name:"発信適性",msg:"「何をどう見せるか」の整理が不足。伝える型を持つと一気にラクになります。"},market:{name:"市場適合性",msg:"誰に向けた発信かがぼやけています。勝てる土俵を絞ることが重要。"},monetization:{name:"収益化適性",msg:"お金に変える導線設計が弱い状態。どう自然に提案するかを整える必要あり。"},execution:{name:"実行力",msg:"実行量に変換しきれていない可能性。小さく打って修正する方が伸びやすいです。"}};
+Object.entries(axes).sort((a,b)=>a[1]-b[1]).forEach(([k,v])=>{if(v<55&&w.length<2)w.push({axis:info[k].name,message:info[k].msg,score:v})});
+msgs.forEach(m=>{if(w.length<4)w.push({axis:"矛盾検出",message:m})});return w}
+
+function generateResultCopy(total,conf,msgs,q29){let tone="balanced";if(total>=75&&conf>=70&&msgs.length<=1)tone="strong_push";if(total<55||conf<55||msgs.length>=3)tone="reality_check";let sh,cm,li,cb;
+if(total>=75)sh="あなたのSNS副業ポテンシャルは<strong>かなり高め</strong>です。戦い方を間違えなければ十分に伸ばせる可能性があります。";else if(total>=55)sh="あなたのSNS副業ポテンシャルは<strong>平均以上</strong>。方向性を絞れれば、十分に収益化が狙えるタイプです。";else sh="今のままだと少し遠回りしやすい状態ですが、<strong>戦い方が未整理</strong>なだけ。土台を整えれば伸びる余地は十分あります。";
+if(conf>=80)cm="診断結果の信頼度が高い。この方向で進めて大丈夫。";else if(conf>=60)cm="だいたいの方向性は間違っていません。ただし詳細は個別相談で詰めるといいでしょう。";else cm="いくつか矛盾が検出されているので、詳細は個別相談で整理することをお勧めします。";
+if(tone==="strong_push")li="今すぐ動き始めることが何より重要です。設計よりもまず行動。失敗から学ぶスタイルで進めましょう。";else if(tone==="reality_check")li="今の延長だと難しい可能性が高いです。戦い方を大きく変える必要があります。詳細戦略を参考に方向性を見直しましょう。";else li="現在のあなたは過度な調整より、方向性を定めて進み始めることが大事です。";
+return{scoreHeadline:sh,confidenceMessage:cm,actionIntroduction:li}}
+
+function generateAxisDetails(axes,ans){
+const details={
+continuity:{name:"継続力",icon:"🔄",high:"あなたは習慣化・ルーティン作りが得意なタイプです。SNS運用で最も重要な「続ける力」が備わっています。仕組み化を意識すればさらに安定感が増します。",mid:"継続の意志はあるものの、仕組み化が不十分な可能性があります。「やる気」に頼るのではなく、曜日・時間帯・テンプレートを固定して仕組みで回す設計が効果的です。",low:"継続が最大の課題です。まずは週2回投稿を1ヶ月続けることから始めましょう。完璧主義を捨て、60点の投稿を出し続けることが最短ルートです。",actions_high:["投稿カレンダーを作成し、1ヶ月分のネタをストック","バッチ作業で週末に5本分の下書きを一気に作成","投稿パフォーマンスの週次振り返りを習慣化"],actions_mid:["毎日同じ時間にSNSを開く習慣をまず作る","テンプレートを3パターン用意して使い回す","「完璧」より「公開すること」を優先するルールを設定"],actions_low:["まず1日1ツイート（140文字以内）を7日間続ける","投稿のハードルを極限まで下げる（感想一言でもOK）","仲間やコミュニティで継続を宣言し、外圧を活用する"]},
+expression:{name:"発信適性",icon:"✍️",high:"言語化力・表現力が高いタイプです。あなたの「伝え方」はそれだけで武器になります。独自の切り口や視点を磨くことで、差別化が加速します。",mid:"基本的な発信力はありますが、「自分ならではの切り口」がまだ見つかっていない段階です。成功投稿の型を研究し、自分のスタイルに落とし込む作業が効果的です。",low:"発信に苦手意識がある段階です。まずは「感想型」の投稿から始めましょう。本や動画を見た感想、日常の気づきをそのまま言葉にするだけでOKです。",actions_high:["独自のハッシュタグやシリーズ企画を立ち上げる","ストーリーテリングの型（PREP法・体験→気づき→学び）を使い分ける","週1回は「渾身の長文投稿」にチャレンジする"],actions_mid:["バズ投稿を毎日10件分析して型をストックする","「主張+理由+具体例」のフレームワークで投稿を構成する","画像・図解の活用で表現の幅を広げる"],actions_low:["まずは「今日学んだこと」を1文で投稿する習慣から","成功者の投稿を参考に写経（リライト練習）する","音声入力で話すように書く練習を取り入れる"]},
+market:{name:"市場適合性",icon:"🎯",high:"選んでいるジャンル・ターゲットの相性が良好です。需要のある領域でポジションを取れる可能性が高い状態。早めに「この人といえば○○」を確立しましょう。",mid:"方向性は悪くないですが、ターゲットがやや広い・もしくは絞りきれていない状態です。「誰の、どんな悩みを解決するか」を一文で言えるレベルまで絞りましょう。",low:"市場とのフィットが弱い状態です。競合リサーチが不足している可能性があります。まず伸びているアカウントを20個分析して、勝てる隙間を見つけましょう。",actions_high:["競合との差別化ポイントを3つ明確にする","ターゲットペルソナを1人に絞り、その人に刺さる発信を設計","コラボ・対談企画で認知を一気に拡大する"],actions_mid:["伸びているアカウントを20個リストアップして共通点を分析","「○○×○○」の掛け算でニッチポジションを見つける","フォロワーにアンケートを取り、求められている内容を把握する"],actions_low:["SNS検索で需要のあるキーワードを50個リストアップ","競合アカウントの伸びた投稿TOP10を分析する","3つのジャンル候補で2週間ずつテスト投稿して反応を比較"]},
+monetization:{name:"収益化適性",icon:"💰",high:"お金に変える導線設計のセンスが高いタイプです。セールスに必要な「提案力」と「信頼構築力」が備わっています。商品設計に集中すれば早期に収益化できる可能性が高い。",mid:"収益化の基本概念は理解していますが、実際の導線設計がまだ甘い状態です。「無料コンテンツ→信頼→有料提案」の流れを具体的に設計することが重要です。",low:"収益化に対する心理的ブロックか、知識不足がある状態です。まずは小さく「有料の価値提供」を体験することから始めましょう。500円の有料noteでもOKです。",actions_high:["高単価商品（コンサル・講座）の設計に着手する","無料→低単価→中単価→高単価のファネルを構築","セールスライティングの技術を磨く"],actions_mid:["アフィリエイトリンクを自然に組み込む投稿パターンを確立","無料特典（PDF・チェックリスト）でリスト構築を開始","収益化している同ジャンルのアカウントの導線を徹底分析"],actions_low:["まず1つ、有料コンテンツ（note・Brain）を作って販売体験する","アフィリエイトASPに登録し、自分のジャンルの案件を把握する","「お金をもらう＝価値提供」というマインドセットを固める"]},
+execution:{name:"実行力",icon:"⚡",high:"行動量とスピード感が強みです。思い立ったら即実行できるタイプなので、方向性さえ合えば一気に成果を出せる可能性があります。PDCAの回転速度を武器にしましょう。",mid:"実行力はあるものの、戦略なく動いてしまう傾向がありそうです。「考える→即やる→振り返る」のサイクルを意識的に回すことで、効率が大幅にUPします。",low:"考えすぎて動けないタイプの可能性があります。「まず小さく試す」を合言葉にしましょう。1投稿に30分以上かけないルールを設け、とにかく数を出すフェーズです。",actions_high:["A/Bテストを週2回実施して最適な投稿パターンを見つける","KPIダッシュボードを作成し、数値ベースで改善","外注・ツール活用で作業効率を2倍にする"],actions_mid:["1日の作業を30分タイムボックスで区切って実行","週次で「やったこと・学んだこと・次やること」を記録","便利ツール（Canva・ChatGPT等）を活用して制作時間を短縮"],actions_low:["今日中に1投稿する。内容は何でもOK","毎朝10分だけSNS作業の時間を確保する","タスクを「5分でできること」レベルまで分解する"]}};
+return Object.entries(axes).map(([key,val])=>{const d=details[key];if(!d)return null;const level=val>=70?"high":val>=50?"mid":"low";return{key,name:d.name,icon:d.icon,score:val,explanation:d[level],actions:d["actions_"+level]}}).filter(Boolean)}
+
+function generateActionPlan(axes,type,genres,models){
+const weakest=Object.entries(axes).sort((a,b)=>a[1]-b[1]);const w1=weakest[0],w2=weakest[1];
+const axisNames={continuity:"継続力",expression:"発信適性",market:"市場適合性",monetization:"収益化適性",execution:"実行力"};
+const plan=[];
+plan.push({period:"1ヶ月目",title:"土台づくり",tasks:[`${axisNames[w1[0]]}を重点的に改善（現在${w1[1]}pt）`,`${type.name}としてのプロフィールを完成させる`,`${genres[0]?.name||"選定ジャンル"}で毎日1投稿を継続`,`同ジャンルの成功アカウントを10個フォローして研究`]});
+plan.push({period:"2〜3ヶ月目",title:"発信の型を確立",tasks:[`${axisNames[w2[0]]}の改善にも着手（現在${w2[1]}pt）`,`反応の良い投稿パターンをテンプレート化`,`${models[0]?.name||"収益モデル"}の準備・導線設計を開始`,`フォロワー500人突破を目標にエンゲージメント施策`]});
+plan.push({period:"4〜6ヶ月目",title:"収益化の実装",tasks:[`${models[0]?.name||"収益モデル"}で初収益を達成`,`コンテンツの質を上げて単価UP`,`${genres[1]?.name?"サブジャンル（"+genres[1].name+"）にも展開":"コンテンツの幅を広げる"}`,`分析→改善のPDCAサイクルを週次で運用`]});
+return plan}
+
+function generatePercentile(total,axes){
+const brackets=[{min:80,label:"上位5%",desc:"非常に高いポテンシャル。すぐに行動すれば短期間で成果が出る可能性大。"},{min:70,label:"上位15%",desc:"平均を大きく上回る素質あり。弱点を補強すれば一気に加速できる段階。"},{min:60,label:"上位30%",desc:"基礎力は十分。方向性を絞って集中すれば収益化は十分射程圏内。"},{min:50,label:"上位50%",desc:"伸びしろが大きい段階。正しい設計で取り組めば確実にステップアップできる。"},{min:0,label:"上位70%",desc:"まだ準備段階ですが、ここから伸びる人も多い。まず土台を整えることが最優先。"}];
+const b=brackets.find(x=>total>=x.min);
+const strongest=Object.entries(axes).sort((a,b)=>b[1]-a[1])[0];
+const weakest=Object.entries(axes).sort((a,b)=>a[1]-b[1])[0];
+const axisNames={continuity:"継続力",expression:"発信適性",market:"市場適合性",monetization:"収益化適性",execution:"実行力"};
+return{label:b.label,desc:b.desc,strongest:{name:axisNames[strongest[0]],score:strongest[1]},weakest:{name:axisNames[weakest[0]],score:weakest[1]}}}
+
+function generateRevenueSimulation(total,axes,models){
+const base=total>=75?8:total>=60?4:total>=50?2:1;const monetizationBonus=axes.monetization>=70?1.5:axes.monetization>=50?1.2:1;const continuityBonus=axes.continuity>=70?1.3:axes.continuity>=50?1.1:0.9;
+const m1=Math.round(base*0.3*monetizationBonus*continuityBonus);const m3=Math.round(base*1*monetizationBonus*continuityBonus);const m6=Math.round(base*2.5*monetizationBonus*continuityBonus);const m12=Math.round(base*6*monetizationBonus*continuityBonus);
+const topModel=models[0]?.name||"アフィリエイト";
+return{monthly:[{month:"1ヶ月目",amount:m1,note:"基盤構築期間・収益はまだ少ない"},{month:"3ヶ月目",amount:m3,note:"投稿の型が安定し始める時期"},{month:"6ヶ月目",amount:m6,note:"収益導線が機能し始める"},{month:"12ヶ月目",amount:m12,note:"複数の収益源が確立"}],primaryModel:topModel,assumptions:"正しい設計で週5日以上投稿を継続した場合の目安。成果を保証するものではありません。"}}
+
+function computeResult(ans){const raw=calculateAxisScores(ans);const adj_result=applyConsistencyAdjustments(raw,ans);const adj=adj_result.adjustedAxes;const axes=normalizeAxisScores(adj);const tscore=calculateTotalScore(axes);const conf=calculateConfidenceScore(ans);const type=detectInfluencerType(ans);const genres=detectBestGenres(ans);const models=detectMonetizationModels(ans);const hasStrong=Object.values(axes).filter(v=>v>=75).length>0;const income=estimateIncomeRange(tscore,hasStrong);const weak=generateWeaknesses(axes,adj_result.contradictionMessages);const copy=generateResultCopy(tscore,conf,adj_result.contradictionMessages,ans.Q29);const axisDetails=generateAxisDetails(axes,ans);const actionPlan=generateActionPlan(axes,type,genres,models);const percentile=generatePercentile(tscore,axes);const revenueSimulation=generateRevenueSimulation(tscore,axes,models);return{axes,totalScore:tscore,confidence:conf,influencerType:type,genres,monetizationModels:models,incomeRange:income,weaknesses:weak,copy,axisDetails,actionPlan,percentile,revenueSimulation}}
 
 // ============================================================
-// RENDER QUESTION
+// RENDER FUNCTIONS
 // ============================================================
-function renderQuestion(){
-  const q=questions[currentQ];const total=questions.length;
-  document.getElementById('stepLabel').textContent=`ステップ ${currentQ+1} / ${total}`;
-  document.getElementById('progressFill').style.width=`${((currentQ+1)/total)*100}%`;
-  document.getElementById('backBtn').disabled=currentQ===0;
+function renderTop(el){
+  el.innerHTML=`
+  <div style="min-height:100vh">
+    <!-- Hero: Dark with SVG -->
+    <div style="background:#111;color:white;padding:48px 20px 64px;text-align:center;position:relative;overflow:hidden">
+      <div style="max-width:480px;margin:0 auto">
+        <div class="fade-in">
+          <div style="display:inline-block;background:var(--lime);color:#111;padding:4px 16px;border-radius:4px;font-size:11px;font-weight:800;letter-spacing:2px;margin-bottom:28px">POTENTIAL DIAGNOSIS</div>
+          <h1 style="font-size:32px;font-weight:900;line-height:1.5;margin-bottom:20px;letter-spacing:-0.5px">
+            あなたはSNS副業で<br>
+            <span style="color:var(--lime)">どこまで稼げる？</span>
+          </h1>
 
-  const area=document.getElementById('questionArea');
-  const nw=document.getElementById('nextWrap');
-  nw.innerHTML='';
+          <!-- Hero SVG: Phone with charts -->
+          <svg viewBox="0 0 240 280" style="width:100%;max-width:200px;height:auto;margin:24px auto;display:block">
+            <!-- Phone body -->
+            <rect x="30" y="20" width="180" height="240" rx="20" fill="none" stroke="var(--lime)" stroke-width="3"/>
+            <!-- Phone notch -->
+            <rect x="90" y="20" width="60" height="18" rx="6" fill="#222"/>
+            <!-- Screen -->
+            <rect x="36" y="45" width="168" height="200" rx="12" fill="#1a1a1a"/>
 
-  let html=`<div class="anim-slide-right"><h2 class="q-title">${q.title}</h2>`;
-  if(q.desc)html+=`<p class="q-desc">${q.desc}</p>`;
+            <!-- Chart bars on screen -->
+            <g transform="translate(50, 140)">
+              <rect x="0" y="40" width="18" height="40" fill="var(--lime)" opacity="0.8"/>
+              <rect x="26" y="20" width="18" height="60" fill="var(--lime)" opacity="0.9"/>
+              <rect x="52" y="30" width="18" height="50" fill="var(--lime)" opacity="0.85"/>
+              <rect x="78" y="10" width="18" height="70" fill="var(--lime)"/>
+            </g>
 
-  if(q.type==='text'){
-    const val=answers[q.id]||'';
-    html+=`<input class="text-input" type="text" placeholder="${q.placeholder||''}" value="${escapeHtml(val)}" oninput="answers['${q.id}']=this.value" id="textInput">`;
-    if(q.helper)html+=`<p class="q-helper">${q.helper}</p>`;
-    html+=`</div>`;
-    area.innerHTML=html;
-    nw.innerHTML=`<div class="next-wrap"><button class="next-btn" onclick="goNext()">${val?'次へ進む':'スキップして次へ'}</button><p class="skip-note">${val?'':'入力しなくても診断できます'}</p></div>`;
-    document.getElementById('textInput')?.focus();
-  } else {
-    html+=`<div class="options">`;
-    q.options.forEach((o,i)=>{
-      const sel=answers[q.id]===o.v?'selected':'';
-      const iconHtml=o.icon?`<span class="opt-icon">${o.icon}</span>`:'';
-      html+=`<button class="option-btn ${sel}" onclick="selectOption('${o.v}')">
-        <span class="radio-circle"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></span>
-        ${iconHtml}${o.l}
-      </button>`;
-    });
-    html+=`</div></div>`;
-    area.innerHTML=html;
-  }
-}
-function escapeHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+            <!-- Sparkle effects -->
+            <circle cx="220" cy="60" r="4" fill="var(--lime)" opacity="0.8"/>
+            <circle cx="210" cy="100" r="3" fill="var(--lime)" opacity="0.6"/>
+          </svg>
 
-// ============================================================
-// SHOW RESULT
-// ============================================================
-function showResult(){
-  showScreen('result');
-  const el=document.getElementById('resultBody');
-  el.innerHTML=`<div class="loading"><div class="spinner"></div><p>診断結果を算出中...</p></div>`;
-
-  setTimeout(()=>{
-    const a=answers;
-    const pf=a.q0_platform||'x';
-    const pm=platformMult(pf);
-    const pfInfo=PLATFORM_MAP[pf]||PLATFORM_MAP.other;
-
-    const bd={
-      followerValue:Math.round(calcFollower(a.q2_followers)*pm),
-      engagementValue:Math.round(calcEngagement(a.q3_likes)*pm),
-      genreValue:calcGenre(a.q6_genre),
-      continuityValue:calcContinuity(a.q4_posts_per_week,a.q5_duration,a.q11_time),
-      growthValue:calcGrowth(a.q10_growth),
-      monetizationPotentialValue:calcMonetization(a.q9_revenue,a.q13_model,a.q14_seriousness)
-    };
-    const rawConf=calcConfidence(a);
-    const{adj,cAdj,comments}=applyAdjustments(a,bd);
-    const conf=Math.max(40,Math.min(95,rawConf+cAdj));
-    const total=adj.followerValue+adj.engagementValue+adj.genreValue+adj.continuityValue+adj.growthValue+adj.monetizationPotentialValue;
-    const pct=calcPercentile(total);
-    const fv=predictFuture(total,a,conf);
-    const strengths=genStrengths(a,adj);
-    const weaknesses=genWeaknesses(a,adj);
-    const summary=genSummary(total);
-    const lineIntro=genLineCTA(total);
-    const cLabel=confLabel(conf);
-
-    const acct=a.q1_account||'';
-    const acctDisplay=acct?(acct.startsWith('@')?acct:'@'+acct):'';
-
-    let html=`
-    ${acctDisplay?`<div class="result-account reveal">${pfInfo.icon} ${acctDisplay}</div>`:''}
-
-    <div class="value-card reveal" style="transition-delay:.1s">
-      <div class="platform-label"><span class="pl-icon">${pfInfo.icon}</span>${pfInfo.name}</div>
-      <div class="vc-label">あなたのSNS資産価値</div>
-      <div class="vc-amount" id="assetValue">¥0</div>
-      <div class="percentile-pill">上位 ${pct}%</div>
-      <div class="vc-conf">診断信頼度: ${conf}% — ${cLabel}</div>
-    </div>
-
-    <div class="stat-section reveal" style="transition-delay:.25s">
-      <div class="sh">将来価値の目安</div>
-      <div class="stat-row"><span class="sr-label">3ヶ月後</span><span class="sr-value">¥${fv.three.toLocaleString()}</span></div>
-      <div class="stat-row"><span class="sr-label">6ヶ月後</span><span class="sr-value">¥${fv.six.toLocaleString()}</span></div>
-      <div class="stat-row"><span class="sr-label">12ヶ月後</span><span class="sr-value">¥${fv.twelve.toLocaleString()}</span></div>
-      <div class="stat-note">※ 参考目安</div>
-    </div>
-
-    <div class="insight-card reveal" style="transition-delay:.4s">
-      <div class="ic-head"><div class="ic-dot ic-dot-blue"></div><h3>総評</h3></div>
-      <p>${summary}</p>
-      ${comments.map(c=>`<p class="comment-line">※ ${c}</p>`).join('')}
-    </div>
-
-    <div class="insight-card reveal" style="transition-delay:.55s">
-      <div class="ic-head"><div class="ic-dot ic-dot-green"></div><h3>強み</h3></div>
-      ${strengths.map(s=>`<p>${s}</p>`).join('')}
-    </div>
-
-    <div class="insight-card reveal" style="transition-delay:.7s">
-      <div class="ic-head"><div class="ic-dot ic-dot-amber"></div><h3>改善余地</h3></div>
-      ${weaknesses.map(w=>`<p>${w}</p>`).join('')}
-    </div>
-
-    <div class="locked-card reveal" style="transition-delay:.85s">
-      <div class="locked-overlay">
-        <div class="lock-circle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></div>
-        <p class="lo-t">ここから先は、あなた専用の詳細分析です</p>
-        <p class="lo-s">詳細結果はLINEで無料配布しています</p>
-      </div>
-      <div class="locked-bg">
-        ${lockedItems.map(it=>`<div class="locked-item"><h4>${it.t}</h4><p>${it.d}</p></div>`).join('')}
-      </div>
-    </div>
-
-    <div class="line-card reveal" style="transition-delay:1s">
-      <p class="lc-intro">${lineIntro}</p>
-      <a href="${LINE_URL}" target="_blank" rel="noopener noreferrer" class="line-btn" style="animation:pulseGlow 2s ease-in-out infinite">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
-        LINEで詳細レポートを受け取る
-      </a>
-      <p class="lc-sub">友だち追加後、あなた専用の詳細レポートを自動でお届けします</p>
-      <div class="lc-details">
-        <p>✓ 資産価値の内訳分析</p>
-        <p>✓ 収益シミュレーション</p>
-        <p>✓ 3ヶ月の改善ロードマップ</p>
-        <p>✓ 具体的な改善アクション</p>
+          <p style="font-size:15px;line-height:1.9;color:#aaa;margin-bottom:36px">
+            29問に答えるだけで<br>向いている発信ジャンルと<br>収益化ルートがわかる
+          </p>
+          <button class="btn-primary" onclick="startDiagnosis()" style="font-size:18px;padding:20px 56px">無料で診断する</button>
+          <p style="font-size:12px;margin-top:16px;color:#666">無料・匿名・約90秒で完了</p>
+        </div>
       </div>
     </div>
 
-    <button class="restart-btn" onclick="startDiagnosis()">もう一度診断する</button>
-    `;
-    el.innerHTML=html;
+    <!-- 3 Steps Section -->
+    <div style="background:white;padding:56px 20px;max-width:480px;margin:0 auto">
+      <div style="text-align:center;margin-bottom:48px">
+        <span class="stripe-accent">HOW IT WORKS</span>
+        <h2 style="font-size:24px;font-weight:900;margin-top:16px;line-height:1.5">3ステップで診断完了</h2>
+      </div>
 
-    // Generate report URL with encoded answers
-    const reportData = btoa(JSON.stringify(a));
-    const reportURL = window.location.origin + window.location.pathname.replace('index.html','') + 'report.html?d=' + encodeURIComponent(reportData);
-    // Store for LINE integration
-    try { localStorage.setItem('_lastReportURL', reportURL); } catch(e){}
+      <!-- Step 1 -->
+      <div class="step-card fade-in">
+        <svg viewBox="0 0 160 160" style="width:100%;max-width:160px;height:auto;margin-bottom:16px">
+          <!-- Clipboard -->
+          <rect x="30" y="30" width="100" height="100" rx="8" fill="none" stroke="var(--lime)" stroke-width="2.5"/>
+          <!-- Clip -->
+          <rect x="45" y="15" width="30" height="20" rx="4" fill="var(--lime)"/>
+          <!-- Checkboxes -->
+          <rect x="45" y="50" width="16" height="16" rx="2" fill="none" stroke="var(--lime)" stroke-width="2"/>
+          <line x1="48" y1="58" x2="54" y2="64" stroke="var(--lime)" stroke-width="2.5"/>
+          <line x1="54" y1="58" x2="60" y2="64" stroke="var(--lime)" stroke-width="2.5"/>
 
-    animateCountUp(document.getElementById('assetValue'),total,2500);
-    setTimeout(()=>{
-      const revs=el.querySelectorAll('.reveal');
-      const obs=new IntersectionObserver(entries=>{
-        entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
-      },{threshold:.12});
-      revs.forEach(r=>obs.observe(r));
-      revs.forEach((r,i)=>{if(i<2)setTimeout(()=>r.classList.add('visible'),80+i*120);});
-    },50);
-  },1500);
+          <rect x="45" y="75" width="16" height="16" rx="2" fill="none" stroke="var(--lime)" stroke-width="2"/>
+          <line x1="48" y1="83" x2="54" y2="89" stroke="var(--lime)" stroke-width="2.5"/>
+          <line x1="54" y1="83" x2="60" y2="89" stroke="var(--lime)" stroke-width="2.5"/>
+
+          <rect x="45" y="100" width="16" height="16" rx="2" fill="none" stroke="var(--lime)" stroke-width="2"/>
+          <line x1="48" y1="108" x2="54" y2="114" stroke="var(--lime)" stroke-width="2.5"/>
+          <line x1="54" y1="108" x2="60" y2="114" stroke="var(--lime)" stroke-width="2.5"/>
+
+          <!-- Text lines -->
+          <line x1="70" y1="58" x2="110" y2="58" stroke="#ccc" stroke-width="1.5"/>
+          <line x1="70" y1="83" x2="110" y2="83" stroke="#ccc" stroke-width="1.5"/>
+          <line x1="70" y1="108" x2="110" y2="108" stroke="#ccc" stroke-width="1.5"/>
+        </svg>
+        <div class="step-number">1</div>
+        <div class="step-title">29問に回答</div>
+        <div class="step-desc">あなたのSNS発信適性について、29個の質問に答えます。約90秒で完了。</div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="step-card fade-in" style="animation-delay:0.1s">
+        <svg viewBox="0 0 160 160" style="width:100%;max-width:160px;height:auto;margin-bottom:16px">
+          <!-- CPU/Processor -->
+          <rect x="40" y="40" width="80" height="80" rx="4" fill="none" stroke="var(--lime)" stroke-width="2.5"/>
+          <!-- Grid inside -->
+          <line x1="60" y1="40" x2="60" y2="120" stroke="var(--lime)" stroke-width="1.5" opacity="0.5"/>
+          <line x1="80" y1="40" x2="80" y2="120" stroke="var(--lime)" stroke-width="1.5" opacity="0.5"/>
+          <line x1="100" y1="40" x2="100" y2="120" stroke="var(--lime)" stroke-width="1.5" opacity="0.5"/>
+          <line x1="40" y1="60" x2="120" y2="60" stroke="var(--lime)" stroke-width="1.5" opacity="0.5"/>
+          <line x1="40" y1="80" x2="120" y2="80" stroke="var(--lime)" stroke-width="1.5" opacity="0.5"/>
+          <line x1="40" y1="100" x2="120" y2="100" stroke="var(--lime)" stroke-width="1.5" opacity="0.5"/>
+          <!-- Center glow -->
+          <circle cx="80" cy="80" r="12" fill="var(--lime)" opacity="0.6"/>
+          <circle cx="80" cy="80" r="8" fill="var(--lime)"/>
+        </svg>
+        <div class="step-number">2</div>
+        <div class="step-title">AIが即座に分析</div>
+        <div class="step-desc">あなたの回答をAIが分析し、専門家レベルの診断を実施。一貫性もチェック。</div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="step-card fade-in" style="animation-delay:0.2s">
+        <svg viewBox="0 0 160 160" style="width:100%;max-width:160px;height:auto;margin-bottom:16px">
+          <!-- Report/Document -->
+          <rect x="35" y="35" width="90" height="90" rx="6" fill="none" stroke="var(--lime)" stroke-width="2.5"/>
+          <!-- Title line -->
+          <line x1="45" y1="50" x2="115" y2="50" stroke="var(--lime)" stroke-width="2"/>
+          <!-- Content lines -->
+          <line x1="45" y1="65" x2="105" y2="65" stroke="var(--lime)" stroke-width="1.5" opacity="0.7"/>
+          <line x1="45" y1="75" x2="105" y2="75" stroke="var(--lime)" stroke-width="1.5" opacity="0.7"/>
+          <line x1="45" y1="85" x2="115" y2="85" stroke="var(--lime)" stroke-width="1.5" opacity="0.7"/>
+          <line x1="45" y1="95" x2="95" y2="95" stroke="var(--lime)" stroke-width="1.5" opacity="0.7"/>
+          <!-- Star badge -->
+          <circle cx="110" cy="100" r="14" fill="var(--lime)"/>
+          <text x="110" y="106" text-anchor="middle" style="font-size:20px">★</text>
+        </svg>
+        <div class="step-number">3</div>
+        <div class="step-title">あなた専用の戦略</div>
+        <div class="step-desc">発信ジャンル、収益モデル、5つの軸スコア、詳細戦略をすべて表示。</div>
+      </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div style="background:var(--bg-section);padding:48px 20px;text-align:center">
+      <h3 style="font-size:18px;font-weight:900;margin-bottom:32px;color:var(--text)">累計10,000人以上が診断</h3>
+
+      <div class="stats-container">
+        <div class="stat-item fade-in">
+          <div class="stat-number">10K+</div>
+          <div class="stat-label">診断者</div>
+        </div>
+        <div class="stat-item fade-in" style="animation-delay:0.1s">
+          <div class="stat-number">92%</div>
+          <div class="stat-label">満足度</div>
+        </div>
+        <div class="stat-item fade-in" style="animation-delay:0.2s">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">無料</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEATURES: White section -->
+    <div style="padding:56px 20px;max-width:480px;margin:0 auto">
+      <div style="text-align:center;margin-bottom:36px">
+        <span class="stripe-accent">WHAT YOU'LL DISCOVER</span>
+        <h2 style="font-size:24px;font-weight:900;margin-top:16px;line-height:1.5">診断でわかること</h2>
+      </div>
+      ${[
+        {icon:"📊",text:"向いている発信ジャンル TOP3",sub:"回答傾向から最適なジャンルを自動判定"},
+        {icon:"💰",text:"稼ぎやすい収益化ルート",sub:"あなたに合ったマネタイズ方法を提案"},
+        {icon:"📈",text:"5つの軸で見るポテンシャル",sub:"継続力・発信適性・市場適合性・収益化・実行力"},
+        {icon:"⚠️",text:"今のあなたの弱点と優先課題",sub:"矛盾検出で自覚しにくい課題も可視化"},
+        {icon:"🎯",text:"あなた専用の詳細戦略",sub:"軸別の改善アクション＋収益ロードマップを即時表示"},
+      ].map((b,i)=>`
+        <div class="card fade-in fade-d${Math.min(i+1,4)}" style="display:flex;align-items:flex-start;gap:16px;padding:20px">
+          <div class="feature-icon">${b.icon}</div>
+          <div style="flex:1">
+            <p style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px">${b.text}</p>
+            <p style="font-size:12px;color:var(--text-dim);margin:0;line-height:1.6">${b.sub}</p>
+          </div>
+        </div>
+      `).join("")}
+    </div>
+
+    <!-- TAGS & BOTTOM CTA: Light gray section -->
+    <div style="background:var(--bg-section);padding:40px 20px 56px;text-align:center">
+      <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:32px">
+        ${["登録不要","完全無料","約90秒","匿名OK"].map(t=>`<span class="tag">${t}</span>`).join("")}
+      </div>
+      <button class="btn-primary" onclick="startDiagnosis()" style="font-size:18px;padding:20px 56px">今すぐ診断する →</button>
+    </div>
+  </div>`}
+
+function renderDiagnosis(el){
+  const q=QUESTIONS[state.currentQ];const progress=(state.currentQ/QUESTIONS.length)*100;
+  const encs={5:"この診断ではあなたに合う戦略がわかります",15:"折り返し地点。一貫性も加味して精度UP中...",23:"あと少しで結果が出ます"};
+  const enc=encs[state.currentQ]||"";
+  el.innerHTML=`
+  <div style="min-height:100vh;background:#fff">
+    <div style="position:sticky;top:0;z-index:10;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:14px 20px 14px;border-bottom:1px solid #eee">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;max-width:480px;margin-left:auto;margin-right:auto">
+        <button onclick="goBack()" style="background:none;border:none;font-size:14px;color:${state.currentQ>0?"var(--text)":"#ccc"};cursor:${state.currentQ>0?"pointer":"default"};font-weight:700;padding:4px 0">← 戻る</button>
+        <span style="font-size:12px;color:var(--text-dim);font-weight:800;letter-spacing:1px">${state.currentQ+1} / ${QUESTIONS.length}</span>
+      </div>
+      <div class="progress-track" style="max-width:480px;margin:0 auto"><div class="progress-fill" style="width:${progress}%"></div></div>
+    </div>
+    ${enc?`<div style="text-align:center;padding:16px 20px 0"><span class="enc-pill">${enc}</span></div>`:""}
+    <div style="padding:36px 20px 120px;max-width:480px;margin:0 auto" class="fade-in">
+      <span style="font-size:11px;color:var(--lime-dark);font-weight:800;letter-spacing:2px;display:block;margin-bottom:10px;background:var(--lime);display:inline-block;padding:2px 10px;border-radius:3px">${q.category}</span>
+      <h2 style="font-size:22px;font-weight:900;color:var(--text);margin-bottom:8px;line-height:1.5;margin-top:12px">${q.question}</h2>
+      ${q.description?`<p style="font-size:13px;color:var(--text-dim);margin-bottom:28px">${q.description}</p>`:""}
+      ${q.allowMultiple?`<p style="font-size:12px;color:var(--accent-green);margin-bottom:18px;font-weight:700;background:#f0fff4;display:inline-block;padding:4px 12px;border-radius:4px">複数選択OK</p>`:""}
+      <div>
+        ${q.options.map((o,i)=>{
+          const isSel=q.allowMultiple?state.multiSelect.includes(i):state.answers[q.id]===i;
+          return`<button class="opt-btn${isSel?" selected":""}" onclick="${q.allowMultiple?`toggleMulti(${i})`:`selectSingle(${i})`}">
+            ${q.allowMultiple?`<span class="opt-checkbox">${isSel?"✓":""}</span>`:""}${o.label}
+          </button>`}).join("")}
+      </div>
+      ${q.allowMultiple?`<button onclick="confirmMulti()" style="margin-top:16px;width:100%;padding:16px;font-size:16px;font-weight:800;border-radius:60px;border:none;cursor:${state.multiSelect.length?"pointer":"default"};background:${state.multiSelect.length?"var(--lime)":"#e5e5e5"};color:${state.multiSelect.length?"var(--black)":"#aaa"};transition:all 0.3s">次へ進む →</button>`:""}
+    </div>
+  </div>`}
+
+function renderLoading(el){
+  el.innerHTML=`
+  <div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#111;color:white">
+    <!-- Loading SVG Animation -->
+    <svg viewBox="0 0 120 120" style="width:100px;height:100px;margin-bottom:24px">
+      <!-- Outer ring animation -->
+      <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(197,255,0,0.2)" stroke-width="4"/>
+      <circle cx="60" cy="60" r="50" fill="none" stroke="var(--lime)" stroke-width="4" stroke-dasharray="157" stroke-dashoffset="0" style="animation:spin 2s linear infinite"/>
+
+      <!-- Inner elements -->
+      <circle cx="60" cy="60" r="30" fill="none" stroke="rgba(197,255,0,0.3)" stroke-width="2"/>
+      <circle cx="60" cy="20" r="6" fill="var(--lime)">
+        <animateTransform attributeName="transform" type="rotate" from="0 60 60" to="360 60 60" dur="2s" repeatCount="indefinite"/>
+      </circle>
+    </svg>
+
+    <p style="margin-top:28px;font-size:18px;font-weight:800;color:var(--lime)">診断結果を分析中...</p>
+    <p style="font-size:13px;color:#666;margin-top:10px">回答の一貫性もチェックしています</p>
+    <div style="margin-top:32px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+      ${["継続力","発信適性","市場適合性","収益化","実行力"].map((t,i)=>`<span style="font-size:11px;color:#888;padding:4px 12px;border-radius:4px;background:#222;animation:fadeIn 0.5s ease ${i*0.15}s both;font-weight:600">${t}</span>`).join("")}
+    </div>
+  </div>`}
+
+function renderResult(el){
+  const r=state.result;if(!r)return;
+  const{axes,totalScore,confidence,influencerType,genres,monetizationModels,incomeRange,weaknesses,copy,axisDetails,actionPlan,percentile,revenueSimulation}=r;
+
+  // Radar SVG
+  const lbs=[{key:"continuity",label:"継続力"},{key:"expression",label:"発信適性"},{key:"market",label:"市場適合性"},{key:"monetization",label:"収益化"},{key:"execution",label:"実行力"}];
+  const n=5,cx=150,cy=150,rad=105,ao=-Math.PI/2;
+  const gp=(i,v)=>{const a=(2*Math.PI*i)/n+ao;const d=(v/100)*rad;return{x:cx+d*Math.cos(a),y:cy+d*Math.sin(a)}};
+  const gridSvg=[20,40,60,80,100].map(lv=>`<polygon points="${lbs.map((_,i)=>{const p=gp(i,lv);return p.x+","+p.y}).join(" ")}" fill="none" stroke="#e5e5e5" stroke-width="1"/>`).join("");
+  const linesSvg=lbs.map((_,i)=>{const p=gp(i,100);return`<line x1="${cx}" y1="${cy}" x2="${p.x}" y2="${p.y}" stroke="#e5e5e5" stroke-width="1"/>`}).join("");
+  const dataSvg=`<polygon points="${lbs.map((l,i)=>{const p=gp(i,axes[l.key]);return p.x+","+p.y}).join(" ")}" fill="rgba(197,255,0,0.15)" stroke="var(--lime)" stroke-width="2.5"/>`;
+  const dotsSvg=lbs.map((l,i)=>{const p=gp(i,axes[l.key]);return`<circle cx="${p.x}" cy="${p.y}" r="4.5" fill="var(--lime)" stroke="#111" stroke-width="1.5"/>`}).join("");
+  const lblSvg=lbs.map((l,i)=>{const p=gp(i,120);return`<text x="${p.x}" y="${p.y}" text-anchor="middle" dominant-baseline="middle" style="font-size:11px;fill:#555;font-weight:700">${l.label}</text>`}).join("");
+
+  // Score circle
+  const sr=72;const circ=2*Math.PI*sr;const off=circ-(totalScore/100)*circ;
+  const scoreColor=totalScore>=75?"var(--lime)":totalScore>=55?"var(--accent-orange)":"var(--accent-red)";
+
+  el.innerHTML=`
+  <div style="min-height:100vh">
+    <!-- Score Hero: Black -->
+    <div style="background:#111;color:white;padding:48px 24px 48px;text-align:center;position:relative;overflow:hidden">
+      <span style="font-size:11px;font-weight:800;letter-spacing:3px;color:#666;display:block;margin-bottom:24px">YOUR DIAGNOSIS RESULT</span>
+      <div class="fade-in" style="display:inline-block;position:relative">
+        <svg width="180" height="180" style="display:block;margin:0 auto">
+          <!-- Decorative rings -->
+          <circle cx="90" cy="90" r="85" fill="none" stroke="rgba(197,255,0,0.1)" stroke-width="1"/>
+          <circle cx="90" cy="90" r="70" fill="none" stroke="rgba(197,255,0,0.05)" stroke-width="1"/>
+
+          <!-- Score circle -->
+          <circle cx="90" cy="90" r="${sr}" fill="none" stroke="#333" stroke-width="8"/>
+          <circle cx="90" cy="90" r="${sr}" fill="none" stroke="${scoreColor}" stroke-width="8" stroke-dasharray="${circ}" stroke-dashoffset="${off}" stroke-linecap="round" transform="rotate(-90 90 90)" style="transition:stroke-dashoffset 1.5s cubic-bezier(0.4,0,0.2,1)"/>
+
+          <!-- Score text -->
+          <text x="90" y="80" text-anchor="middle" style="font-size:52px;font-weight:900;fill:white">${totalScore}</text>
+          <text x="90" y="108" text-anchor="middle" style="font-size:13px;fill:#666;font-weight:700">/ 100</text>
+        </svg>
+      </div>
+      <p style="font-size:15px;margin-top:20px;color:#aaa;font-weight:700">SNS副業収益ポテンシャル</p>
+    </div>
+
+    <!-- Results: White -->
+    <div style="padding:32px 16px 80px;max-width:480px;margin:0 auto">
+
+      <!-- Score headline -->
+      <div class="card fade-in fade-d1" style="border-left:4px solid var(--lime)">
+        <p style="font-size:15px;line-height:1.85;color:var(--text)">${copy.scoreHeadline}</p>
+      </div>
+
+      <!-- Confidence -->
+      <div class="card fade-in fade-d2">
+        <div class="section-title">CONFIDENCE</div>
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:10px">
+          <span style="font-size:28px;font-weight:900;color:var(--text)">${confidence}<span style="font-size:13px;font-weight:600;color:var(--text-dim)">%</span></span>
+          <div class="axis-bar-track" style="height:6px"><div class="axis-bar-fill" style="background:${confidence>=70?"var(--accent-green)":"var(--accent-orange)"};width:${confidence}%"></div></div>
+        </div>
+        <p style="font-size:12px;color:var(--text-dim);line-height:1.6">${copy.confidenceMessage}</p>
+      </div>
+
+      <!-- Type -->
+      <div class="card fade-in fade-d3">
+        <div class="section-title">YOUR TYPE</div>
+        <div style="background:#111;border-radius:12px;padding:20px;color:white">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+            <span style="font-size:32px">${influencerType.emoji}</span>
+            <span style="font-size:18px;font-weight:900;color:var(--lime)">${influencerType.name}</span>
+          </div>
+          <p style="font-size:13px;color:#aaa;line-height:1.8;margin:0">${influencerType.desc}</p>
+        </div>
+      </div>
+
+      <!-- Genres -->
+      <div class="card fade-in fade-d4">
+        <div class="section-title">BEST GENRES</div>
+        ${genres.map((g,i)=>`
+          <div style="display:flex;gap:14px;align-items:flex-start;margin-bottom:16px">
+            <div class="rank-badge rank-${i+1}">${i+1}</div>
+            <div style="flex:1">
+              <p style="font-size:15px;font-weight:800;color:var(--text);margin-bottom:3px">${g.name}</p>
+              <p style="font-size:12px;color:var(--text-dim);line-height:1.6;margin:0">${g.reason}</p>
+            </div>
+          </div>`).join("")}
+      </div>
+
+      <!-- Monetization -->
+      <div class="card">
+        <div class="section-title">MONETIZATION</div>
+        ${monetizationModels.map((m,i)=>`
+          <div style="display:flex;gap:14px;align-items:flex-start;margin-bottom:16px">
+            <div class="rank-badge rank-${i+1}">${i+1}</div>
+            <div style="flex:1">
+              <p style="font-size:15px;font-weight:800;color:var(--text);margin-bottom:3px">${m.name}</p>
+              <p style="font-size:12px;color:var(--text-dim);line-height:1.6;margin:0">${m.reason}</p>
+            </div>
+          </div>`).join("")}
+      </div>
+
+      <!-- Radar -->
+      <div class="card">
+        <div class="section-title">5-AXIS SCORE</div>
+        <svg viewBox="0 0 300 300" style="width:100%;max-width:280px;margin:0 auto;display:block">
+          ${gridSvg}${linesSvg}${dataSvg}${dotsSvg}${lblSvg}
+        </svg>
+        <div style="margin-top:20px">
+          ${lbs.map(a=>{const v=axes[a.key];const c=v>=70?"var(--lime-dark)":v>=50?"var(--accent-orange)":"var(--accent-red)";return`
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+              <span style="font-size:12px;font-weight:700;color:var(--text-sub);min-width:72px">${a.label}</span>
+              <div class="axis-bar-track"><div class="axis-bar-fill" style="background:${c};width:${v}%"></div></div>
+              <span style="font-size:14px;font-weight:900;color:var(--text);min-width:32px;text-align:right">${v}</span>
+            </div>`}).join("")}
+        </div>
+      </div>
+
+      <!-- Income -->
+      <div class="card">
+        <div class="section-title">INCOME ESTIMATE</div>
+        <p style="font-size:11px;color:var(--text-dim);margin-bottom:16px;line-height:1.6">正しい設計で継続した場合の想定レンジです。成果を保証するものではありません。</p>
+        ${[{p:"3ヶ月後",v:incomeRange.m3,icon:"🌱"},{p:"6ヶ月後",v:incomeRange.m6,icon:"🌿"},{p:"12ヶ月後",v:incomeRange.m12,icon:"🌳"}].map(r=>`
+          <div class="income-row">
+            <span style="font-size:14px;color:var(--text-sub);display:flex;align-items:center;gap:8px"><span>${r.icon}</span>${r.p}</span>
+            <span style="font-size:20px;font-weight:900;color:var(--text)">${r.v}</span>
+          </div>`).join("")}
+      </div>
+
+      <!-- Weaknesses -->
+      ${weaknesses.length?`<div class="card">
+        <div class="section-title">ISSUES</div>
+        ${weaknesses.map(w=>`
+          <div class="weakness-item">
+            ${w.axis!=="矛盾検出"?`<p style="font-size:11px;color:var(--accent-red);font-weight:800;margin-bottom:4px;letter-spacing:0.5px">${w.axis}${w.score!==undefined?" : "+w.score+"pt":""}</p>`:""}
+            <p style="font-size:13px;color:var(--text-sub);line-height:1.8;margin:0">${w.message}</p>
+          </div>`).join("")}
+      </div>`:""}
+
+      <!-- Percentile -->
+      <div class="card" style="background:#111;color:white;border:1px solid #333">
+        <div class="section-title-dark">YOUR POSITION</div>
+        <div style="text-align:center;margin-bottom:20px">
+          <span style="font-size:42px;font-weight:900;color:var(--lime)">${percentile.label}</span>
+          <p style="font-size:13px;color:#aaa;margin-top:8px;line-height:1.7">${percentile.desc}</p>
+        </div>
+        <div style="display:flex;gap:12px;margin-top:16px">
+          <div style="flex:1;background:#1a1a1a;border-radius:12px;padding:16px;text-align:center">
+            <p style="font-size:11px;color:#888;margin-bottom:6px;font-weight:700">最も強い軸</p>
+            <p style="font-size:16px;font-weight:900;color:var(--lime)">${percentile.strongest.name}</p>
+            <p style="font-size:20px;font-weight:900;color:white;margin-top:4px">${percentile.strongest.score}<span style="font-size:12px;color:#666">pt</span></p>
+          </div>
+          <div style="flex:1;background:#1a1a1a;border-radius:12px;padding:16px;text-align:center">
+            <p style="font-size:11px;color:#888;margin-bottom:6px;font-weight:700">最も弱い軸</p>
+            <p style="font-size:16px;font-weight:900;color:var(--accent-orange)">${percentile.weakest.name}</p>
+            <p style="font-size:20px;font-weight:900;color:white;margin-top:4px">${percentile.weakest.score}<span style="font-size:12px;color:#666">pt</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Axis Details -->
+      <div class="card">
+        <div class="section-title">DETAILED ANALYSIS</div>
+        <p style="font-size:12px;color:var(--text-dim);margin-bottom:20px">5つの軸それぞれの詳細解説と、あなたに合った改善アクションです。</p>
+        ${axisDetails.map((d,idx)=>{
+          const barColor=d.score>=70?"var(--lime-dark)":d.score>=50?"var(--accent-orange)":"var(--accent-red)";
+          const levelLabel=d.score>=70?"HIGH":d.score>=50?"MID":"LOW";
+          const levelColor=d.score>=70?"var(--accent-green)":d.score>=50?"var(--accent-orange)":"var(--accent-red)";
+          return`
+          <div style="padding:20px 0;${idx<axisDetails.length-1?"border-bottom:2px solid var(--gray-border)":""}">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+              <span style="font-size:24px">${d.icon}</span>
+              <span style="font-size:16px;font-weight:900;color:var(--text);flex:1">${d.name}</span>
+              <span style="font-size:11px;font-weight:800;color:${levelColor};background:${levelColor}15;padding:3px 10px;border-radius:4px;letter-spacing:1px">${levelLabel}</span>
+              <span style="font-size:20px;font-weight:900;color:var(--text)">${d.score}</span>
+            </div>
+            <div class="axis-bar-track" style="margin-bottom:14px;height:6px"><div class="axis-bar-fill" style="background:${barColor};width:${d.score}%"></div></div>
+            <p style="font-size:13px;color:var(--text-sub);line-height:1.85;margin-bottom:16px">${d.explanation}</p>
+            <div style="background:var(--bg-section);border-radius:10px;padding:16px">
+              <p style="font-size:11px;font-weight:800;color:var(--lime-dark);letter-spacing:1px;margin-bottom:10px">RECOMMENDED ACTIONS</p>
+              ${d.actions.map((a,ai)=>`
+                <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:${ai<d.actions.length-1?"10px":"0"}">
+                  <span style="color:var(--lime-dark);font-weight:900;font-size:14px;margin-top:1px">▸</span>
+                  <span style="font-size:13px;color:var(--text-sub);line-height:1.7">${a}</span>
+                </div>`).join("")}
+            </div>
+          </div>`}).join("")}
+      </div>
+
+      <!-- Action Plan -->
+      <div class="card">
+        <div class="section-title">ACTION ROADMAP</div>
+        <p style="font-size:12px;color:var(--text-dim);margin-bottom:20px">${copy.actionIntroduction}</p>
+        ${actionPlan.map((phase,pi)=>`
+          <div style="margin-bottom:${pi<actionPlan.length-1?"24px":"0"}">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+              <div style="width:36px;height:36px;border-radius:50%;background:${pi===0?"var(--lime)":pi===1?"#222":"#111"};display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:${pi===0?"var(--black)":"white"};border:${pi>0?"2px solid var(--lime)":"none"};flex-shrink:0">${pi+1}</div>
+              <div>
+                <p style="font-size:11px;color:var(--lime-dark);font-weight:800;letter-spacing:1px">${phase.period}</p>
+                <p style="font-size:16px;font-weight:900;color:var(--text)">${phase.title}</p>
+              </div>
+            </div>
+            ${phase.tasks.map(t=>`
+              <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;padding-left:46px">
+                <span style="color:var(--gray-light);font-size:12px;margin-top:2px">●</span>
+                <span style="font-size:13px;color:var(--text-sub);line-height:1.7">${t}</span>
+              </div>`).join("")}
+          </div>`).join("")}
+      </div>
+
+      <!-- Revenue Simulation -->
+      <div class="card" style="background:#111;color:white;border:1px solid #333">
+        <div class="section-title-dark">REVENUE SIMULATION</div>
+        <p style="font-size:12px;color:#888;margin-bottom:20px">主な収益モデル: <span style="color:var(--lime);font-weight:700">${revenueSimulation.primaryModel}</span></p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+          ${revenueSimulation.monthly.map(m=>`
+            <div style="background:#1a1a1a;border-radius:12px;padding:16px;text-align:center">
+              <p style="font-size:11px;color:#888;font-weight:700;margin-bottom:6px">${m.month}</p>
+              <p style="font-size:24px;font-weight:900;color:var(--lime)">${m.amount}<span style="font-size:12px;color:#666">万円</span></p>
+              <p style="font-size:10px;color:#666;margin-top:6px;line-height:1.5">${m.note}</p>
+            </div>`).join("")}
+        </div>
+        <p style="font-size:10px;color:#555;line-height:1.6">${revenueSimulation.assumptions}</p>
+      </div>
+
+      <div style="text-align:center;padding:24px 0">
+        <button onclick="startDiagnosis()" style="background:none;border:none;color:var(--text-dim);font-size:13px;cursor:pointer;text-decoration:underline">もう一度診断する</button>
+      </div>
+    </div>
+  </div>`}
+
+// ============================================================
+// ACTIONS
+// ============================================================
+function startDiagnosis(){state={screen:"diagnosis",currentQ:0,answers:{},multiSelect:[],result:null};render();window.scrollTo(0,0)}
+function selectSingle(i){const q=QUESTIONS[state.currentQ];state.answers[q.id]=i;if(state.currentQ<QUESTIONS.length-1){setTimeout(()=>{state.currentQ++;state.multiSelect=[];render();window.scrollTo(0,0)},180)}else finishDiagnosis()}
+function toggleMulti(i){if(state.multiSelect.includes(i))state.multiSelect=state.multiSelect.filter(x=>x!==i);else state.multiSelect.push(i);render()}
+function confirmMulti(){if(!state.multiSelect.length)return;const q=QUESTIONS[state.currentQ];state.answers[q.id]=[...state.multiSelect];if(state.currentQ<QUESTIONS.length-1){state.currentQ++;state.multiSelect=[];render();window.scrollTo(0,0)}else finishDiagnosis()}
+function goBack(){if(state.currentQ>0){state.currentQ--;const pq=QUESTIONS[state.currentQ];const prev=state.answers[pq.id];state.multiSelect=pq.allowMultiple&&Array.isArray(prev)?[...prev]:[];render();window.scrollTo(0,0)}}
+function finishDiagnosis(){state.screen="loading";render();window.scrollTo(0,0);setTimeout(()=>{state.result=computeResult(state.answers);state.screen="result";render();window.scrollTo(0,0)},2800)}
+
+// ============================================================
+// RENDER MAIN
+// ============================================================
+function render(){
+  const app=document.getElementById("app");
+  if(state.screen==="top")renderTop(app);
+  else if(state.screen==="diagnosis")renderDiagnosis(app);
+  else if(state.screen==="loading")renderLoading(app);
+  else if(state.screen==="result")renderResult(app);
 }
 
-function animateCountUp(el,target,duration){
-  let start=null;
-  function step(ts){
-    if(!start)start=ts;
-    const progress=Math.min((ts-start)/duration,1);
-    const eased=progress===1?1:1-Math.pow(2,-10*progress);
-    el.textContent='¥'+Math.floor(eased*target).toLocaleString();
-    if(progress<1)requestAnimationFrame(step);
-  }
-  requestAnimationFrame(step);
-}
+render();
 </script>
 </body>
 </html>
